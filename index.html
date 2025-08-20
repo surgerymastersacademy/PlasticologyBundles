@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عروض Plasticology الخاصة - منظومة تعليمية متكاملة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .header-bg {
+            background-color: #121212;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Main Navigation Styles */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+        .nav-button.active {
+            background-color: #D4AF37; /* Gold */
+            color: #121212;
+            box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.39);
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .page-section.active {
+            display: block;
+        }
+        
+        /* Tab Styles */
+        .main-tab-button.active {
+            background-color: #D4AF37; /* Gold */
+            color: #121212;
+            box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.39);
+        }
+        .sub-tab-button.active {
+            background-color: #212529;
+            color: #D4AF37;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .tab-content, .sub-tab-content {
+            display: none;
+        }
+        .tab-content.active, .sub-tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .highlight-glow {
+            box-shadow: 0 0 25px 5px rgba(212, 175, 55, 0.4);
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header Section -->
+    <header class="header-bg text-white py-6">
+        <div id="particles-js"></div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-right relative z-10">
+            <div class="md:w-3/5">
+                <h1 class="text-3xl md:text-4xl font-bold mb-3 text-yellow-400">
+                    <i class="fas fa-fire"></i>
+                    Plasticology
+                    <i class="fas fa-graduation-cap"></i>
+                </h1>
+                <p class="text-lg mb-5 text-gray-300">منظومة تعليمية متكاملة - أول مرة في الشرق الأوسط</p>
+                <div class="bg-red-500 text-white py-2 px-6 rounded-full inline-block pulse text-base font-bold">
+                    <i class="fas fa-clock mr-2"></i>
+                    عروض لفترة محدودة
+                </div>
+            </div>
+            <div class="mt-6 md:mt-0">
+                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank">
+                    <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="mx-auto w-40 h-auto transition-transform duration-300 hover:scale-110" />
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-nav bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-2 p-2">
+                <button class="nav-button flex-auto px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showPage('bundles')"><i class="fas fa-tags mr-2"></i>الباقات</button>
+                <button class="nav-button flex-auto px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showPage('features')"><i class="fas fa-star mr-2"></i>المميزات</button>
+                <button class="nav-button flex-auto px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showPage('platform')"><i class="fas fa-laptop mr-2"></i>المنصة</button>
+                <button class="nav-button flex-auto px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showPage('faq')"><i class="fas fa-question-circle mr-2"></i>الأسئلة الشائعة</button>
+                <button class="nav-button flex-auto px-4 py-3 text-base font-bold rounded-full transition-colors bg-blue-500 text-white hover:bg-blue-600" onclick="showPage('contact')"><i class="fab fa-telegram-plane mr-2"></i>اتصل بنا</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main>
+        <!-- Bundles Section -->
+        <section id="bundles" class="page-section active">
+            <div id="pricing" class="container mx-auto px-4 py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-5xl font-extrabold text-gray-800 mb-4">
+                        اختر الباقة المناسبة لك
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">كل الباقات تشمل تحديثات مستمرة ودعم فني كامل</p>
+                    
+                    <!-- Main Tabs -->
+                    <div class="flex justify-center gap-4 bg-gray-200 p-2 rounded-full max-w-2xl mx-auto mb-8">
+                        <button class="main-tab-button flex-1 px-6 py-3 text-lg font-bold rounded-full transition-colors active" onclick="showMainTab('individuals', this)">
+                            <i class="fas fa-user mr-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
+                        </button>
+                        <button class="main-tab-button flex-1 px-6 py-3 text-lg font-bold rounded-full transition-colors" onclick="showMainTab('groups', this)">
+                            <i class="fas fa-users mr-2"></i>Champions <span class="hidden sm:inline">(باقات الأبطال)</span>
+                        </button>
+                    </div>
+
+                    <!-- Individuals Tab Content -->
+                    <div id="individuals-tab" class="tab-content active">
+                        <div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-4xl mx-auto">
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showSubTab('lectures', this)">
+                                Lectures Bundles <span class="block text-sm opacity-75 font-normal">عروض الشرح</span>
+                            </button>
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('mcq', this)">
+                                QBank Bundles <span class="block text-sm opacity-75 font-normal">بنك الأسئلة</span>
+                            </button>
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('combo', this)">
+                                Combo Bundles <span class="block text-sm opacity-75 font-normal">الباقات الكومبو</span>
+                            </button>
+                        </div>
+                        <div class="mt-8">
+                            <div id="lectures-content" class="sub-tab-content active">
+                                <div id="lectures-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                            </div>
+                            <div id="mcq-content" class="sub-tab-content">
+                                <div id="mcq-cards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                            </div>
+                            <div id="combo-content" class="sub-tab-content">
+                                <div id="combo-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Groups Tab Content -->
+                    <div id="groups-tab" class="tab-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="page-section">
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-3"></i>
+                            إيه اللي بيميز Plasticology؟
+                        </h2>
+                        <p class="text-xl text-gray-600">مش مجرد كورس... دي ثورة تعليمية هتغير مستقبلك!</p>
+                        <div class="w-32 h-1.5 bg-gradient-to-r from-yellow-500 to-yellow-300 mx-auto rounded mt-4"></div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-sync-alt text-3xl text-yellow-400"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">تحديث دوري</h3>
+                            <p class="text-gray-600">المحتوى يتم تحديثه دورياً ليواكب أحدث المعلومات والمصادر العالمية.</p>
+                            <button onclick="openFeatureModal('daily_updates')" class="mt-4 text-gray-800 font-bold hover:underline">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        </div>
+                        
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                             <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-brain text-3xl text-yellow-400"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">منصة متكاملة</h3>
+                            <p class="text-gray-600">متاحة أونلاين بالكامل لتكون رفيقك في التحضير لكل الامتحانات وفي أي وقت.</p>
+                            <button onclick="openFeatureModal('integrated_platform')" class="mt-4 text-gray-800 font-bold hover:underline">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        </div>
+                        
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-tools text-3xl text-yellow-400"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">أدوات ذكية</h3>
+                            <p class="text-gray-600">بنك أسئلة ومنظم مذاكرة ذكي لتجربة تعليمية فريدة.</p>
+                            <button onclick="openFeatureModal('smart_tools')" class="mt-4 text-gray-800 font-bold hover:underline">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Section -->
+        <section id="platform" class="page-section">
+             <div class="py-16">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-laptop text-yellow-500 mr-3"></i>
+                        المنصة التعليمية
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">منصتنا مصممة لتمنحك أفضل تجربة تعليمية. شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي ستساعدك على التفوق.</p>
+                     <div class="text-center mt-12 mb-16">
+                        <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            شاهد المنصة بالفيديو
+                        </button>
+                    </div>
+                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:underline">
+                        اذهب إلى المنصة الآن <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="page-section">
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <div class="text-center mb-12">
+                         <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-question-circle text-yellow-500 mr-3"></i>
+                            الأسئلة الشائعة
+                        </h2>
+                        <p class="text-xl text-gray-600">كل ما تحتاج معرفته قبل الاشتراك</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-6 rounded-lg border-r-4 border-yellow-400">
+                            <h3 class="font-bold text-lg text-gray-800">كيف يتم تفعيل الاشتراك؟</h3>
+                            <p class="mt-2 text-gray-600">بعد اختيار الباقة المناسبة والتواصل معنا عبر تيليجرام، سيتم تفعيل اشتراكك يدويًا على إيميلك الخاص فور تأكيد الدفع.</p>
+                        </div>
+                         <div class="bg-gray-50 p-6 rounded-lg border-r-4 border-yellow-400">
+                            <h3 class="font-bold text-lg text-gray-800">هل يمكنني الترقية من باقة لأخرى؟</h3>
+                            <p class="mt-2 text-gray-600">نعم، يمكنك في أي وقت الترقية من باقة أقل إلى باقة أعلى (مثلاً من باقة باب واحد إلى المنهج كامل) عن طريق دفع الفرق فقط. تواصل معنا للمساعدة.</p>
+                        </div>
+                         <div class="bg-gray-50 p-6 rounded-lg border-r-4 border-yellow-400">
+                            <h3 class="font-bold text-lg text-gray-800">متى يبدأ احتساب مدة الاشتراك؟</h3>
+                            <p class="mt-2 text-gray-600">يبدأ احتساب مدة الاشتراك من تاريخ تفعيل الحساب على المنصة، وليس من تاريخ الدفع.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+             <div class="py-16">
+                <div class="container mx-auto px-4 text-center">
+                     <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fab fa-telegram-plane text-blue-500 mr-3"></i>
+                        هل أنت مستعد للبدء؟
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl pulse">
+                        تواصل معنا عبر تيليجرام
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-10">
+        <div class="container mx-auto px-4 text-center">
+             <div class="mb-4">
+                <a href="#bundles" class="text-gray-400 hover:text-yellow-400 mx-3">الباقات</a>
+                <a href="#features" class="text-gray-400 hover:text-yellow-400 mx-3">المميزات</a>
+                <a href="#faq" class="text-gray-400 hover:text-yellow-400 mx-3">الأسئلة الشائعة</a>
+            </div>
+            <div class="flex justify-center space-x-6 my-4">
+                <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/DrBishoyAcademy" class="text-gray-400 hover:text-yellow-400 text-2xl"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="text-gray-500">
+                © 2024 Plasticology. جميع الحقوق محفوظة.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="featureModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden modal-overlay" onclick="closeFeatureModal()">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 modal-content" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b pb-4 mb-6">
+                <h3 id="modalTitle" class="text-3xl font-bold text-gray-800"></h3>
+                <button onclick="closeFeatureModal()" class="text-gray-500 hover:text-red-500 text-3xl">&times;</button>
+            </div>
+            <div id="modalContent" class="grid md:grid-cols-2 gap-6"></div>
+        </div>
+    </div>
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden modal-overlay" onclick="closeVideoModal()">
+        <div class="bg-black w-full max-w-4xl aspect-video relative modal-content" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute -top-10 right-0 text-white text-4xl">&times;</button>
+            <iframe id="youtube-player" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // --- DATA SOURCE ---
+        const packagesData = [
+            { category: 'lectures', title: '3 شهور (المنهج كامل)', price: 25000, originalPrice: 30000, theme: 'green' },
+            { category: 'lectures', title: '6 شهور (المنهج كامل)', price: 45000, originalPrice: 60000, theme: 'purple', highlight: 'الأكثر شيوعًا', scale: true },
+            { category: 'lectures', title: '12 شهر (المنهج كامل)', price: 75000, originalPrice: 120000, theme: 'dark', highlight: 'الأكثر توفيراً' },
+            { category: 'lectures', title: 'شهر واحد (المنهج كامل)', price: 10000, theme: 'blue' },
+            { category: 'lectures', title: 'شهر (باب واحد Custom)', price: 4000, theme: 'teal' },
+            { category: 'lectures', title: 'شهر (بابين Custom)', price: 7000, theme: 'pink' },
+            { category: 'mcq', title: 'شهر واحد', price: 1000, theme: 'indigo' },
+            { category: 'mcq', title: '3 شهور', price: 2500, theme: 'teal' },
+            { category: 'mcq', title: '6 شهور', price: 4500, originalPrice: 6000, theme: 'pink' },
+            { category: 'mcq', title: '12 شهر', price: 8000, originalPrice: 12000, theme: 'orange' },
+            { category: 'combo', title: 'باقة 3 شهور', price: 30000, originalPrice: 35000, theme: 'gradient-blue-purple' },
+            { category: 'combo', title: 'باقة 6 شهور', price: 55000, originalPrice: 70000, theme: 'gradient-purple-pink', highlight: 'الأكثر شعبية', scale: true },
+            { category: 'combo', title: 'باقة 12 شهر', price: 90000, originalPrice: 130000, theme: 'gradient-yellow-red' },
+        ];
+        
+        const groupDiscounts = {
+            lectures: [
+                { name: 'Partners Bundle (باقة الرفقاء)', discount: 0.15, theme: 'cyan' },
+                { name: 'Alliance Bundle (باقة التحالف)', discount: 0.25, theme: 'emerald' },
+                { name: 'Legends Bundle (باقة الأساطير)', discount: 0.35, theme: 'amber' },
+            ],
+            combo: [
+                { name: 'Partners Bundle (باقة الرفقاء)', discount: 0.10, theme: 'cyan' },
+                { name: 'Alliance Bundle (باقة التحالف)', discount: 0.20, theme: 'emerald' },
+                { name: 'Legends Bundle (باقة الأساطير)', discount: 0.30, theme: 'amber' },
+            ]
+        };
+
+        // --- DYNAMIC RENDERING ---
+        function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
+
+        function createCardHTML(pkg) {
+            const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
+            const savingText = saving > 0 ? `<span class="bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">وفر ${formatPrice(saving)} ج.م</span>` : '';
+            const originalPriceText = pkg.originalPrice ? `<p class="text-gray-500 line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
+            const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold ${pkg.highlight === 'الأكثر توفيراً' ? '' : 'pulse'}">${pkg.highlight}</div>` : '';
+            const scaleClass = pkg.scale ? 'lg:scale-105 highlight-glow' : '';
+            const darkClass = pkg.theme.includes('dark') ? 'bg-gray-800 text-white' : 'bg-white';
+            const priceColor = pkg.theme.includes('dark') ? `text-yellow-400` : `text-gray-900`;
+            const buttonColor = pkg.theme.includes('dark') ? 'bg-yellow-500 hover:bg-yellow-600 text-black' : `bg-gray-800 hover:bg-black text-white`;
+
+            if (pkg.category === 'combo') {
+                 return `<div class="bg-gradient-to-br ${ { 'gradient-blue-purple': 'from-gray-700 to-gray-900', 'gradient-purple-pink': 'from-gray-800 to-black', 'gradient-yellow-red': 'from-yellow-500 to-yellow-700' }[pkg.theme] } rounded-2xl shadow-2xl p-8 text-white card-hover text-center flex flex-col h-full relative ${scaleClass}">${highlightText}<h3 class="text-2xl font-bold mb-4 ${pkg.highlight ? 'mt-6' : ''}">${pkg.title}</h3><p class="text-5xl font-extrabold mb-2">${formatPrice(pkg.price)}<span class="text-xl font-medium"> ج.م</span></p>${pkg.originalPrice ? `<p class="text-lg opacity-75 line-through mb-4">بدلاً من ${formatPrice(pkg.originalPrice)} ج.م</p>` : ''}${saving > 0 ? `<span class="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-bold inline-block mb-6">وفر ${formatPrice(saving)} ج.م</span>` : ''}<div class="text-center text-base mt-auto mb-4"><p><i class="fas fa-check-circle text-yellow-300 mr-2"></i>تشمل منظم المذاكرة الذكي</p></div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-white text-gray-800 py-4 rounded-lg font-bold hover:bg-gray-200 transition-colors text-lg mt-auto">اشترك الآن</a></div>`;
+            }
+
+            return `<div class="${darkClass} rounded-xl shadow-lg p-6 card-hover border-t-8 border-yellow-400 text-center flex flex-col h-full relative ${scaleClass}">${highlightText}<h3 class="text-xl font-bold ${darkClass.includes('white') ? 'text-gray-800' : ''} mb-3 ${pkg.highlight ? 'mt-3' : ''}">${pkg.title}</h3><p class="text-3xl font-extrabold ${priceColor} mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>${originalPriceText}${savingText}<div class="text-right text-sm ${darkClass.includes('white') ? 'text-gray-600' : 'text-gray-300'} mt-auto pt-4 mb-4"><p><i class="fas fa-check-circle ${darkClass.includes('white') ? 'text-green-500' : 'text-green-400'} mr-2"></i>تشمل منظم المذاكرة الذكي</p></div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block ${buttonColor} py-3 rounded-lg font-bold transition-colors mt-auto">اشترك الآن</a></div>`;
+        }
+        
+        function createGroupCardHTML(group, type) {
+            const basePackages = packagesData.filter(p => p.category === type && ['3', '6', '12'].some(d => p.title.includes(d)));
+            let priceDetailsHTML = basePackages.map(pkg => {
+                const duration = pkg.title.match(/\d+/)[0];
+                const newPrice = pkg.price * (1 - group.discount);
+                return `<p><b>${duration} شهور:</b> <span class="font-bold text-green-600">${formatPrice(newPrice)} ج.م</span> <span class="line-through text-gray-500 text-sm">${formatPrice(pkg.price)}</span> / للفرد</p>`
+            }).join('');
+
+            return `<div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-yellow-400 text-center"><i class="fas ${ {15:'fa-user-friends', 25:'fa-users', 35:'fa-users-crown', 10:'fa-user-friends', 20:'fa-users', 30:'fa-users-crown'}[group.discount*100] } text-5xl text-gray-700 mb-4"></i><h4 class="text-2xl font-bold text-gray-800 mb-2">${group.name}</h4><p class="text-3xl font-extrabold text-gray-800 mb-4">خصم ${group.discount * 100}%</p><div class="text-right space-y-2 border-t pt-4">${priceDetailsHTML}</div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-black transition-colors mt-6">تواصل معنا</a></div>`;
+        }
+
+        function renderAll() {
+            ['lectures', 'mcq', 'combo'].forEach(cat => { document.getElementById(`${cat}-cards`).innerHTML = packagesData.filter(p => p.category === cat).map(createCardHTML).join(''); });
+            document.getElementById('groups-tab').innerHTML = `<div class="mb-12"><h3 class="text-3xl font-bold text-center text-gray-800 mb-6">خصومات باقة الشرح الكامل</h3><div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">${groupDiscounts.lectures.map(group => createGroupCardHTML(group, 'lectures')).join('')}</div></div><div><h3 class="text-3xl font-bold text-center text-gray-800 mb-6 mt-16">خصومات باقات الكومبو</h3><div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">${groupDiscounts.combo.map(group => createGroupCardHTML(group, 'combo')).join('')}</div></div>`;
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAll);
+
+        // --- Tab Functionality ---
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-button').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+        function showMainTab(tabId, button) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+            document.querySelectorAll('.main-tab-button').forEach(el => el.classList.remove('active'));
+            button.classList.add('active');
+        }
+        function showSubTab(tabId, button) {
+            const parent = button.closest('.tab-content');
+            parent.querySelectorAll('.sub-tab-content').forEach(el => el.classList.remove('active'));
+            parent.querySelector(`#${tabId}-content`).classList.add('active');
+            parent.querySelectorAll('.sub-tab-button').forEach(el => el.classList.remove('active'));
+            button.classList.add('active');
+        }
+
+        // --- Feature Modal ---
+        const featureDetails = {
+            daily_updates: { title: "محتوى متجدد دوريًا", features: [ { icon: "fas fa-sync-alt", title: "تحديثات مستمرة", text: "المحاضرات وبنك الأسئلة يتم تحديثها دوريًا لتواكب أحدث المعلومات والمصادر." }, { icon: "fas fa-chart-line", title: "مواكبة التطورات", text: "تضمن أنك تذاكر دائمًا من أحدث المصادر المعتمدة عالميًا." }, { icon: "fas fa-book", title: "تحسينات دورية", text: "نضيف شروحات وأسئلة جديدة باستمرار بناءً على ملاحظاتكم." } ] },
+            integrated_platform: { title: "منصة تعليمية متكاملة", features: [ { icon: "fas fa-globe", title: "متوفر دائماً Online", text: "تم تصميم الكورس ليكون متاحًا أونلاين بالكامل، لتوفير المادة العلمية لكل الامتحانات في كل الأوقات." }, { icon: "fas fa-search", title: "بحث سريع وذكي", text: "تصل لأي محاضرة أو معلومة تحتاجها في ثوانٍ معدودة." }, { icon: "fas fa-check-square", title: "تتبع التقدم", text: "علّم على المحاضرات المكتملة وتابع تقدمك بشكل مرئي." }, { icon: "fas fa-history", title: "سجل النشاط", text: "تذكرك بآخر محاضرة شاهدتها أو امتحان قمت بحله." } ] },
+            smart_tools: { title: "أدوات ذكية للتفوق", features: [ { icon: "fas fa-pencil-alt", title: "وضع الاختبار (Exam Mode)", text: "أنشئ اختبارات مخصصة أو خض تجربة محاكاة كاملة للامتحان." }, { icon: "fas fa-calendar-alt", title: "منظم المذاكرة الذكي", text: "يضع لك خطة دراسية يومية مع اختبارات مراجعة تلقائية." }, { icon: "fas fa-diagnoses", title: "بنك الحالات الإكلينيكية (OSCE)", text: "تدرب على سيناريوهات وحالات عملية واقعية." }, { icon: "fas fa-redo", title: "مراجعة الأخطاء", text: "ميزة ذكية تجمع كل الأسئلة التي أخطأت فيها سابقًا في اختبار واحد." } ] }
+        };
+        const modal = document.getElementById('featureModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        function openFeatureModal(featureKey) {
+            const data = featureDetails[featureKey];
+            modalTitle.innerText = data.title;
+            modalContent.innerHTML = '';
+            data.features.forEach(feature => { modalContent.innerHTML += `<div class="bg-gray-100 p-6 rounded-xl flex items-start space-x-4 space-x-reverse"><i class="${feature.icon} text-3xl text-yellow-500 mt-1"></i><div><h4 class="font-bold text-lg text-gray-800 mb-1">${feature.title}</h4><p class="text-gray-600">${feature.text}</p></div></div>`; });
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeFeatureModal() { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+
+        // --- Video Modal ---
+        const videoModal = document.getElementById('videoModal');
+        const player = document.getElementById('youtube-player');
+        const videoId = "AJH8-imQxJA";
+        function openVideoModal() { player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`; videoModal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeVideoModal() { player.src = ""; videoModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+        
+        // --- Particles.js Animation ---
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#D4AF37" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": false },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1 },
+                    "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
+</body>
+</html>
