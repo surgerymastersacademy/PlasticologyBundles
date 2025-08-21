@@ -471,19 +471,19 @@
     <script>
         // --- DATA SOURCE ---
         const packagesData = [
-            { category: 'lectures', duration: 1, title: 'شهر واحد (المنهج كامل)', price: 10000, priceUSD: 200, features: ['وصول كامل للمنهج', 'تحديثات مستمرة'] },
-            { category: 'lectures', duration: 1, title: 'شهر (باب واحد Custom)', price: 4000, priceUSD: 80, features: ['اختر الباب الذي تريده', 'مثالي للمراجعة المركزة'] },
-            { category: 'lectures', duration: 1, title: 'شهر (بابين Custom)', price: 7000, priceUSD: 140, features: ['اختر البابين', 'توفير أكبر'] },
-            { category: 'lectures', duration: 3, title: '3 شهور (المنهج كامل)', price: 25000, priceUSD: 500, originalPrice: 30000, highlight: 'الأكثر شيوعًا', isScaled: true, features: ['وصول كامل للمنهج', 'تحديثات مستمرة', 'خصم خاص'] },
-            { category: 'lectures', duration: 6, title: '6 شهور (المنهج كامل)', price: 45000, priceUSD: 900, originalPrice: 60000, features: ['وصول كامل للمنهج', 'تحديثات مستمرة', 'توفير أكبر'] },
-            { category: 'lectures', duration: 12, title: '12 شهر (المنهج كامل)', price: 75000, priceUSD: 1500, originalPrice: 120000, highlight: 'الأكثر توفيراً', features: ['وصول كامل للمنهج', 'تحديثات مستمرة', 'أفضل قيمة'] },
-            { category: 'mcq', duration: 1, title: 'شهر واحد', price: 1000, priceUSD: 20 },
-            { category: 'mcq', duration: 3, title: '3 شهور', price: 2500, priceUSD: 50 },
-            { category: 'mcq', duration: 6, title: '6 شهور', price: 4500, priceUSD: 90, originalPrice: 6000 },
-            { category: 'mcq', duration: 12, title: '12 شهر', price: 8000, priceUSD: 160, originalPrice: 12000, highlight: 'الأكثر توفيراً'},
-            { category: 'combo', duration: 3, title: 'الباقة المتكاملة (3 شهور)', price: 30000, priceUSD: 600, originalPrice: 35000, highlight: 'الأكثر شعبية', isScaled: true, features: ['كل مميزات الشرح', 'بنك الأسئلة الكامل', 'منظم المذاكرة الذكي'] },
-            { category: 'combo', duration: 6, title: 'الباقة المتكاملة (6 شهور)', price: 55000, priceUSD: 1100, originalPrice: 70000, features: ['كل مميزات الشرح', 'بنك الأسئلة الكامل', 'منظم المذاكرة الذكي'] },
-            { category: 'combo', duration: 12, title: 'الباقة المتكاملة (12 شهر)', price: 90000, priceUSD: 1800, originalPrice: 130000, highlight: 'الأكثر توفيراً', features: ['كل مميزات الشرح', 'بنك الأسئلة الكامل', 'منظم المذاكرة الذكي'] },
+            { category: 'lectures', duration: 1, title: 'شهر واحد (المنهج كامل)', price: 10000, priceUSD: 200, theme: 'blue' },
+            { category: 'lectures', duration: 1, title: 'شهر (باب واحد Custom)', price: 4000, priceUSD: 80, theme: 'teal' },
+            { category: 'lectures', duration: 1, title: 'شهر (بابين Custom)', price: 7000, priceUSD: 140, theme: 'pink' },
+            { category: 'lectures', duration: 3, title: '3 شهور (المنهج كامل)', price: 25000, priceUSD: 500, originalPrice: 30000, theme: 'green', highlight: 'الأكثر شيوعًا', isScaled: true },
+            { category: 'lectures', duration: 6, title: '6 شهور (المنهج كامل)', price: 45000, priceUSD: 900, originalPrice: 60000, theme: 'purple' },
+            { category: 'lectures', duration: 12, title: '12 شهر (المنهج كامل)', price: 75000, priceUSD: 1500, originalPrice: 120000, theme: 'dark', highlight: 'الأكثر توفيراً' },
+            { category: 'mcq', duration: 1, title: 'شهر واحد', price: 1000, priceUSD: 20, theme: 'indigo' },
+            { category: 'mcq', duration: 3, title: '3 شهور', price: 2500, priceUSD: 50, theme: 'teal' },
+            { category: 'mcq', duration: 6, title: '6 شهور', price: 4500, priceUSD: 90, originalPrice: 6000, theme: 'pink' },
+            { category: 'mcq', duration: 12, title: '12 شهر', price: 8000, priceUSD: 160, originalPrice: 12000, theme: 'orange' },
+            { category: 'combo', duration: 3, title: 'الباقة المتكاملة (3 شهور)', price: 30000, priceUSD: 600, originalPrice: 35000, theme: 'green', highlight: 'الأكثر شعبية', isScaled: true },
+            { category: 'combo', duration: 6, title: 'الباقة المتكاملة (6 شهور)', price: 55000, priceUSD: 1100, originalPrice: 70000, theme: 'purple' },
+            { category: 'combo', duration: 12, title: 'الباقة المتكاملة (12 شهر)', price: 90000, priceUSD: 1800, originalPrice: 130000, theme: 'dark', highlight: 'الأكثر توفيراً' },
         ];
         
         const groupDiscounts = {
@@ -527,20 +527,33 @@
         function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
 
         function createCardHTML(pkg) {
-            const isDark = pkg.highlight === 'الأكثر توفيراً';
+            const isDark = pkg.theme === 'dark';
+            const theme = pkg.theme || 'gray';
             const isScaled = pkg.isScaled || false;
+            
             const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
             const savingText = saving > 0 ? `<span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">وفر ${formatPrice(saving)} ج.م</span>` : '';
-            const originalPriceText = pkg.originalPrice ? `<p class="text-gray-500 line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
+            const originalPriceText = pkg.originalPrice ? `<p class="${isDark ? 'text-gray-400' : 'text-gray-500'} line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
             const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 ${isDark ? 'bg-accent text-dark-bg' : 'bg-green-500 text-white'} px-4 py-1 rounded-full text-xs font-bold shadow-lg">${pkg.highlight}</div>` : '';
+            
             const scaleClass = isScaled ? 'lg:scale-105 highlight-glow-popular' : (isDark ? 'highlight-glow-value' : '');
-            const cardBg = isDark ? 'bg-dark-card text-white' : 'bg-light-card';
-            const priceColor = isDark ? 'text-accent' : 'text-text-dark';
-            const buttonClass = isDark ? 'bg-accent hover:bg-accent-hover text-dark-bg' : 'bg-dark-bg hover:bg-black text-white';
-            const borderColor = isDark ? 'border-accent' : 'border-gray-300';
-            const usdPriceText = pkg.priceUSD ? `<p class="text-sm text-gray-400 -mt-2 mb-2">(≈ $${pkg.priceUSD} USD)</p>` : '';
-            const featuresHTML = (pkg.features || []).map(feature => `<p class="flex items-center justify-center text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}"><i class="fas fa-check-circle text-green-500 ml-2"></i>${feature}</p>`).join('');
-            return `<div class="${cardBg} rounded-xl shadow-lg p-6 card-hover border-t-8 ${borderColor} text-center flex flex-col h-full relative ${scaleClass}" style="--accent: var(--color-accent); --dark-bg: var(--color-dark-bg); --accent-hover: var(--color-accent-hover); --text-dark: var(--color-text-dark);"><h3 class="text-xl font-bold mb-3 ${pkg.highlight ? 'mt-4' : ''}">${pkg.title}</h3><p class="text-4xl font-extrabold ${priceColor} mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>${usdPriceText}${originalPriceText}${savingText}<div class="space-y-2 my-6 flex-grow">${featuresHTML}</div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block ${buttonClass} py-3 rounded-lg font-bold transition-colors mt-auto text-lg">اشترك الآن</a></div>`;
+            const cardBg = isDark ? 'bg-dark-card text-white' : 'bg-light-card text-text-dark';
+            const priceColor = isDark ? 'text-accent' : `text-${theme}-600`;
+            const buttonClass = isDark ? 'bg-accent hover:bg-accent-hover text-dark-bg' : `bg-${theme}-600 hover:bg-${theme}-700 text-white`;
+            const borderColor = isDark ? 'border-accent' : `border-${theme}-500`;
+            const usdPriceText = pkg.priceUSD ? `<p class="text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} -mt-2 mb-2">(≈ $${pkg.priceUSD} USD)</p>` : '';
+
+            return `
+                <div class="${cardBg} rounded-xl shadow-lg p-6 card-hover border-t-8 ${borderColor} text-center flex flex-col h-full relative ${scaleClass}">
+                    ${highlightText}
+                    <h3 class="text-xl font-bold mb-3 ${pkg.highlight ? 'mt-4' : ''}">${pkg.title}</h3>
+                    <p class="text-4xl font-extrabold ${priceColor} mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>
+                    ${usdPriceText}
+                    ${originalPriceText}
+                    ${savingText}
+                    <div class="my-6 flex-grow"></div>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block ${buttonClass} py-3 rounded-lg font-bold transition-colors mt-auto text-lg">اشترك الآن</a>
+                </div>`;
         }
         
         function createGroupCardHTML(group, type) {
