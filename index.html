@@ -534,13 +534,13 @@
             const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
             const savingText = saving > 0 ? `<span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">وفر ${formatPrice(saving)} ج.م</span>` : '';
             const originalPriceText = pkg.originalPrice ? `<p class="${isDark ? 'text-gray-400' : 'text-gray-500'} line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
-            const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 ${isDark ? 'bg-accent text-dark-bg' : 'bg-green-500 text-white'} px-4 py-1 rounded-full text-xs font-bold shadow-lg">${pkg.highlight}</div>` : '';
+            const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 ${isDark ? 'bg-yellow-400 text-gray-900' : `bg-${theme}-500 text-white`} px-4 py-1 rounded-full text-xs font-bold shadow-lg">${pkg.highlight}</div>` : '';
             
             const scaleClass = isScaled ? 'lg:scale-105 highlight-glow-popular' : (isDark ? 'highlight-glow-value' : '');
-            const cardBg = isDark ? 'bg-dark-card text-white' : 'bg-light-card text-text-dark';
-            const priceColor = isDark ? 'text-accent' : `text-${theme}-600`;
-            const buttonClass = isDark ? 'bg-accent hover:bg-accent-hover text-dark-bg' : `bg-${theme}-600 hover:bg-${theme}-700 text-white`;
-            const borderColor = isDark ? 'border-accent' : `border-${theme}-500`;
+            const cardBg = isDark ? 'bg-gray-800 text-white' : 'bg-white text-gray-800';
+            const priceColor = isDark ? 'text-yellow-400' : `text-${theme}-600`;
+            const buttonClass = isDark ? 'bg-yellow-500 hover:bg-yellow-600 text-gray-900' : `bg-${theme}-600 hover:bg-${theme}-700 text-white`;
+            const borderColor = isDark ? 'border-yellow-400' : `border-${theme}-500`;
             const usdPriceText = pkg.priceUSD ? `<p class="text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} -mt-2 mb-2">(≈ $${pkg.priceUSD} USD)</p>` : '';
 
             return `
