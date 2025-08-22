@@ -7,18 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display.swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
         
         :root {
             --color-dark-bg: #121212;
-            --color-dark-card: #1f1f1f;
             --color-light-bg: #f8f9fa;
-            --color-light-card: #ffffff;
             --color-accent: #D4AF37; /* Gold */
-            --color-accent-hover: #e6c35c;
-            --color-text-light: #ffffff;
             --color-text-dark: #212529;
-            --color-text-muted: #adb5bd;
         }
 
         * {
@@ -27,7 +22,7 @@
         }
         
         .header-bg {
-            background: linear-gradient(180deg, #1a1a1a 0%, var(--color-dark-bg) 100%);
+            background-color: var(--color-dark-bg);
             position: relative;
             overflow: hidden;
         }
@@ -42,121 +37,149 @@
         }
         
         .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .card-hover:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
         }
 
-        .pulse {
-            animation: pulse 2s infinite;
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
         
+        .gradient-text {
+            background: linear-gradient(135deg, #FFD700, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation Styles */
         .main-nav {
             position: sticky;
             top: 0;
             z-index: 40;
             backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.85);
-        }
-        .nav-button {
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
         .nav-button.active {
-            background-color: var(--color-accent);
-            color: var(--color-dark-bg);
-            box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.39);
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            color: #121212;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
         }
 
-        .page-section, .tab-content, .sub-tab-content {
+        .page-section {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeInUp 0.6s ease-out;
         }
-        .page-section.active, .tab-content.active, .sub-tab-content.active {
+        .page-section.active {
             display: block;
         }
         
+        /* Tab Styles */
         .main-tab-button.active {
-            background-color: var(--color-accent);
-            color: var(--color-dark-bg);
-            box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.39);
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            color: #121212;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
         }
         .sub-tab-button.active {
-            background-color: var(--color-text-dark);
-            color: var(--color-accent);
+            background: linear-gradient(135deg, #212529, #343a40);
+            color: #D4AF37;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        .tab-content, .sub-tab-content {
+            display: none;
+        }
+        .tab-content.active, .sub-tab-content.active {
+            display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Modal Styles */
         .modal-overlay {
-            transition: opacity 0.3s ease;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
         }
         .modal-content {
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        .modal-overlay:not(.hidden) .modal-content {
+            transform: scale(1);
+            opacity: 1;
         }
 
         .highlight-glow-popular {
-            box-shadow: 0 0 25px 5px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 30px 8px rgba(34, 197, 94, 0.3);
+            border: 2px solid rgba(34, 197, 94, 0.5);
         }
         .highlight-glow-value {
-            box-shadow: 0 0 25px 5px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 30px 8px rgba(212, 175, 55, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.5);
         }
 
-        /* Accordion Styles */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-        }
-        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #D4AF37, #FFD700); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #FFD700, #D4AF37); }
     </style>
 </head>
-<body class="bg-light-bg min-h-screen">
+<body class="bg-gray-100 min-h-screen">
     <!-- Header Section -->
     <header class="header-bg text-white py-12">
         <div id="particles-js"></div>
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-right relative z-10">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-right relative z-10">
             <div class="md:w-3/5">
-                <h1 class="text-4xl md:text-5xl font-black mb-4" style="color: var(--color-accent);">
-                    <i class="fas fa-graduation-cap"></i>
+                <h1 class="text-4xl md:text-6xl font-black mb-4 gradient-text">
+                    <i class="fas fa-fire"></i>
                     Plasticology
+                    <i class="fas fa-graduation-cap"></i>
                 </h1>
-                <p class="text-xl mb-6 text-gray-300">المنظومة التعليمية المتكاملة الأولى من نوعها في الشرق الأوسط</p>
-                <div class="bg-red-600 text-white py-2 px-6 rounded-full inline-block pulse text-base font-bold">
+                <p class="text-lg md:text-xl mb-6 text-gray-300 font-medium">
+                    🚀 منظومة تعليمية متكاملة - أول مرة في الشرق الأوسط
+                </p>
+                <div class="bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-8 rounded-full inline-block pulse-glow text-base font-bold shadow-2xl">
                     <i class="fas fa-clock mr-2"></i>
                     عروض حصرية لفترة محدودة
                 </div>
             </div>
             <div class="mt-8 md:mt-0">
-                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank">
-                    <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="mx-auto w-48 h-auto transition-transform duration-300 hover:scale-110" />
+                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="block">
+                    <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="mx-auto w-48 h-auto transition-all duration-500 hover:scale-110 hover:rotate-3" />
                 </a>
             </div>
         </div>
     </header>
 
     <!-- Main Navigation Bar -->
-    <nav class="main-nav shadow-lg">
+    <nav class="main-nav">
         <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-center gap-2 p-2">
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full active" onclick="showPage('bundles')"><i class="fas fa-tags mr-2"></i>الباقات</button>
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full" onclick="showPage('testimonials')"><i class="fas fa-comments mr-2"></i>آراء الطلاب</button>
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full" onclick="showPage('features')"><i class="fas fa-star mr-2"></i>المميزات</button>
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full" onclick="showPage('about')"><i class="fas fa-user-tie mr-2"></i>عن المحاضر</button>
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full" onclick="showPage('platform')"><i class="fas fa-laptop mr-2"></i>المنصة</button>
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full" onclick="showPage('faq')"><i class="fas fa-question-circle mr-2"></i>الأسئلة</button>
-                <button class="nav-button flex-auto px-4 py-3 text-sm font-bold rounded-full bg-blue-500 text-white hover:bg-blue-600" onclick="showPage('contact')"><i class="fab fa-telegram-plane mr-2"></i>اتصل بنا</button>
+            <div class="flex flex-wrap justify-center gap-3 p-4">
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showPage('bundles')"><i class="fas fa-tags mr-2"></i>الباقات والعروض</button>
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('testimonials')"><i class="fas fa-comments mr-2"></i>آراء الأبطال</button>
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('features')"><i class="fas fa-star mr-2"></i>المميزات الفريدة</button>
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('about')"><i class="fas fa-user-tie mr-2"></i>عن المحاضر</button>
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('platform')"><i class="fas fa-laptop mr-2"></i>جولة في المنصة</button>
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('faq')"><i class="fas fa-question-circle mr-2"></i>الأسئلة الشائعة</button>
+                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300 bg-blue-500 text-white hover:bg-blue-600" onclick="showPage('contact')"><i class="fab fa-telegram-plane mr-2"></i>تواصل معنا الآن</button>
             </div>
         </div>
     </nav>
@@ -167,33 +190,37 @@
         <section id="bundles" class="page-section active">
             <div id="pricing" class="container mx-auto px-4 py-20">
                 <div class="text-center mb-16">
-                    <h2 class="text-5xl font-extrabold text-text-dark mb-4">
-                        اختر خطة الاشتراك المناسبة لك
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
+                        🎯 اختر الباقة المثالية لك
                     </h2>
-                    <p class="text-xl text-gray-600 mb-8">جميع الباقات تشمل تحديثات مستمرة ودعمًا فنيًا متكاملًا</p>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+                        كل الباقات تشمل تحديثات مستمرة، دعم فني متميز، وضمان الجودة 💯
+                    </p>
                     
-                    <div class="flex justify-center gap-4 bg-gray-200 p-2 rounded-full max-w-2xl mx-auto mb-10">
-                        <button class="main-tab-button flex-1 px-6 py-3 text-lg font-bold rounded-full transition-colors active" onclick="showMainTab('individuals', this)">
-                            <i class="fas fa-user mr-2"></i>باقات الأفراد
+                    <!-- Main Tabs -->
+                    <div class="flex justify-center gap-4 bg-gray-200 p-2 rounded-2xl max-w-lg mx-auto mb-12 shadow-lg">
+                        <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 active" onclick="showMainTab('individuals', this)">
+                            <i class="fas fa-user mr-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
                         </button>
-                        <button class="main-tab-button flex-1 px-6 py-3 text-lg font-bold rounded-full transition-colors" onclick="showMainTab('groups', this)">
-                            <i class="fas fa-users mr-2"></i>باقات الأبطال (المجموعات)
+                        <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300" onclick="showMainTab('groups', this)">
+                            <i class="fas fa-users mr-2"></i>Champions <span class="hidden sm:inline">(باقات الأبطال)</span>
                         </button>
                     </div>
 
+                    <!-- Individuals Tab Content -->
                     <div id="individuals-tab" class="tab-content active">
                         <div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-4xl mx-auto">
-                            <button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showSubTab('lectures', this)">
-                                باقات الشرح <span class="block text-sm opacity-75 font-normal">Lectures</span>
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('lectures', this)">
+                                Lectures Bundles <span class="block text-xs opacity-75 font-normal">عروض الشرح</span>
                             </button>
-                            <button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('mcq', this)">
-                                بنك الأسئلة <span class="block text-sm opacity-75 font-normal">QBank</span>
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showSubTab('mcq', this)">
+                                QBank Bundles <span class="block text-xs opacity-75 font-normal">بنك الأسئلة</span>
                             </button>
-                            <button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('combo', this)">
-                                الباقات المتكاملة <span class="block text-sm opacity-75 font-normal">Combo</span>
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showSubTab('combo', this)">
+                                Combo Bundles <span class="block text-xs opacity-75 font-normal">الباقات الكومبو</span>
                             </button>
                         </div>
-                        <div class="mt-12">
+                        <div class="mt-8">
                             <div id="lectures-content" class="sub-tab-content active">
                                 <div id="lectures-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
                             </div>
@@ -206,49 +233,8 @@
                         </div>
                     </div>
 
+                    <!-- Groups Tab Content -->
                     <div id="groups-tab" class="tab-content"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Comparison Table Section -->
-        <section id="comparison" class="page-section bg-white">
-             <div class="py-20">
-                <div class="container mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-text-dark mb-4">
-                            <i class="fas fa-balance-scale-right text-accent mr-3" style="color: var(--color-accent);"></i>
-                            مقارنة سريعة بين الباقات
-                        </h2>
-                        <p class="text-xl text-gray-600">اعثر على الباقة المثالية التي تلبي احتياجاتك.</p>
-                    </div>
-                    <div class="max-w-4xl mx-auto bg-light-card rounded-xl shadow-lg overflow-hidden">
-                        <div class="grid grid-cols-3 text-center font-bold">
-                            <div class="p-4 border-b border-l">الميزة</div>
-                            <div class="p-4 border-b border-l bg-gray-50">باقات الشرح</div>
-                            <div class="p-4 border-b bg-gray-100 text-accent" style="color: var(--color-accent);">الباقة المتكاملة (Combo)</div>
-                        </div>
-                        <div class="grid grid-cols-3 text-center text-gray-700">
-                            <div class="p-4 border-b border-l font-semibold">محاضرات المنهج كاملًا</div>
-                            <div class="p-4 border-b border-l bg-gray-50"><i class="fas fa-check-circle text-green-500 text-2xl"></i></div>
-                            <div class="p-4 border-b bg-gray-100"><i class="fas fa-check-circle text-green-500 text-2xl"></i></div>
-                        </div>
-                        <div class="grid grid-cols-3 text-center text-gray-700">
-                            <div class="p-4 border-b border-l font-semibold">بنك الأسئلة (QBank)</div>
-                            <div class="p-4 border-b border-l bg-gray-50"><i class="fas fa-times-circle text-red-500 text-2xl"></i></div>
-                            <div class="p-4 border-b bg-gray-100"><i class="fas fa-check-circle text-green-500 text-2xl"></i></div>
-                        </div>
-                        <div class="grid grid-cols-3 text-center text-gray-700">
-                            <div class="p-4 border-b border-l font-semibold">منظم المذاكرة الذكي</div>
-                            <div class="p-4 border-b border-l bg-gray-50"><i class="fas fa-times-circle text-red-500 text-2xl"></i></div>
-                            <div class="p-4 border-b bg-gray-100"><i class="fas fa-check-circle text-green-500 text-2xl"></i></div>
-                        </div>
-                        <div class="grid grid-cols-3 text-center text-gray-700">
-                            <div class="p-4 border-l font-semibold">تحديثات مستمرة ودعم فني</div>
-                            <div class="p-4 border-l bg-gray-50"><i class="fas fa-check-circle text-green-500 text-2xl"></i></div>
-                            <div class="p-4 bg-gray-100"><i class="fas fa-check-circle text-green-500 text-2xl"></i></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -258,8 +244,8 @@
             <div class="py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-text-dark mb-4">
-                            <i class="fas fa-comments text-accent mr-3" style="color: var(--color-accent);"></i>
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-comments text-yellow-500 mr-3"></i>
                             ماذا قالوا عن Plasticology؟
                         </h2>
                         <p class="text-xl text-gray-600">آراء الأبطال الذين انضموا إلينا في رحلة النجاح.</p>
@@ -276,67 +262,40 @@
             <div class="py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-text-dark mb-4">
-                            <i class="fas fa-star text-accent mr-3" style="color: var(--color-accent);"></i>
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-3"></i>
                             لماذا Plasticology هي اختيارك الأذكى؟
                         </h2>
                         <p class="text-xl text-gray-600">لأننا لا نقدم لك محتوى تعليميًا فقط، بل منظومة متكاملة تدفعك نحو التفوق.</p>
-                        <div class="w-32 h-1.5 bg-accent mx-auto rounded mt-4" style="background: var(--color-accent);"></div>
+                        <div class="w-32 h-1.5 bg-gradient-to-r from-yellow-500 to-yellow-300 mx-auto rounded mt-4"></div>
                     </div>
                     
                     <div class="grid md:grid-cols-3 gap-8 mb-12">
-                        <div class="text-center p-8 bg-light-bg rounded-xl card-hover">
-                            <div class="bg-accent text-dark-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style="background: var(--color-accent); color: var(--color-dark-bg);">
-                                <i class="fas fa-brain text-3xl"></i>
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-sync-alt text-3xl text-yellow-400"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-text-dark mb-3">مدربك الدراسي الذكي</h3>
-                            <p class="text-gray-600">ينشئ لك خطة دراسة آلية مع اختبارات يومية وتراكمية، ويحلل أداءك ليحدد نقاط القوة والضعف.</p>
-                            <button onclick="openFeatureModal('smart_planner')" class="mt-4 text-text-dark font-bold hover:text-accent transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">تحديث دوري</h3>
+                            <p class="text-gray-600">المحتوى يتم تحديثه دورياً ليواكب أحدث المعلومات والمصادر العالمية.</p>
+                            <button onclick="openFeatureModal('daily_updates')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
                         </div>
                         
-                        <div class="text-center p-8 bg-light-bg rounded-xl card-hover">
-                             <div class="bg-accent text-dark-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style="background: var(--color-accent); color: var(--color-dark-bg);">
-                                <i class="fas fa-pencil-ruler text-3xl"></i>
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                             <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-brain text-3xl text-yellow-400"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-text-dark mb-3">محاكاة اختبارات واقعية</h3>
-                            <p class="text-gray-600">خض تجربة تحاكي الامتحان الحقيقي بـ 100 سؤال ومؤقت زمني، أو أنشئ اختباراتك المخصصة.</p>
-                            <button onclick="openFeatureModal('exam_simulation')" class="mt-4 text-text-dark font-bold hover:text-accent transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">منصة متكاملة</h3>
+                            <p class="text-gray-600">متاحة أونلاين بالكامل لتكون رفيقك في التحضير لكل الامتحانات وفي أي وقت.</p>
+                            <button onclick="openFeatureModal('integrated_platform')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
                         </div>
                         
-                        <div class="text-center p-8 bg-light-bg rounded-xl card-hover">
-                            <div class="bg-accent text-dark-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style="background: var(--color-accent); color: var(--color-dark-bg);">
-                                <i class="fas fa-diagnoses text-3xl"></i>
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-tools text-3xl text-yellow-400"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-text-dark mb-3">بنك حالات إكلينيكية (OSCE)</h3>
-                            <p class="text-gray-600">تدرب على سيناريوهات وحالات عملية واقعية لتكون مستعدًا تمامًا للجزء الإكلينيكي من الامتحانات.</p>
-                            <button onclick="openFeatureModal('osce_bank')" class="mt-4 text-text-dark font-bold hover:text-accent transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
-                        </div>
-
-                        <div class="text-center p-8 bg-light-bg rounded-xl card-hover">
-                            <div class="bg-accent text-dark-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style="background: var(--color-accent); color: var(--color-dark-bg);">
-                                <i class="fas fa-redo-alt text-3xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-text-dark mb-3">مراجعة ذكية للأخطاء</h3>
-                            <p class="text-gray-600">يقوم النظام بجمع كل الأسئلة التي أخطأت فيها سابقًا في اختبار واحد لتركز على نقاط ضعفك.</p>
-                            <button onclick="openFeatureModal('practice_mistakes')" class="mt-4 text-text-dark font-bold hover:text-accent transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
-                        </div>
-
-                        <div class="text-center p-8 bg-light-bg rounded-xl card-hover">
-                            <div class="bg-accent text-dark-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style="background: var(--color-accent); color: var(--color-dark-bg);">
-                                <i class="fas fa-sync-alt text-3xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-text-dark mb-3">محتوى متجدد باستمرار</h3>
-                            <p class="text-gray-600">يتم تحديث المحتوى دوريًا ليواكب أحدث المعلومات والمصادر العالمية المعتمدة.</p>
-                            <button onclick="openFeatureModal('daily_updates')" class="mt-4 text-text-dark font-bold hover:text-accent transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
-                        </div>
-
-                        <div class="text-center p-8 bg-light-bg rounded-xl card-hover">
-                            <div class="bg-accent text-dark-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style="background: var(--color-accent); color: var(--color-dark-bg);">
-                                <i class="fas fa-chart-line text-3xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-text-dark mb-3">تتبع الأداء والتقدم</h3>
-                            <p class="text-gray-600">سجل نشاط شامل ورسوم بيانية توضح تقدمك، مع لوحة صدارة للمنافسة وتحفيز الذات.</p>
-                            <button onclick="openFeatureModal('performance_tracking')" class="mt-4 text-text-dark font-bold hover:text-accent transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">أدوات ذكية</h3>
+                            <p class="text-gray-600">بنك أسئلة ومنظم مذاكرة ذكي لتجربة تعليمية فريدة.</p>
+                            <button onclick="openFeatureModal('smart_tools')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
                         </div>
                     </div>
                 </div>
@@ -347,26 +306,21 @@
         <section id="about" class="page-section">
             <div class="py-20">
                 <div class="container mx-auto px-4">
-                    <div class="max-w-4xl mx-auto bg-light-card rounded-xl shadow-lg overflow-hidden md:flex">
+                    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex">
                         <div class="md:w-1/3">
                             <img src="https://github.com/surgerymastersacademy/PlasticologyBundles/raw/99c9d11a399bdee884266a4402c67c22ef5797f2/DrBishoy%20Plasticology%2020250601_231618.jpg" alt="Dr. Bishoy Nagy" class="h-full w-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-8">
-                            <h2 class="text-3xl font-bold text-text-dark mb-2">د. بيشوي ناجي</h2>
-                            <p class="text-accent font-semibold mb-4" style="color: var(--color-accent);">استشاري جراحة التجميل والحروق</p>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-2">د. بيشوي ناجي</h2>
+                            <p class="text-yellow-500 font-semibold mb-4">استشاري جراحة التجميل والحروق</p>
                             <p class="text-gray-600 mb-4">
                                 بخبرة أكاديمية وعملية واسعة، يجمع د. بيشوي بين التفوق الجراحي وشغف التعليم. هو العقل المدبر وراء Plasticology، حيث يهدف إلى تقديم تجربة تعليمية غير مسبوقة تربط بين العلم النظري والتطبيق العملي.
                             </p>
                             <div class="space-y-3 text-gray-700">
-                                <p><i class="fas fa-graduation-cap text-accent ml-2"></i>حاصل على الدكتوراه في جراحة التجميل.</p>
-                                <p><i class="fas fa-award text-accent ml-2"></i>زميل البورد المصري لجراحة التجميل.</p>
-                                <p><i class="fas fa-book-open text-accent ml-2"></i>مؤلف سلسلة Plasticology المرجعية في جراحة التجميل.</p>
-                                <p><i class="fas fa-lightbulb text-accent ml-2"></i>مؤسس عدد من المنصات التعليمية الرائدة مثل Surgery Masters Academy و Master The MRCS.</p>
-                            </div>
-                            <div class="mt-6 flex space-x-4 space-x-reverse">
-                                <a href="#" class="text-gray-500 hover:text-accent transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-accent transition-colors text-2xl"><i class="fab fa-youtube"></i></a>
-                                <a href="https://t.me/DrBishoyAcademy" class="text-gray-500 hover:text-accent transition-colors text-2xl"><i class="fab fa-telegram"></i></a>
+                                <p><i class="fas fa-graduation-cap text-yellow-500 ml-2"></i>حاصل على الدكتوراه في جراحة التجميل.</p>
+                                <p><i class="fas fa-award text-yellow-500 ml-2"></i>زميل البورد المصري لجراحة التجميل.</p>
+                                <p><i class="fas fa-book-open text-yellow-500 ml-2"></i>مؤلف سلسلة Plasticology المرجعية.</p>
+                                <p><i class="fas fa-lightbulb text-yellow-500 ml-2"></i>مؤسس منصات تعليمية رائدة.</p>
                             </div>
                         </div>
                     </div>
@@ -378,20 +332,89 @@
         <section id="platform" class="page-section bg-white">
              <div class="py-20">
                 <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-4xl font-bold text-text-dark mb-4">
-                        <i class="fas fa-laptop text-accent mr-3" style="color: var(--color-accent);"></i>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-laptop text-yellow-500 mr-3"></i>
                         جولة داخل المنصة التعليمية
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي صممناها لمساعدتك على التفوق.</p>
                      <div class="text-center mt-12 mb-16">
-                        <button onclick="openVideoModal()" class="bg-dark-bg text-accent font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105" style="background: var(--color-dark-bg); color: var(--color-accent);">
+                        <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105">
                             <i class="fas fa-play-circle mr-2"></i>
                             شاهد المنصة الآن
                         </button>
                     </div>
-                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-text-dark hover:text-accent transition-colors">
+                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:text-yellow-500 transition-colors">
                         اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt ml-2"></i>
                     </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- User Guide Section -->
+        <section id="user-guide" class="page-section">
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-book-open text-yellow-500 mr-3"></i>
+                            دليل المستخدم واستعراض الخصائص
+                        </h2>
+                        <p class="text-lg text-gray-600">رفيقك الشامل لاستكشاف كل ميزات التطبيق والاستفادة منها إلى أقصى حد.</p>
+                    </div>
+
+                    <div class="space-y-8 text-right">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">1. البدء</h3>
+                            <div class="space-y-4 bg-gray-50 p-6 rounded-lg">
+                                <p><strong>تسجيل الدخول:</strong> استخدم اسم المستخدم وكلمة المرور الخاصين بك للدخول إلى حسابك.</p>
+                                <p><strong>تجربة مجانية:</strong> إذا كنت مستخدمًا جديدًا، يمكنك الضغط على "Free Test" لتجربة عينة من بنك الأسئلة دون الحاجة لتسجيل الدخول.</p>
+                                <p><strong>إعدادات الواجهة:</strong> يمكنك في أي وقت الضغط على أيقونة الشمس/القمر للتبديل بين الوضع الفاتح والداكن، وأيقونة التشغيل/الإيقاف للتحكم في الخلفية المتحركة.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">2. القائمة الرئيسية: مركز التحكم الخاص بك</h3>
+                            <p class="mb-4">بعد تسجيل الدخول، ستجد نفسك في القائمة الرئيسية التي تمنحك وصولاً سريعًا إلى كل أقسام التطبيق:</p>
+                            <ul class="list-disc list-inside space-y-2 bg-gray-50 p-6 rounded-lg">
+                                <li><strong>Lectures (المحاضرات):</strong> شاهد محاضرات الفيديو عالية الجودة، منظمة حسب الفصول الدراسية.</li>
+                                <li><strong>Exam Mode (وضع الاختبار):</strong> اختبر معلوماتك عبر إنشاء اختبارات مخصصة أو خوض تجربة محاكاة كاملة للامتحان.</li>
+                                <li><strong>Learning Mode (وضع التعلم):</strong> ادرس الأسئلة مع إجاباتها وشروحاتها دون ضغط الوقت.</li>
+                                <li><strong>OSCE Bank (بنك الحالات الإكلينيكية):</strong> تدرب على سيناريوهات وحالات إكلينيكية واقعية.</li>
+                                <li><strong>Study Planner (منظم المذاكرة):</strong> دع التطبيق ينشئ لك خطة دراسية ذكية ومخصصة.</li>
+                                <li><strong>Library (المكتبة):</strong> تصفح قائمة بالكتب والمصادر التعليمية الموصى بها.</li>
+                                <li><strong>Leaderboard (لوحة الصدارة):</strong> شاهد ترتيبك بين أفضل 10 مستخدمين.</li>
+                                <li><strong>Activity Log (سجل النشاط):</strong> تتبع كل نشاطاتك السابقة.</li>
+                                <li><strong>My Notes (ملاحظاتي):</strong> ارجع إلى كل الملاحظات الشخصية التي دونتها.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">3. شرح تفصيلي للخصائص</h3>
+                            <div class="space-y-6">
+                                <div class="bg-gray-50 p-6 rounded-lg">
+                                    <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Exam Mode (وضع الاختبار)</h4>
+                                    <p><strong>الفائدة:</strong> هي الأداة الأقوى للتحضير للاختبار. تتيح لك قياس مستواك وتحديد نقاط ضعفك.</p>
+                                    <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
+                                    <ul class="list-decimal list-inside mt-2 space-y-1">
+                                        <li><strong>Create a Mock Exam:</strong> حدد عدد الأسئلة والوقت، وقم بفلترة الأسئلة حسب الفصول.</li>
+                                        <li><strong>Exam Simulation:</strong> خض تجربة تحاكي الامتحان الحقيقي باختبار من 100 سؤال ومؤقت زمني.</li>
+                                        <li><strong>Practice Mistakes:</strong> ميزة ذكية تجمع كل الأسئلة التي أخطأت فيها سابقًا في اختبار واحد.</li>
+                                        <li><strong>Practice Bookmarked:</strong> ابدأ اختبارًا من كل الأسئلة التي حفظتها للمراجعة.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 p-6 rounded-lg">
+                                    <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Study Planner (منظم المذاكرة الذكي)</h4>
+                                    <p><strong>الفائدة:</strong> يزيل عنك عبء التخطيط. هو مدربك الشخصي الذي يخبرك بما يجب أن تدرسه كل يوم.</p>
+                                     <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
+                                    <ul class="list-decimal list-inside mt-2 space-y-1">
+                                        <li>اضغط على "Create New Plan"، ثم أدخل اسمًا لخطتك وتاريخ البدء والانتهاء.</li>
+                                        <li>سيقوم التطبيق تلقائيًا بتوزيع كل المحاضرات وإنشاء اختبارات يومية وتراكمية لمراجعة ما سبق.</li>
+                                        <li>عند إكمال أي مهمة، ضع علامة ✔ بجانبها ليتم تسجيل تقدمك.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -401,8 +424,8 @@
             <div class="py-20">
                 <div class="container mx-auto px-4 max-w-4xl">
                     <div class="text-center mb-12">
-                         <h2 class="text-4xl font-bold text-text-dark mb-4">
-                            <i class="fas fa-question-circle text-accent mr-3" style="color: var(--color-accent);"></i>
+                         <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-question-circle text-yellow-500 mr-3"></i>
                             أسئلة شائعة
                         </h2>
                         <p class="text-xl text-gray-600">كل ما تحتاج لمعرفته قبل الانضمام إلينا.</p>
@@ -418,7 +441,7 @@
         <section id="contact" class="page-section bg-white">
              <div class="py-20">
                 <div class="container mx-auto px-4 text-center">
-                     <h2 class="text-4xl font-bold text-text-dark mb-4">
+                     <h2 class="text-4xl font-bold text-gray-800 mb-4">
                         <i class="fab fa-telegram-plane text-blue-500 mr-3"></i>
                         هل أنت مستعد لبدء رحلة التفوق؟
                     </h2>
@@ -435,14 +458,14 @@
     <footer class="bg-dark-bg text-white py-8" style="background-color: var(--color-dark-bg);">
         <div class="container mx-auto px-4 text-center">
              <div class="mb-4">
-                <a href="#bundles" class="text-gray-400 hover:text-accent mx-3 transition-colors">الباقات</a>
-                <a href="#features" class="text-gray-400 hover:text-accent mx-3 transition-colors">المميزات</a>
-                <a href="#faq" class="text-gray-400 hover:text-accent mx-3 transition-colors">الأسئلة الشائعة</a>
+                <a href="#bundles" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الباقات</a>
+                <a href="#features" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
+                <a href="#faq" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
             </div>
             <div class="flex justify-center space-x-6 my-4">
-                <a href="#" class="text-gray-400 hover:text-accent text-2xl transition-colors"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-gray-400 hover:text-accent text-2xl transition-colors"><i class="fab fa-youtube"></i></a>
-                <a href="https://t.me/DrBishoyAcademy" class="text-gray-400 hover:text-accent text-2xl transition-colors"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/DrBishoyAcademy" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-telegram"></i></a>
             </div>
             <p class="text-gray-500 mt-4">
                 &copy; <span id="current-year"></span> Plasticology. جميع الحقوق محفوظة.
@@ -454,7 +477,7 @@
     <div id="featureModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden modal-overlay" onclick="closeFeatureModal()">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 modal-content" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b pb-4 mb-6">
-                <h3 id="modalTitle" class="text-3xl font-bold text-text-dark"></h3>
+                <h3 id="modalTitle" class="text-3xl font-bold text-gray-800"></h3>
                 <button onclick="closeFeatureModal()" class="text-gray-500 hover:text-red-500 text-3xl transition-colors">&times;</button>
             </div>
             <div id="modalContent" class="grid md:grid-cols-2 gap-6"></div>
@@ -521,7 +544,6 @@
             { q: "هل يمكنني استخدام حسابي على أكثر من جهاز؟", a: "نعم، يمكنك تسجيل الدخول من أي جهاز (كمبيوتر، هاتف، تابلت). ولكن حرصًا على أمان حسابك، لا يمكن تشغيل الحساب على <strong>أكثر من جهاز في نفس الوقت</strong>. الاستخدام المتزامن قد يؤدي إلى إيقاف الحساب مؤقتًا." },
             { q: "ما هو وضع التعلم (Learning Mode)؟", a: "هو وضع مخصص للدراسة والمذاكرة. يتيح لك تصفح الأسئلة مع إجاباتها وشروحاتها مباشرة دون ضغط المؤقت الزمني أو تسجيل النتائج. إنه مثالي لمراجعة الفصول لأول مرة وترسيخ المعلومات." },
             { q: "كيف يعمل منظم المذاكرة الذكي (Study Planner)؟", a: "هو مدربك الشخصي! بمجرد تحديد تاريخ بدء وانتهاء خطتك، يقوم النظام بتوزيع كل المحاضرات عليك بشكل آلي، وينشئ لك اختبارات يومية قصيرة (Daily Quiz) واختبارات تراكمية (Cumulative Review) لضمان ثبات المعلومة ومراجعة ما سبق بذكاء." },
-            { q: "ما هو سجل النشاط (Progress Log) والمكتبة (Library)؟", a: "<strong>سجل النشاط</strong> هو سجلك التاريخي الكامل الذي يتيح لك رؤية كل الاختبارات السابقة ونتائجك ومراجعتها. أما <strong>المكتبة</strong> فهي قسم يحتوي على قائمة بالكتب والمصادر التعليمية الإضافية الموصى بها لتعميق معرفتك." },
         ];
 
         function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
@@ -568,58 +590,23 @@
 
         function createTestimonialHTML(testimonial) {
             const flag = testimonial.country.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
-            return `
-                <div class="bg-light-card p-6 rounded-xl shadow-lg card-hover flex flex-col">
-                    <i class="fas fa-quote-right text-accent text-2xl mb-4" style="color: var(--color-accent);"></i>
-                    <p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p>
-                    <div class="flex items-center border-t pt-4">
-                        <img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full ml-4 bg-gray-200 object-cover">
-                        <div>
-                            <h4 class="font-bold text-text-dark">د. ${testimonial.initials}</h4>
-                            <p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p>
-                        </div>
-                    </div>
-                </div>
-            `;
+            return `<div class="bg-white p-6 rounded-xl shadow-lg card-hover flex flex-col"><i class="fas fa-quote-right text-yellow-500 text-2xl mb-4"></i><p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p><div class="flex items-center border-t pt-4"><img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full ml-4 bg-gray-200 object-cover"><div><h4 class="font-bold text-gray-800">د. ${testimonial.initials}</h4><p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p></div></div></div>`;
         }
 
         function createFaqItemHTML(faqItem) {
-            return `
-                <div class="bg-light-card rounded-lg overflow-hidden shadow-sm">
-                    <button class="w-full text-right p-6 flex justify-between items-center accordion-toggle">
-                        <h3 class="font-bold text-lg text-text-dark">${faqItem.q}</h3>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-6 pt-0 text-gray-600">
-                            <p>${faqItem.a}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
+            return `<div class="bg-white rounded-lg overflow-hidden shadow-sm"><button class="w-full text-right p-6 flex justify-between items-center accordion-toggle"><h3 class="font-bold text-lg text-gray-800">${faqItem.q}</h3><i class="fas fa-chevron-down transition-transform duration-300"></i></button><div class="accordion-content"><div class="p-6 pt-0 text-gray-600"><p>${faqItem.a}</p></div></div></div>`;
         }
 
         function renderAll() {
-            ['lectures', 'mcq', 'combo'].forEach(cat => {    
-                const container = document.getElementById(`${cat}-cards`);
-                if(container) {
-                    const sortedPackages = packagesData.filter(p => p.category === cat).sort((a, b) => a.duration - b.duration);
-                    container.innerHTML = sortedPackages.map(createCardHTML).join('');    
-                }
-            });
-
+            ['lectures', 'mcq', 'combo'].forEach(cat => { const container = document.getElementById(`${cat}-cards`); if(container) { const sortedPackages = packagesData.filter(p => p.category === cat).sort((a, b) => a.duration - b.duration); container.innerHTML = sortedPackages.map(createCardHTML).join(''); } });
             const groupsTabContainer = document.getElementById('groups-tab');
             if (groupsTabContainer) {
-                 groupsTabContainer.innerHTML = `<div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-xl mx-auto"><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showSubTab('group-lectures', this)">خصومات الشرح</button><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('group-combo', this)">خصومات الباقات المتكاملة</button></div><div class="mt-12"><div id="group-lectures-content" class="sub-tab-content active"><div id="group-lectures-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div><div id="group-combo-content" class="sub-tab-content"><div id="group-combo-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div></div>`;
+                groupsTabContainer.innerHTML = `<div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-xl mx-auto"><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showSubTab('group-lectures', this)">خصومات الشرح</button><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('group-combo', this)">خصومات الباقات المتكاملة</button></div><div class="mt-12"><div id="group-lectures-content" class="sub-tab-content active"><div id="group-lectures-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div><div id="group-combo-content" class="sub-tab-content"><div id="group-combo-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div></div>`;
                 document.getElementById('group-lectures-cards').innerHTML = groupDiscounts.lectures.map(group => createGroupCardHTML(group, 'lectures')).join('');
                 document.getElementById('group-combo-cards').innerHTML = groupDiscounts.combo.map(group => createGroupCardHTML(group, 'combo')).join('');
             }
-
             const testimonialsGrid = document.getElementById('testimonials-grid');
-            if(testimonialsGrid) {
-                testimonialsGrid.innerHTML = testimonialsData.map(createTestimonialHTML).join('');
-            }
-
+            if(testimonialsGrid) { testimonialsGrid.innerHTML = testimonialsData.map(createTestimonialHTML).join(''); }
             const faqContainer = document.getElementById('faq-accordion');
             if(faqContainer) {
                 faqContainer.innerHTML = faqData.map(createFaqItemHTML).join('');
@@ -635,7 +622,6 @@
                     });
                 });
             }
-
             document.getElementById('current-year').textContent = new Date().getFullYear();
         }
 
@@ -677,7 +663,7 @@
             const data = featureDetails[featureKey];
             modalTitle.innerText = data.title;
             modalContent.innerHTML = '';
-            data.features.forEach(feature => { modalContent.innerHTML += `<div class="bg-gray-100 p-6 rounded-xl flex items-start space-x-4 space-x-reverse"><i class="${feature.icon} text-3xl text-accent mt-1" style="color: var(--color-accent);"></i><div><h4 class="font-bold text-lg text-text-dark mb-1">${feature.title}</h4><p class="text-gray-600">${feature.text}</p></div></div>`; });
+            data.features.forEach(feature => { modalContent.innerHTML += `<div class="bg-gray-100 p-6 rounded-xl flex items-start space-x-4 space-x-reverse"><i class="${feature.icon} text-3xl text-yellow-500 mt-1"></i><div><h4 class="font-bold text-lg text-gray-800 mb-1">${feature.title}</h4><p class="text-gray-600">${feature.text}</p></div></div>`; });
             featureModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
