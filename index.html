@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plasticology | The Integrated Educational System</title>
+    <title>Plasticology | المنظومة التعليمية المتكاملة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -189,11 +189,11 @@
 <body class="bg-gray-100 min-h-screen">
 
     <!-- Sticky Header -->
-    <header class="main-header-sticky">
+    <header class="main-header-sticky" dir="ltr">
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between bg-white rounded-full shadow-lg px-6 py-3">
                 <!-- Logo and Title -->
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-4">
                     <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="w-12 h-12 object-cover">
                     <div class="text-left">
                         <h1 class="text-lg font-bold">Plasticology</h1>
@@ -254,7 +254,7 @@
     <main>
         <!-- Bundles Section -->
         <section id="bundles" class="page-section active">
-            <div id="pricing" class="container mx-auto px-4 py-20">
+            <div id="pricing" class="container mx-auto px-4 py-10">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
                         🎯 اختر الباقة المثالية لك
@@ -265,24 +265,16 @@
                     
                     <!-- Main Tabs -->
                     <div class="flex justify-center gap-4 bg-gray-200 p-2 rounded-2xl max-w-lg mx-auto mb-12 shadow-lg">
-                        <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 active" onclick="showMainTab('individuals', this)">
-                            <i class="fas fa-user ml-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
+                        <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 active" onclick="showMainTab('individuals-tab', this)">
+                            <i class="fas fa-user mr-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
                         </button>
-                        <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300" onclick="showMainTab('groups', this)">
-                            <i class="fas fa-users ml-2"></i>Champions <span class="hidden sm:inline">(باقات الأبطال)</span>
+                        <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300" onclick="showMainTab('groups-tab', this)">
+                            <i class="fas fa-users mr-2"></i>Champions <span class="hidden sm:inline">(باقات الأبطال)</span>
                         </button>
                     </div>
 
                     <!-- Individuals Tab Content -->
                     <div id="individuals-tab" class="tab-content active">
-                        <!-- New section for lecture navigation -->
-                        <div class="bg-gray-100 p-6 rounded-2xl shadow-inner text-center mb-8">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-2">تصفح محتوى المحاضرات أولاً</h3>
-                            <p class="text-gray-600 mb-4 max-w-2xl mx-auto">قبل اختيار الباقة، يمكنك استعراض جميع فصول ومحاضرات المنظومة بالكامل لمعرفة المحتوى المشروح.</p>
-                            <button onclick="showPage('chapters', document.querySelector('.sub-nav-card:nth-child(5)'))" class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105">
-                                <i class="fas fa-book-reader ml-2"></i> استعرض الفصول والمحاضرات الآن
-                            </button>
-                        </div>
                         <div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-4xl mx-auto">
                             <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('lectures', this)">
                                 Lectures Bundles <span class="block text-xs opacity-75 font-normal">عروض الشرح</span>
@@ -302,7 +294,7 @@
                                 <div id="mcq-cards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
                             </div>
                             <div id="combo-content" class="sub-tab-content">
-                                <div id="combo-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div>
+                                <div id="combo-cards" class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"></div>
                             </div>
                         </div>
                     </div>
@@ -313,19 +305,22 @@
             </div>
         </section>
 
-        <!-- Chapters and Lectures Section -->
-        <section id="chapters" class="page-section">
-            <div class="container mx-auto px-4 py-20">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
-                        📚 محتوى المنظومة التعليمية
-                    </h2>
-                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                        تصفح فصول ومحاضرات Plasticology كاملة.
-                    </p>
-                </div>
-                <div id="chapters-list" class="max-w-4xl mx-auto space-y-4">
-                    <!-- Chapters will be dynamically inserted here -->
+        <!-- Chapters Section -->
+        <section id="chapters" class="page-section bg-white">
+            <div class="py-20">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
+                            <i class="fas fa-book-reader text-yellow-500 ml-3"></i>
+                            الفصول والمحاضرات
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                            تصفح المنهج الكامل لمنظومة Plasticology التعليمية. اضغط على أي فصل لعرض المحاضرات الخاصة به.
+                        </p>
+                    </div>
+                    <div id="chapters-accordion-list" class="max-w-4xl mx-auto space-y-4">
+                        <!-- قائمة الفصول والمحاضرات ستظهر هنا بواسطة JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -372,9 +367,9 @@
                         </div>
                         
                         <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
-                               <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                 <i class="fas fa-brain text-3xl text-yellow-400"></i>
-                            </div>
+                                <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                    <i class="fas fa-brain text-3xl text-yellow-400"></i>
+                                </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-3">منصة متكاملة</h3>
                             <p class="text-gray-600">متاحة أونلاين بالكامل لتكون رفيقك في التحضير لكل الامتحانات وفي أي وقت.</p>
                             <button onclick="openFeatureModal('integrated_platform')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
@@ -439,24 +434,24 @@
 
         <!-- Platform Section -->
         <section id="platform" class="page-section bg-white">
-              <div class="py-20">
-                <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                        <i class="fas fa-laptop text-yellow-500 ml-3"></i>
-                        جولة داخل المنصة التعليمية
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي صممناها لمساعدتك على التفوق.</p>
-                      <div class="text-center mt-12 mb-16">
-                        <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105">
-                            <i class="fas fa-play-circle ml-2"></i>
-                            شاهد المنصة الآن
-                        </button>
+                <div class="py-20">
+                    <div class="container mx-auto px-4 text-center">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-laptop text-yellow-500 ml-3"></i>
+                            جولة داخل المنصة التعليمية
+                        </h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي صممناها لمساعدتك على التفوق.</p>
+                            <div class="text-center mt-12 mb-16">
+                                <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105">
+                                    <i class="fas fa-play-circle ml-2"></i>
+                                    شاهد المنصة الآن
+                                </button>
+                            </div>
+                        <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:text-yellow-500 transition-colors">
+                            اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt mr-2"></i>
+                        </a>
                     </div>
-                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:text-yellow-500 transition-colors">
-                        اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt mr-2"></i>
-                    </a>
                 </div>
-            </div>
         </section>
         
         <!-- User Guide Section -->
@@ -514,7 +509,7 @@
                                 <div class="bg-gray-50 p-6 rounded-lg">
                                     <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Study Planner (منظم المذاكرة الذكي)</h4>
                                     <p><strong>الفائدة:</strong> يزيل عنك عبء التخطيط. هو مدربك الشخصي الذي يخبرك بما يجب أن تدرسه كل يوم.</p>
-                                      <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
+                                        <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
                                     <ul class="list-decimal list-inside mt-2 space-y-1">
                                         <li>اضغط على "Create New Plan"، ثم أدخل اسمًا لخطتك وتاريخ البدء والانتهاء.</li>
                                         <li>سيقوم التطبيق تلقائيًا بتوزيع كل المحاضرات وإنشاء اختبارات يومية وتراكمية لمراجعة ما سبق.</li>
@@ -533,10 +528,10 @@
             <div class="py-20">
                 <div class="container mx-auto px-4 max-w-4xl">
                     <div class="text-center mb-12">
-                          <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-question-circle text-yellow-500 ml-3"></i>
-                            أسئلة شائعة
-                        </h2>
+                            <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                                <i class="fas fa-question-circle text-yellow-500 ml-3"></i>
+                                أسئلة شائعة
+                            </h2>
                         <p class="text-xl text-gray-600">كل ما تحتاج لمعرفته قبل الانضمام إلينا.</p>
                     </div>
                     <div id="faq-accordion" class="space-y-4">
@@ -548,29 +543,29 @@
 
         <!-- Contact Section -->
         <section id="contact" class="page-section bg-white">
-              <div class="py-20">
-                <div class="container mx-auto px-4 text-center">
-                      <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                        <i class="fab fa-telegram-plane text-blue-500 ml-3"></i>
-                        هل أنت مستعد لبدء رحلة التفوق؟
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
-                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl pulse">
-                        تواصل معنا عبر تيليجرام
-                    </a>
+                <div class="py-20">
+                    <div class="container mx-auto px-4 text-center">
+                            <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                                <i class="fab fa-telegram-plane text-blue-500 ml-3"></i>
+                                هل أنت مستعد لبدء رحلة التفوق؟
+                            </h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
+                        <a href="https://t.me/DrBishoyAcademy" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl pulse">
+                            تواصل معنا عبر تيليجرام
+                        </a>
+                    </div>
                 </div>
-            </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-dark-bg text-white py-8" style="background-color: var(--color-dark-bg);">
         <div class="container mx-auto px-4 text-center">
-              <div class="mb-4">
-                <a href="#bundles" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الباقات</a>
-                <a href="#features" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
-                <a href="#faq" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
-            </div>
+                <div class="mb-4">
+                    <a href="#bundles" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الباقات</a>
+                    <a href="#features" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
+                    <a href="#faq" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
+                </div>
             <div class="flex justify-center space-x-6 my-4">
                 <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-facebook"></i></a>
                 <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-youtube"></i></a>
@@ -599,7 +594,6 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         // --- DATA SOURCE ---
         const packagesData = [
@@ -608,14 +602,12 @@
             { category: 'lectures', duration: 1, title: 'شهر (بابين Custom)', price: 7000, priceUSD: 140, theme: 'pink' },
             { category: 'lectures', duration: 3, title: '3 شهور (المنهج كامل)', price: 25000, priceUSD: 500, originalPrice: 30000, theme: 'green', highlight: 'الأكثر شيوعًا', isScaled: true },
             { category: 'lectures', duration: 6, title: '6 شهور (المنهج كامل)', price: 45000, priceUSD: 900, originalPrice: 60000, theme: 'purple' },
-            { category: 'lectures', duration: 12, title: '12 شهر (المنهج كامل)', price: 75000, priceUSD: 1500, originalPrice: 120000, theme: 'dark', highlight: 'الأكثر توفيراً' },
             { category: 'mcq', duration: 1, title: 'شهر واحد', price: 1000, priceUSD: 20, theme: 'indigo' },
             { category: 'mcq', duration: 3, title: '3 شهور', price: 2500, priceUSD: 50, theme: 'teal' },
             { category: 'mcq', duration: 6, title: '6 شهور', price: 4500, priceUSD: 90, originalPrice: 6000, theme: 'pink' },
             { category: 'mcq', duration: 12, title: '12 شهر', price: 8000, priceUSD: 160, originalPrice: 12000, theme: 'orange' },
             { category: 'combo', duration: 3, title: 'الباقة المتكاملة (3 شهور)', price: 30000, priceUSD: 600, originalPrice: 35000, theme: 'green', highlight: 'الأكثر شعبية', isScaled: true },
             { category: 'combo', duration: 6, title: 'الباقة المتكاملة (6 شهور)', price: 55000, priceUSD: 1100, originalPrice: 70000, theme: 'purple' },
-            { category: 'combo', duration: 12, title: 'الباقة المتكاملة (12 شهر)', price: 90000, priceUSD: 1800, originalPrice: 130000, theme: 'dark', highlight: 'الأكثر توفيراً' },
         ];
         
         const groupDiscounts = {
@@ -657,30 +649,269 @@
 
         // Data source from the uploaded CSV file
         const chaptersData = {
-            "01 Orientation - How to Study": ["Orientation Lecture How to Study"],
-            "02 Fundamentals - Wound Healing": ["01 Skin & Wound Healing", "02 Skin Layers & Cancer Embryology Summary", "03 Abnormal Tissue Healing", "04 Other Types of Tissue Healing", "05.1 Nerve Healing", "05.2 Neuroma - Skills"],
-            "03 Fundamentals - Basics of Flaps": ["06 Principles of Flaps", "07 Fasciocutaneous Flaps", "08.1 Myocutaneous Flaps", "08.2 Perforator Flaps", "09 Flaps Classifications", "10 Flaps Modifications", "11 Flaps Monitoring"],
-            "04 Fundamentals - Grafts Course": ["12.1 Watson Knife for Skin Grafting Illustration - Plasticology Skill Lab", "12.2 Skin Grafts", "12.3 Integra Illustration - Plasticology Skill Lab", "13 Homografts", "14 Bone Grafts", "15 Cartilage Graft", "16 Fat Graft", "17 Tendon Graft", "18.1 Nerve Graft", "18.2 Nerve Graft"],
-            "05 Head & Neck": ["19.1 Basic Anatomical Landmarks", "19.2 Basic Surgical Techniques", "20 Anatomy of Scalp & Neck", "21 Skin & Aesthetic Unit", "22 Face Flaps"],
-            "06 Face Trauma": ["23 Face Trauma - 1", "24 Face Trauma - 2", "25 Face Trauma - 3"],
-            "07 Neck": ["26 Neck Anatomy", "27 Neck Dissection", "28 Neck Surgery"],
-            "08 Ear": ["29 Ear Reconstruction", "30 Ear Anatomy", "31 Ear Deformities"],
-            "09 Nose": ["32 Nose Reconstruction", "33 Nose Anatomy", "34 Nose Aesthetics"],
-            "10 Mouth": ["35 Mouth Reconstruction", "36 Mouth Anatomy", "37 Cleft Lip & Palate"],
-            "11 Breast": ["38 Breast Augmentation", "39 Breast Reduction", "40 Breast Reconstruction"],
-            "12 Trunk": ["41 Trunk Reconstruction", "42 Abdominal Wall Reconstruction", "43 Perineum Reconstruction"],
-            "13 Lower Limb": ["45 Lower Limb Reconstruction", "46 Lower Limb Aesthetics"],
-            "14 Upper Limb": ["47 Upper Limb Trauma", "48 Upper Limb Reconstruction", "49 Upper Limb Aesthetics"],
-            "15 Burn": ["50 Burn Management", "51 Burn Reconstruction", "52 Scar Revision"],
-            "16 Hand Trauma": ["53 Hand Anatomy", "54 Hand Trauma 1", "55 Hand Trauma 2"],
-            "17 Hand Injuries": ["56 Hand Injuries 1", "57 Hand Injuries 2", "58 Hand Infections"],
-            "18 Finger Tip & Nail Injuries": ["59 Finger Tip Injuries", "60 Nail Bed Injuries", "61 Finger Tip & Nail Injuries", "62 Hand Trauma"],
-            "19 Hand Trauma": ["63 Groin Flap Marking - Plasticology Skill Lab", "64 Upper Extremity Compression Syndrome", "65 Upper Extremity Compression Syndrome (Duplicate Title)", "66 Brachial Plexus"],
-            "20 Hand Congenitals & Pathologies": ["01 Failure of Formation", "02 Failure of Differentation", "03 Hand Benign Conditions P1", "04 Hand Benign Conditions P2", "05 Hand Malignant Tumores", "06 Hand Mass Excision - Skill Lab", "07 Hand Cyst Excision Midaxial Incision - Skill Lab", "08 Hand Infections", "09 Dupuytren’s Disease – Rheumatoid Arthritis – OsteoArthritis"],
-            "21 Aesthetics": ["Special Audio Edition until Release of Aesthetics Stand Alone Private Course"],
-            "22 Misc": ["01 Plastic Anatomy Review", "02 Physiology Revision", "03 Hemostasis"]
+            "01 Orientation - How to Study": [
+                "Orientation Lecture How to Study"
+            ],
+            "02 Fundamentals - Wound Healing": [
+                "01 Skin & Wound Healing",
+                "02 Skin Layers & Cancer Embryology Summary",
+                "03 Abnormal Tissue Healing",
+                "04 Other Types of Tissue Healing",
+                "05.1 Nerve Healing",
+                "05.2 Neuroma - Skills"
+            ],
+            "03 Fundamentals - Basics of Flaps": [
+                "06 Principles of Flaps",
+                "07 Fasciocutaneous Flaps",
+                "08.1 Myocutaneous Flaps",
+                "08.2 Perforator Flaps",
+                "09 Flaps Classifications",
+                "10 Flaps Modifications",
+                "11 Flaps Monitoring"
+            ],
+            "04 Fundamentals - Grafts Course": [
+                "12.1 Watson Knife for Skin Grafting Illustration - Plasticology Skill Lab",
+                "12.2 Skin Grafts",
+                "12.3 Integra Illustration - Plasticology Skill Lab",
+                "13 Homografts",
+                "14 Bone Grafts",
+                "15 Cartilage Graft",
+                "16 Fat Graft",
+                "17 Tendon Graft",
+                "18.1 Nerve Graft",
+                "18.2 Sural Nerve Graft - Plasticology Skill Lab",
+                "19 Tissue Expansion",
+                "20 Negative Pressure Wound Therapy",
+                "21 Lasers in Plastic Surgery",
+                "22 Biomaterials"
+            ],
+            "05 Burn": [
+                "01 Principles of Burn Assessment & Resuscitation",
+                "02.1 Burn Debridement, Coverage and Positioning",
+                "02.2 Escharotomy vs Escharectomy - Skills",
+                "03 Burn Nutrition",
+                "04 Electric Burn",
+                "05 Chemical Burn",
+                "06 Frostbite",
+                "07 Drug Burn SJS & TEN",
+                "08 Burn Reconstruction",
+                "09.1 Burn Summary Lecture P1 Principles",
+                "09.2 Burn Summary Lecture P2 Other Types of Burn"
+            ],
+            "06 Skin Lesions": [
+                "01 Lesion / Skin Lesions Examination",
+                "02 BCC",
+                "03 SCC",
+                "04 Melanoma",
+                "05 Congenital Nevocytic Nevi",
+                "06 Soft Tissue Sarcoma",
+                "07 Hemangioma",
+                "08 Vascular Malformation",
+                "09 Lymphedema",
+                "10 Misc Epithelial & Melanocytic Skin Lesions",
+                "11 Misc Adnexal Skin Lesions",
+                "12 Misc Cysts",
+                "13 Misc Bursa",
+                "14 Misc Lipoma",
+                "15 Misc Neurofibroma",
+                "16 Misc Skin Disorders"
+            ],
+            "07 Head & Neck - Congenitals": [
+                "01.1 Head & Neck Anatomy & Embryology P1",
+                "01.2 Head & Neck Anatomy & Embryology P2",
+                "01.3 Facial Development Defect Pathological Embryology",
+                "02 Ear Anatomy & Congenital Anomalies",
+                "03 Microtia",
+                "04 Prominent Ear",
+                "05 Misc Congenital Ear Anomalies",
+                "06.1 Ear Trauma",
+                "06.2 Ear Trauma",
+                "07.1 Ear Revision",
+                "07.2 Ear Local Nerve Block - Plasticology Skill Lab",
+                "08 Congenital Nose Deformities",
+                "09 Cleft Lip",
+                "10 Cleft Palate",
+                "11 Velopharyngeal Dysfunction (White Board)",
+                "12.1 Craniofacial Clefts Tessier Classification",
+                "12.2 Craniofacial Clefts Hemifacial Microsomia",
+                "13.1 Craniosynostosis Pathology",
+                "13.2 Craniosynostosis Non Syndromic",
+                "13.3 Craniosynostosis Syndromic"
+            ],
+            "08 Head & Neck - Acquired Pathologies": [
+                "1. Head & Neck Anatomy",
+                "2 head & Neck Swellings 1.1 Sky View",
+                "2. Head & Neck Swellings 1.2 Congenitals",
+                "3. Salivary Gland Pathologies",
+                "4. Jaw Pathologies",
+                "Squamous cell Carcinoma",
+                "5. PRINCIPLES OF HEAD AND NECK CANCER: STAGING AND MANAGEMENT"
+            ],
+            "09 Head & Neck - Trauma & Reconstruction": [
+                "17. Trauma Intro Facial Assessment & Trauma Dangerous Zones",
+                "18. Facial soft Tissue Trauma Assessment",
+                "19. Mandibular Fractures",
+                "20. Zygoma Maxilla & ZMC fracture",
+                "21. Orbital Fracture",
+                "22. Nasal & NOE fracture",
+                "23.1 Frontal - Temporal - Palatal - Panfacial Fracture",
+                "23.2 Intro for Orthognathic Surgery",
+                "24. Scalp Reconstruction",
+                "24. Scalp Recon Sum UP",
+                "24. CALVARIAL RECONSTRUCTION",
+                "25.1 Eye Lid Recon 1 Anatomy",
+                "25.2 EYELID RECONSTRUCTION Algorithm",
+                "25.3 Ptosis",
+                "25.4 Ectropion",
+                "25.5 Entropion",
+                "26. NASAL Recon Anatomy & Principles",
+                "26.1 Nasal Anatomy & Nerve Supply Tricks",
+                "27. NASAL RECONSTRUCTION Algorithm",
+                "28. Cheeck Reconstruction",
+                "29. Lip Reconstruction",
+                "30. Surgical Treatment of Migraine Headache ( Audio )",
+                "31 Facial Aesthetic Anatomy - White Board",
+                "32 Aesthetic Facial Canons of Divine Proportions",
+                "33 Facial Palsy - White Board"
+            ],
+            "10 Breast": [
+                "01 Breast Clinical History & Examination",
+                "02 Breast Anatomy & Embryology",
+                "03 Congenital Breast Deformities",
+                "04 Gynecomastia & Male Breast Cancer",
+                "05 Breast Benign Lesions",
+                "06 Breast Cancer Types & Management",
+                "07 Implant Based Breast Reconstruction",
+                "08 Autologous Breast Reconstruction Latismus Flap",
+                "09 Autologus Breast Reconstruction Abdominal Based Flaps TRAM DIEP SIEA",
+                "10 DIEP Congestion",
+                "11 Autologus Breast Reconstruction Gluteal Flaps SGAP & IGAP",
+                "12 Autologus Breast Reconstruction Thigh Flaps based",
+                "13 Extra Options for Breast Reconstruciton",
+                "14 Breast Reconstruction Follow up",
+                "15 Nipple areolar Reconstruction & Inverted Nipple",
+                "16 Secondary Breast Reconstruction & Patient Disatisfaction",
+                "17 Breast Reduction Introduction",
+                "18 Breast Reduction Pedicle Choice",
+                "19 Breast Reduction Skin Resection Pattern",
+                "20 Breast Augmentation Implant History & Choice Parameters",
+                "21 Breast Augmentation Surgical Incision & Pocket",
+                "22 Breast Augmentation Post Operative Care & Complications",
+                "23 Mastopexy Indications & Contraindications",
+                "24 Mastopexy Surgical Techniques",
+                "25 Mastopexy Augmentation Mastopexy & Explantation",
+                "26 Mastopexy Post Massive Weight Loss Patient General Rules",
+                "27 Mastopexy PMWL Breast + Tuberous + Complications"
+            ],
+            "11 Trunk": [
+                "01 Chest wall Anatomy",
+                "02 Poland Syndrome",
+                "03 Pectus Excavatum & Carnatum",
+                "04 Aquired Cheast wall Deformities & Reconstruction",
+                "05 Abdominal Wall Anatomy",
+                "06 Abdominal Wall Defects",
+                "07 Abdominal Wall Reconstruction",
+                "08 Pressure Sores Staging & Workup",
+                "09 Pressure Sores Management",
+                "10 Pressure Sores Wound Dressing",
+                "11 Pressure Sores Wound Coverage"
+            ],
+            "12 Lower Limb": [
+                "01 Lower Extremity Gross Anatomy",
+                "02 Lower Limb NeuroVascular Anatomy",
+                "03 Principles of Lower Limb Salvage",
+                "04 Bone Reconstruction",
+                "05 Soft Tissue Reconstruction Principles & Thigh Reconstruction",
+                "06 Knee - Leg - Foot Reconstruction",
+                "07 Ankle Block Step By Step",
+                "08 Foot Ulcers"
+            ],
+            "13 Genito-Urinary": [
+                "01 Genitourinary Applied Anatomy",
+                "02 GenitoUrinary Male & Female Congenital Anomalies Intro",
+                "03 Hypospadius Pathophysiology & Classification",
+                "04 Hypospadias Management",
+                "05 Hypospadias Complications & Epispadius",
+                "06 Acquired PenoScrotal Defects 1 Pyrone Disease",
+                "07 Aquired Penoscrotal Defects 2 Circumcision Pitfalls – Phalloplasty & Radial Forearm Flap",
+                "08 Acquired PenoScrotal Defects 3 Scrotal Reconstruction – Fournier Gangrene",
+                "09 Gender Affirmation Surgeries"
+            ],
+            "14 Hand - Anatomy & Principles": [
+                "01 Flexors",
+                "02 Camper's Chiasm & Pulley System",
+                "03 Extensors",
+                "04 Interensics",
+                "05 Vasculature",
+                "06 Applied NeuroAnatomy Median Ulnar Radial & Anastomosis",
+                "07 Bone Ligaments & Joints",
+                "08 Hand Spaces & Retinacular System",
+                "09 Tourniquet",
+                "10 WALANT Wide Awake",
+                "11 Hand Nerve Blocks",
+                "12 Detailed Wrist Block Plasticology Skills",
+                "13 One Minute Wrist Block Plasticology Skills",
+                "14 Hand Incisions",
+                "15 Hand Splints",
+                "16 Rehabilitation & PhysioTherapy 1 Assesment Tests",
+                "17 Rehabilitation of Hand & Wrist Metacarpal & Phalangeal",
+                "18 Rehabilitation Flexors & Extensors Principles",
+                "19 Rehabilitation MCQ Revision"
+            ],
+            "15 Hand - Tendon Injuries": [
+                "20 Tendon Injuries Repair Principles with Aplied Anatomy Recap",
+                "21 MCQ 1 Extensors & Flexors Tendon injuries Applied Anatomy",
+                "22 Flexor Tendon Injuries Repair Applied Principles",
+                "23 Tips & tricks in Flexor Tendon Repair Oblique injury & Pulvertaft Repair",
+                "24 Flexors Zone 1 Jersey Finger Reverse Mallet",
+                "25 Flexors Zone 2-3-4-5 & Pulley System",
+                "26 Extensor Tendon Injuries Introduction",
+                "27 Extensors Zone 1",
+                "28 Extensors Zone 2-3",
+                "29 Extensors Zone 4-5",
+                "30 Extensors Zone 6 - 7",
+                "31 Extensors Zone 8-9 + General Post Op Routine",
+                "32 Complications of Tendon Repair",
+                "33 Tendonitis 1 Trigger Finger",
+                "34 Tendonitis 2 Dequervian - Intersection & Others"
+            ],
+            "16 Hand - Fingertip, Nerves & Trauma": [
+                "35 Nail Bed Injuries",
+                "36 Nail Bed Injuries Summary",
+                "37 Finger Tip Injury 1 Anatomy Classifications & Algorithm",
+                "38 Finger Tip Injury 2 Flaps",
+                "39 Volar Defect Cross Finger Flap - Plasticology Skill Lab",
+                "40 Finger Tip Injuries 3 Summary",
+                "41 Groin Flap Marking - Plasticology Skill Lab",
+                "42 Upper Extremity Compression Syndrome",
+                "43 Upper Extremity Compression Syndrome (Duplicate Title)",
+                "44 Brachial Plexus"
+            ],
+            "17 Hand - Congenitals & Pathologies": [
+                "01 Failure of Formation",
+                "02 Failure of Differentation",
+                "03 Hand Benign Conditions P1",
+                "04 Hand Benign Conditions P2",
+                "05 Hand Malignant Tumores",
+                "06 Hand Mass Excision - Skill Lab",
+                "07 Hand Cyst Excision Midaxial Incision - Skill Lab",
+                "08 Hand Infections",
+                "09 Dupuytren’s Disease – Rheumatoid Arthritis – OsteoArthritis"
+            ],
+            "18 Aesthetics": [
+                "Special Audio Edition until Release of Aesthetics Stand Alone Private Course"
+            ],
+            "19 Misc": [
+                "01 Plastic Anatomy Review",
+                "02 Physiology Revision",
+                "03 Hemostasis",
+                "04 DVT",
+                "05 OncoGenesis",
+                "06 Lipoma",
+                "07 Hypersensitivity",
+                "08 Sterilization"
+            ]
         };
-
 
         function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
 
@@ -798,7 +1029,7 @@
             document.getElementById('current-year').textContent = new Date().getFullYear();
             
             // Render the new chapters section
-            const chaptersListContainer = document.getElementById('chapters-list');
+            const chaptersListContainer = document.getElementById('chapters-accordion-list');
             if (chaptersListContainer) {
                 let chaptersHTML = '';
                 for (const chapter in chaptersData) {
@@ -811,11 +1042,19 @@
         // This function now handles updating the active state of the secondary navigation cards as well
         function showPage(pageId, button) {
             // Deactivate all sections and secondary nav cards
-            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.sub-nav-card').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.page-section').forEach(el => {
+                if (el) el.classList.remove('active');
+            });
+            document.querySelectorAll('.sub-nav-card').forEach(el => {
+                if (el) el.classList.remove('active');
+            });
 
             // Activate the target section
-            document.getElementById(pageId).classList.add('active');
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
 
             // If a button was clicked, activate it
             if (button) {
@@ -823,28 +1062,52 @@
             } else {
                 // Default case if no button is passed
                 if (pageId === 'bundles') {
-                    document.querySelector('.sub-nav-card:nth-child(1)').classList.add('active');
+                    const btn = document.querySelector('.sub-nav-card:nth-child(1)');
+                    if (btn) btn.classList.add('active');
                 } else if (pageId === 'testimonials') {
-                    document.querySelector('.sub-nav-card:nth-child(2)').classList.add('active');
+                    const btn = document.querySelector('.sub-nav-card:nth-child(2)');
+                    if (btn) btn.classList.add('active');
                 } else if (pageId === 'features') {
-                    document.querySelector('.sub-nav-card:nth-child(3)').classList.add('active');
+                    const btn = document.querySelector('.sub-nav-card:nth-child(3)');
+                    if (btn) btn.classList.add('active');
                 } else if (pageId === 'about') {
-                    document.querySelector('.sub-nav-card:nth-child(4)').classList.add('active');
+                    const btn = document.querySelector('.sub-nav-card:nth-child(4)');
+                    if (btn) btn.classList.add('active');
                 } else if (pageId === 'chapters') {
-                     document.querySelector('.sub-nav-card:nth-child(5)').classList.add('active');
+                        const btn = document.querySelector('.sub-nav-card:nth-child(5)');
+                    if (btn) btn.classList.add('active');
                 } else if (pageId === 'faq') {
-                    document.querySelector('.sub-nav-card:nth-child(6)').classList.add('active');
+                    const btn = document.querySelector('.sub-nav-card:nth-child(6)');
+                    if (btn) btn.classList.add('active');
                 }
             }
             window.scrollTo(0, 0); 
         }
 
         function showMainTab(tabId, button) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById(`${tabId}-tab`).classList.add('active');
-            document.querySelectorAll('.main-tab-button').forEach(el => el.classList.remove('active'));
-            button.classList.add('active');
+            // Deactivate all main tabs and activate the selected one
+            const mainTabButtons = document.querySelectorAll('.main-tab-button');
+            if (mainTabButtons) {
+                mainTabButtons.forEach(el => el.classList.remove('active'));
+            }
+            if (button) {
+                button.classList.add('active');
+            }
+            
+
+            // Hide all tab content sections
+            const tabContents = document.querySelectorAll('.tab-content');
+            if (tabContents) {
+                tabContents.forEach(el => el.classList.remove('active'));
+            }
+            
+            // Show the selected tab content
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
         }
+
         function showSubTab(tabId, button) {
             const parent = button.closest('.tab-content, #groups-tab');
             parent.querySelectorAll('.sub-tab-content').forEach(el => el.classList.remove('active'));
@@ -860,7 +1123,7 @@
             practice_mistakes: { title: "مراجعة ذكية للأخطاء", features: [ { icon: "fas fa-target", title: "تركيز على نقاط الضعف", text: "هذه الميزة هي أقوى أداة للتحسن. تجمع كل الأسئلة التي أجبت عليها بشكل خاطئ في مكان واحد." }, { icon: "fas fa-redo-alt", title: "اختبارات الأخطاء", text: "يمكنك إنشاء اختبار جديد من أخطائك السابقة فقط، مما يضمن أنك لن تكرر نفس الخطأ مرة أخرى." }, { icon: "fas fa-check-double", title: "ترسيخ المعلومة", text: "تكرار حل الأسئلة الصعبة عليك هو أسرع طريق لتحويل نقاط ضعفك إلى نقاط قوة." } ] },
             daily_updates: { title: "محتوى متجدد باستمرار", features: [ { icon: "fas fa-sync-alt", title: "تحديثات مستمرة", text: "المحاضرات وبنك الأسئلة يتم تحديثها دوريًا لتواكب أحدث المعلومات والمصادر." }, { icon: "fas fa-chart-line", title: "مواكبة التطورات", text: "تضمن لك المذاكرة دائمًا من أحدث المصادر المعتمدة عالميًا." }, { icon: "fas fa-book", title: "تحسينات دورية", text: "نضيف شروحات وأسئلة جديدة باستمرار بناءً على ملاحظاتكم وتطورات العلم." } ] },
             performance_tracking: { title: "تتبع الأداء والتقدم", features: [ { icon: "fas fa-history", title: "سجل النشاط الكامل", text: "تتبع كل نشاطاتك السابقة من اختبارات ومحاضرات مع نتائجها وتواريخها." }, { icon: "fas fa-chart-bar", title: "رسوم بيانية للأداء", text: "شاهد رسومًا بيانية توضح كثافة مذاكرتك وتقدمك خلال الفترات المختلفة." }, { icon: "fas fa-trophy", title: "لوحة الصدارة (Leaderboard)", text: "شاهد ترتيبك بين أفضل المستخدمين في التطبيق، مما يضيف عنصرًا من المنافسة والتحفيز." } ] },
-            integrated_platform: { title: "منصة متكاملة", features: [ { icon: "fas fa-desktop", title: "متاحة على كل الأجهزة", text: "منصتنا تعمل بكفاءة على جميع الأجهزة (كمبيوتر، تابلت، موبايل)." }, { icon: "fas fa-globe", title: "وصول دائم وأونلاين", text: "تكون معك أينما ذهبت لتستطيع المذاكرة في أي وقت ومن أي مكان." }, { icon: "fas fa-tools", title: "أدوات تعليمية مدمجة", text: "تجمع بين المحاضرات، بنك الأسئلة، ومنظم المذاكرة في مكان واحد." } ] },
+            integrated_platform: { title: "منصة متكاملة", features: [ { icon: "fas fa-desktop", title: "متاحة على كل الأجهزة", text: "منصتنا تعمل بكفاءة على جميع الأجهزة (كمبيوتر، تابلت، موبيل)." }, { icon: "fas fa-globe", title: "وصول دائم وأونلاين", text: "تكون معك أينما ذهبت لتستطيع المذاكرة في أي وقت ومن أي مكان." }, { icon: "fas fa-tools", title: "أدوات تعليمية مدمجة", text: "تجمع بين المحاضرات، بنك الأسئلة، ومنظم المذاكرة في مكان واحد." } ] },
             smart_tools: { title: "أدوات ذكية", features: [ { icon: "fas fa-check-double", title: "بنك أسئلة شامل", text: "يضم آلاف الأسئلة عالية الجودة مع شروحات مفصلة لكل إجابة." }, { icon: "fas fa-calendar-alt", title: "منظم مذاكرة ذكي", text: "ينشئ لك خطط دراسية مخصصة ويتابع تقدمك بذكاء." }, { icon: "fas fa-poll", title: "تحليل الأداء", text: "يوفر لك إحصائيات دقيقة عن نقاط قوتك وضعفك لمساعدتك على التحسين." } ] },
         };
         const featureModal = document.getElementById('featureModal');
@@ -882,10 +1145,7 @@
         function openVideoModal() { player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`; videoModal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
         function closeVideoModal() { player.src = ""; videoModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
         
-        document.addEventListener('DOMContentLoaded', function() {
-            // No particles.js initialization anymore
-        });
         document.addEventListener('DOMContentLoaded', renderAll);
     </script>
 </body>
-</html>
+</ht
