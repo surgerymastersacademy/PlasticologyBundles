@@ -204,6 +204,24 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             transition: background-color 0.3s ease;
         }
+
+        /* Chapter Selection Modal */
+        #chapter-selection-modal .chapter-checkbox:checked + label {
+            background-color: #e9d5ff;
+            border-color: #9333ea;
+            color: #9333ea;
+            font-weight: 600;
+        }
+        #chapter-selection-modal .chapter-checkbox:disabled + label {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #chapter-selection-modal .duration-radio:checked + label {
+            background-color: #a78bfa;
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -226,6 +244,7 @@
                     <a href="https://www.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-home mr-2"></i>Home</a>
                     <button class="nav-button text-gray-600 hover:text-purple-600 transition-colors" onclick="showPage('platform')"><i class="fas fa-laptop-code mr-2"></i>Platform</button>
                     <a href="https://plasticologybooks.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-book-open mr-2"></i>Book Samples</a>
+                    <button class="nav-button text-gray-600 hover:text-purple-600 transition-colors" onclick="showPage('contact-page', document.querySelector('.sub-nav-card:nth-child(7)'))"><i class="fas fa-envelope mr-2"></i>Contact Us</button>
                     <a href="https://t.me/DrBishoyAcademy" target="_blank" class="px-6 py-2 rounded-full font-bold text-white transition-all duration-300 transform hover:scale-105" style="background: linear-gradient(135deg, #6c5ce7, #a463f2);">
                         Order Now
                     </a>
@@ -256,11 +275,11 @@
 
     <!-- Secondary Navigation Buttons below header -->
     <div id="main-content" class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl active" onclick="showPage('bundles', this)">
                 <i class="fas fa-tags text-3xl mb-2 icon text-purple-600"></i>
-                <span class="text-base font-bold title text-gray-800">الباقات والعروض</span>
-                <span class="text-sm font-light subtitle text-gray-500">Packages & Offers</span>
+                <span class="text-base font-bold title text-gray-800">الباقات</span>
+                <span class="text-sm font-light subtitle text-gray-500">Offers</span>
             </button>
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('testimonials', this)">
                 <i class="fas fa-comments text-3xl mb-2 icon text-purple-600"></i>
@@ -269,23 +288,28 @@
             </button>
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('features', this)">
                 <i class="fas fa-star text-3xl mb-2 icon text-purple-600"></i>
-                <span class="text-base font-bold title text-gray-800">المميزات الفريدة</span>
-                <span class="text-sm font-light subtitle text-gray-500">Unique Features</span>
+                <span class="text-base font-bold title text-gray-800">المميزات</span>
+                <span class="text-sm font-light subtitle text-gray-500">Features</span>
             </button>
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('about', this)">
                 <i class="fas fa-user-tie text-3xl mb-2 icon text-purple-600"></i>
-                <span class="text-base font-bold title text-gray-800">عن المحاضر</span>
-                <span class="text-sm font-light subtitle text-gray-500">About the Instructor</span>
+                <span class="text-base font-bold title text-gray-800">المحاضر</span>
+                <span class="text-sm font-light subtitle text-gray-500">Instructor</span>
             </button>
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('chapters', this)">
                 <i class="fas fa-book-reader text-3xl mb-2 icon text-purple-600"></i>
-                <span class="text-base font-bold title text-gray-800">الفصول والمحاضرات</span>
-                <span class="text-sm font-light subtitle text-gray-500">Browse Chapters</span>
+                <span class="text-base font-bold title text-gray-800">المحاضرات</span>
+                <span class="text-sm font-light subtitle text-gray-500">Chapters</span>
             </button>
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('faq', this)">
                 <i class="fas fa-question-circle text-3xl mb-2 icon text-purple-600"></i>
-                <span class="text-base font-bold title text-gray-800">الأسئلة الشائعة</span>
+                <span class="text-base font-bold title text-gray-800">الأسئلة</span>
                 <span class="text-sm font-light subtitle text-gray-500">FAQ</span>
+            </button>
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('contact-page', this)">
+                <i class="fas fa-envelope text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">تواصل معنا</span>
+                <span class="text-sm font-light subtitle text-gray-500">Contact</span>
             </button>
         </div>
     </div>
@@ -315,9 +339,12 @@
 
                     <!-- Individuals Tab Content -->
                     <div id="individuals-tab" class="tab-content active">
-                        <div class="flex flex-col sm:flex-row justify-center gap-3 bg-white p-2 rounded-full max-w-4xl mx-auto shadow-md">
-                            <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('lectures', this)">
-                                Lectures Bundles <span class="block text-xs opacity-75 font-normal">عروض الشرح</span>
+                        <div class="flex flex-wrap justify-center gap-3 bg-white p-2 rounded-full max-w-5xl mx-auto shadow-md">
+                            <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('full-package', this)">
+                                Full Package <span class="block text-xs opacity-75 font-normal">المنهج الكامل</span>
+                            </button>
+                             <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showSubTab('chapter-based', this)">
+                                Chapter Based <span class="block text-xs opacity-75 font-normal">باقة الأبواب</span>
                             </button>
                             <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showSubTab('mcq', this)">
                                 QBank Bundles <span class="block text-xs opacity-75 font-normal">بنك الأسئلة</span>
@@ -327,8 +354,11 @@
                             </button>
                         </div>
                         <div class="mt-8">
-                            <div id="lectures-content" class="sub-tab-content active">
-                                <div id="lectures-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                            <div id="full-package-content" class="sub-tab-content active">
+                                <div id="full-package-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                            </div>
+                            <div id="chapter-based-content" class="sub-tab-content">
+                                <div id="chapter-based-card-container" class="max-w-xl mx-auto"></div>
                             </div>
                             <div id="mcq-content" class="sub-tab-content">
                                 <div id="mcq-cards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
@@ -567,17 +597,34 @@
             </div>
         </section>
 
-        <!-- Final CTA Section -->
-        <section id="contact" class="page-section bg-gray-50 py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                    <i class="fab fa-telegram-plane text-blue-500 ml-3"></i>
-                    هل أنت مستعد لبدء رحلة التفوق؟
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
-                <a href="https://t.me/DrBishoyAcademy" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl pulse-glow">
-                    تواصل معنا عبر تيليجرام
-                </a>
+        <!-- New Contact Page Section -->
+        <section id="contact-page" class="page-section bg-gray-50 py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">يسعدنا تواصلك معنا</h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        لجميع الاستفسارات والاشتراكات، فريقنا جاهز للرد عليكم عبر تيليجرام.
+                    </p>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl mb-10">
+                        <i class="fab fa-telegram-plane ml-2"></i> تواصل عبر تيليجرام
+                    </a>
+                    <hr class="my-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">تابعنا على منصاتنا الأخرى</h3>
+                    <div class="flex justify-center items-center gap-8">
+                        <a href="https://www.facebook.com/profile.php?id=100066488662702" target="_blank" class="flex flex-col items-center text-gray-600 hover:text-blue-800 transition-colors">
+                            <i class="fab fa-facebook text-4xl mb-2"></i>
+                            <span class="font-semibold">صفحتنا</span>
+                        </a>
+                        <a href="https://www.youtube.com/@DrBishoyNagy" target="_blank" class="flex flex-col items-center text-gray-600 hover:text-red-600 transition-colors">
+                            <i class="fab fa-youtube text-4xl mb-2"></i>
+                            <span class="font-semibold">قناتنا</span>
+                        </a>
+                        <a href="https://www.facebook.com/groups/3334492170114962" target="_blank" class="flex flex-col items-center text-gray-600 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-users text-4xl mb-2"></i>
+                            <span class="font-semibold">المجموعة</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -590,10 +637,11 @@
                     <a href="#main-content" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
                     <a href="#main-content" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
                 </div>
-            <div class="flex justify-center space-x-6 my-4">
-                <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-youtube"></i></a>
-                <a href="https://t.me/DrBishoyAcademy" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-telegram"></i></a>
+            <div class="flex justify-center space-x-6 my-4" dir="ltr">
+                <a href="https://www.facebook.com/profile.php?id=100066488662702" target="_blank" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@DrBishoyNagy" target="_blank" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/groups/3334492170114962" target="_blank" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fas fa-users"></i></a>
+                <a href="https://t.me/DrBishoyAcademy" target="_blank" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-telegram"></i></a>
             </div>
             <p class="text-gray-500 mt-4">
                 &copy; <span id="current-year"></span> Plasticology. جميع الحقوق محفوظة.
@@ -617,15 +665,54 @@
             <iframe id="youtube-player" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
+    <!-- Chapter Selection Modal -->
+    <div id="chapter-selection-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-[60] hidden modal-overlay" onclick="closeChapterSelectionModal()">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col modal-content" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b p-6">
+                <h3 class="text-2xl font-bold text-gray-800">اختر الأبواب والمدة</h3>
+                <button onclick="closeChapterSelectionModal()" class="text-gray-500 hover:text-red-500 text-3xl transition-colors">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-grow">
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg mb-3">1. اختر مدة الاشتراك:</h4>
+                    <div class="flex bg-gray-200 rounded-full p-1">
+                        <input type="radio" name="duration" id="duration-1" value="1" class="hidden duration-radio" checked onchange="updateCustomPackagePrice()">
+                        <label for="duration-1" class="flex-1 text-center font-semibold py-2 px-4 rounded-full cursor-pointer transition-colors">شهر واحد</label>
+                        
+                        <input type="radio" name="duration" id="duration-3" value="3" class="hidden duration-radio" onchange="updateCustomPackagePrice()">
+                        <label for="duration-3" class="flex-1 text-center font-semibold py-2 px-4 rounded-full cursor-pointer transition-colors">3 شهور</label>
+                        
+                        <input type="radio" name="duration" id="duration-6" value="6" class="hidden duration-radio" onchange="updateCustomPackagePrice()">
+                        <label for="duration-6" class="flex-1 text-center font-semibold py-2 px-4 rounded-full cursor-pointer transition-colors">6 شهور</label>
+                    </div>
+                </div>
+                <div>
+                     <h4 class="font-bold text-lg mb-3">2. اختر الأبواب التي تناسبك:</h4>
+                    <div id="chapters-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <!-- Chapter checkboxes will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            <div class="border-t p-6 bg-gray-50 rounded-b-2xl">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-lg font-bold">السعر الإجمالي:</p>
+                        <p id="custom-package-price" class="text-3xl font-extrabold text-purple-600">0 ج.م</p>
+                    </div>
+                    <a id="custom-package-subscribe-btn" href="https://t.me/DrBishoyAcademy" target="_blank" class="bg-purple-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-purple-700 transition-colors text-lg opacity-50 pointer-events-none">
+                        اشترك الآن
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script>
         // --- DATA SOURCE ---
         const packagesData = [
-            { category: 'lectures', duration: 1, title: 'شهر واحد (المنهج كامل)', price: 10000, priceUSD: 200, theme: 'blue' },
-            { category: 'lectures', duration: 1, title: 'شهر (باب واحد Custom)', price: 4000, priceUSD: 80, theme: 'teal' },
-            { category: 'lectures', duration: 1, title: 'شهر (بابين Custom)', price: 7000, priceUSD: 140, theme: 'pink' },
-            { category: 'lectures', duration: 3, title: '3 شهور (المنهج كامل)', price: 25000, priceUSD: 500, originalPrice: 30000, theme: 'green', highlight: 'الأكثر شيوعًا', isScaled: true },
-            { category: 'lectures', duration: 6, title: '6 شهور (المنهج كامل)', price: 45000, priceUSD: 900, originalPrice: 60000, theme: 'purple' },
+            { category: 'full-package', duration: 1, title: 'شهر واحد', price: 10000, priceUSD: 200, theme: 'blue', recommendation: "مثالية للمراجعة السريعة قبل الامتحان." },
+            { category: 'full-package', duration: 3, title: '3 شهور', price: 25000, priceUSD: 500, originalPrice: 30000, theme: 'green', highlight: 'الأكثر شيوعًا', isScaled: true, recommendation: "أفضل قيمة وأنسب وقت لدراسة المنهج بالكامل." },
+            { category: 'full-package', duration: 6, title: '6 شهور', price: 45000, priceUSD: 900, originalPrice: 60000, theme: 'purple', recommendation: "للدراسة العميقة والمراجعة المستمرة على مدار فترة طويلة." },
             { category: 'mcq', duration: 1, title: 'شهر واحد', price: 1000, priceUSD: 20, theme: 'indigo' },
             { category: 'mcq', duration: 3, title: '3 شهور', price: 2500, priceUSD: 50, theme: 'teal' },
             { category: 'mcq', duration: 6, title: '6 شهور', price: 4500, priceUSD: 90, originalPrice: 6000, theme: 'pink' },
@@ -634,6 +721,26 @@
             { category: 'combo', duration: 6, title: 'الباقة المتكاملة (6 شهور)', price: 55000, priceUSD: 1100, originalPrice: 70000, theme: 'purple' },
         ];
         
+        const chapterGroups = {
+            "Fundamentals": { hours: 22 },
+            "Burn & Skin Lesions": { hours: 18 },
+            "Breast": { hours: 18 },
+            "Head & Neck Congenitals": { hours: 28 }, // Combined for simplicity
+            "Head & Neck Trauma & Tumors": { hours: 28 }, // Combined for simplicity
+            "Upper Limb Congenitals & Pathologies": { hours: 22 }, // Combined for simplicity
+            "Upper Limb Trauma & Reconstruction": { hours: 22 }, // Combined for simplicity
+            "Lower Limb Anatomy, Trauma & Reconstruction": { hours: 17 }, // Combined
+            "Chest, Trunk & Genitourinary": { hours: 17 }, // Combined
+            "Aesthetics (Soon)": { hours: 0, disabled: true }
+        };
+
+        const customChapterPrices = {
+            1: { 1: 4000, 3: 10000, 6: 18000 }, // 1 Chapter for 1, 3, 6 months
+            2: { 1: 7000, 3: 18000, 6: 32000 }, // 2 Chapters
+            3: { 1: 10000, 3: 25000, 6: 45000 }, // 3 Chapters (same as full)
+            // ... prices for more chapters can be added here
+        };
+
         const groupDiscounts = {
             lectures: [ { name: 'باقة الرفقاء (Partners)', discount: 0.15, theme: 'cyan', icon: 'fa-user-friends' }, { name: 'باقة التحالف (Alliance)', discount: 0.25, theme: 'emerald', icon: 'fa-users' }, { name: 'باقة الأساطير (Legends)', discount: 0.35, theme: 'amber', icon: 'fa-crown' } ],
             combo: [ { name: 'باقة الرفقاء (Partners)', discount: 0.10, theme: 'cyan', icon: 'fa-user-friends' }, { name: 'باقة التحالف (Alliance)', discount: 0.20, theme: 'emerald', icon: 'fa-users' }, { name: 'باقة الأساطير (Legends)', discount: 0.30, theme: 'amber', icon: 'fa-crown' } ]
@@ -644,22 +751,6 @@
             { quote: "من السعودية، أقولها وبكل ثقة: Plasticology هي أفضل استثمار عملته في مسيرتي الطبية. دكتور بيشوي ناجي قدم لنا كنزًا علميًا حقيقيًا ومنصة تضاهي أقوى المنصات العالمية. فخور بوجود محتوى عربي بهذه الجودة.", initials: "ن. العتيبي", title: "بورد سعودي، جراحة تجميل", country: "sa", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Noura" },
             { quote: "كنت أبحث عن مصدر يجمع بين الشرح العميق والتدريب العملي، ووجدت كل هذا وأكثر في Plasticology. طريقة عرض الحالات الإكلينيكية والشرح الصوتي من دكتور بيشوي كانت نقلة نوعية في فهمي. المنصة دي مش مجرد كورس، دي مدرسة كاملة.", initials: "ي. منصور", title: "ماجستير جراحة تجميل", country: "jo", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Yazan" },
             { quote: "Plasticology هي الإجابة لكل طالب جراحة تجميل محتار. بعد ما كنت أتنقل بين عشرات المصادر، الآن كل شيء أحتاجه موجود في مكان واحد وبأعلى جودة ممكنة. شكرًا دكتور بيشوي على هذا العمل العظيم.", initials: "ف. حسين", title: "طبيبة مقيمة", country: "iq", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Fatima" },
-            { quote: "ميزة الـ Exam Simulation خلتني أعيش جو الامتحان الحقيقي قبل ما أدخله. والأسئلة بنفس مستوى امتحانات البورد. مجهود خرافي.", initials: "م. أ.", title: "طبيب مقيم، جراحة تجميل", country: "eg", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Ahmed" },
-            { quote: "عاشت إيدك دكتور بيشوي. الشرح مال المحاضرات كلش واضح ومختصر. چنت ضايع وهسه لميت المنهج كله بفضلكم.", initials: "ز. ح.", title: "ماجستير جراحة تجميل", country: "iq", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Zahraa" },
-            { quote: "خاصية Performance Insights في منظم المذاكرة كانت صدمة، عرفتني بالظبط إيه الفصول اللي محتاجة أركز عليها. عنجد المنصة بتستاهل كل قرش.", initials: "ل. س.", title: "زمالة جراحة تجميل", country: "jo", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Lama" },
-            { quote: "بارك الله فيك يا دكتور. بنك الحالات الإكلينيكية (OSCE) كان كنز حقيقي، ساعدني هلبا في التحضير للجزء العملي من امتحان الدكتوراه.", initials: "ف. ب.", title: "دكتوراه جراحة تجميل", country: "ly", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Fathi" },
-            { quote: "ميزة مراجعة الأخطاء (Practice Mistakes) عبقرية. بتركز على نقط ضعفي وبتخليني أراجعها لحد ما تثبت. وفرت عليا وقت ومجهود كبير.", initials: "س. ر.", title: "بورد عربي، جراحة تجميل", country: "eg", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Salma" },
-            { quote: "المنصة سهلة وبسيطة، وكل شي واضح. التحديثات المستمرة للمحتوى خلتني دايماً مطمن إني بذاكر من أحدث المصادر.", initials: "ع. ج.", title: "طبيب مقيم", country: "jo", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Omar" },
-            { quote: "والله يا دكتور المحاضرات متاعك مافيهاش كلام، مختصرة وفي صلب الموضوع. سهلت عليا المنهج بشكل كبير. ربي يحفظك.", initials: "م. ن.", title: "ماجستير جراحة تجميل", country: "ly", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Nader" },
-            { quote: "الاختبارات التراكمية (Cumulative Review) اللي بيعملها المنظم كانت بتخليني أراجع القديم وأنا بذاكر الجديد، دي لوحدها كنز.", initials: "ن. ك.", title: "بورد عربي، جراحة تجميل", country: "iq", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Noor" },
-            { quote: "أنا كنت مشترك في باقة باب واحد بس عشان أجرب، وبعد أسبوع واحد عملت ترقية للمنهج كامل. المحتوى فعلًا يستاهل.", initials: "خ. م.", title: "زمالة مصرية", country: "eg", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Khaled" },
-            { quote: "الـ QBank شامل كل المواضيع والأسئلة بيها أفكار حلوة ومختلفة. حسيت بفرق كبير في مستوايا بعد ما حليت منه.", initials: "ر. ف.", title: "طبيب مقيم", country: "iq", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Rana" },
-            { quote: "أحلى حاجة إن كل حاجة في مكان واحد. محاضرات وأسئلة ومنظم مذاكرة. مش محتاج أفتح أي مصدر تاني. يعطيكم العافية.", initials: "أ. د.", title: "ماجستير جراحة تجميل", country: "jo", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Dawood" },
-            { quote: "كنت خايف من امتحان الدكتوراه، لكن بعد ما اشتركت في الباقة المتكاملة حسيت بثقة أكبر. المنصة فعلًا سلاح قوي لأي امتحان.", initials: "ح. ش.", title: "دكتوراه جراحة تجميل", country: "eg", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Hassan" },
-            { quote: "المتابعة والدعم الفني ممتازين. أي سؤال أو مشكلة تتحل في وقتها. شكرًا لكل القائمين على المنصة.", initials: "ي. ق.", title: "طبيب مقيم", country: "ly", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Yousef" },
-            { quote: "أفضل منصة تعليمية لجراحة التجميل بالوطن العربي بلا منازع. المحتوى العلمي قوي جدًا وموازي لأقوى المصادر العالمية.", initials: "ط. ع.", title: "بورد عربي، جراحة تجميل", country: "iq", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Taha" },
-            { quote: "منظم المذاكرة الذكي فكرة ممتازة، خصوصًا مع ضغط الشغل والمذاكرة. بيخليني ماشي على تراك صحيح ومبضيعش وقت.", initials: "ن. هـ.", title: "زمالة مصرية", country: "eg", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Noha" },
-            { quote: "التطبيق العملي في بنك الحالات الإكلينيكية خلاني أفهم المواضيع بشكل أعمق وأعرف أربط بين العلم والواقع.", initials: "س. م.", title: "ماجستير جراحة تجميل", country: "jo", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Sama" },
         ];
 
         const faqData = [
@@ -670,315 +761,114 @@
             { q: "ما هو وضع التعلم (Learning Mode)؟", a: "هو وضع مخصص للدراسة والمذاكرة. يتيح لك تصفح الأسئلة مع إجاباتها وشروحاتها مباشرة دون ضغط المؤقت الزمني أو تسجيل النتائج. إنه مثالي لمراجعة الفصول لأول مرة وترسيخ المعلومات." },
             { q: "كيف يعمل منظم المذاكرة الذكي (Study Planner)؟", a: "هو مدربك الشخصي! بمجرد تحديد تاريخ بدء وانتهاء خطتك، يقوم النظام بتوزيع كل المحاضرات عليك بشكل آلي، وينشئ لك اختبارات يومية قصيرة (Daily Quiz) واختبارات تراكمية (Cumulative Review) لضمان ثبات المعلومة ومراجعة ما سبق بذكاء." },
         ];
-
-        // Data source from the uploaded CSV file
+        
         const chaptersData = {
-            "01 Orientation - How to Study": [
-                "Orientation Lecture How to Study"
-            ],
-            "02 Fundamentals - Wound Healing": [
-                "01 Skin & Wound Healing",
-                "02 Skin Layers & Cancer Embryology Summary",
-                "03 Abnormal Tissue Healing",
-                "04 Other Types of Tissue Healing",
-                "05.1 Nerve Healing",
-                "05.2 Neuroma - Skills"
-            ],
-            "03 Fundamentals - Basics of Flaps": [
-                "06 Principles of Flaps",
-                "07 Fasciocutaneous Flaps",
-                "08.1 Myocutaneous Flaps",
-                "08.2 Perforator Flaps",
-                "09 Flaps Classifications",
-                "10 Flaps Modifications",
-                "11 Flaps Monitoring"
-            ],
-            "04 Fundamentals - Grafts Course": [
-                "12.1 Watson Knife for Skin Grafting Illustration - Plasticology Skill Lab",
-                "12.2 Skin Grafts",
-                "12.3 Integra Illustration - Plasticology Skill Lab",
-                "13 Homografts",
-                "14 Bone Grafts",
-                "15 Cartilage Graft",
-                "16 Fat Graft",
-                "17 Tendon Graft",
-                "18.1 Nerve Graft",
-                "18.2 Sural Nerve Graft - Plasticology Skill Lab",
-                "19 Tissue Expansion",
-                "20 Negative Pressure Wound Therapy",
-                "21 Lasers in Plastic Surgery",
-                "22 Biomaterials"
-            ],
-            "05 Burn": [
-                "01 Principles of Burn Assessment & Resuscitation",
-                "02.1 Burn Debridement, Coverage and Positioning",
-                "02.2 Escharotomy vs Escharectomy - Skills",
-                "03 Burn Nutrition",
-                "04 Electric Burn",
-                "05 Chemical Burn",
-                "06 Frostbite",
-                "07 Drug Burn SJS & TEN",
-                "08 Burn Reconstruction",
-                "09.1 Burn Summary Lecture P1 Principles",
-                "09.2 Burn Summary Lecture P2 Other Types of Burn"
-            ],
-            "06 Skin Lesions": [
-                "01 Lesion / Skin Lesions Examination",
-                "02 BCC",
-                "03 SCC",
-                "04 Melanoma",
-                "05 Congenital Nevocytic Nevi",
-                "06 Soft Tissue Sarcoma",
-                "07 Hemangioma",
-                "08 Vascular Malformation",
-                "09 Lymphedema",
-                "10 Misc Epithelial & Melanocytic Skin Lesions",
-                "11 Misc Adnexal Skin Lesions",
-                "12 Misc Cysts",
-                "13 Misc Bursa",
-                "14 Misc Lipoma",
-                "15 Misc Neurofibroma",
-                "16 Misc Skin Disorders"
-            ],
-            "07 Head & Neck - Congenitals": [
-                "01.1 Head & Neck Anatomy & Embryology P1",
-                "01.2 Head & Neck Anatomy & Embryology P2",
-                "01.3 Facial Development Defect Pathological Embryology",
-                "02 Ear Anatomy & Congenital Anomalies",
-                "03 Microtia",
-                "04 Prominent Ear",
-                "05 Misc Congenital Ear Anomalies",
-                "06.1 Ear Trauma",
-                "06.2 Ear Trauma",
-                "07.1 Ear Revision",
-                "07.2 Ear Local Nerve Block - Plasticology Skill Lab",
-                "08 Congenital Nose Deformities",
-                "09 Cleft Lip",
-                "10 Cleft Palate",
-                "11 Velopharyngeal Dysfunction (White Board)",
-                "12.1 Craniofacial Clefts Tessier Classification",
-                "12.2 Craniofacial Clefts Hemifacial Microsomia",
-                "13.1 Craniosynostosis Pathology",
-                "13.2 Craniosynostosis Non Syndromic",
-                "13.3 Craniosynostosis Syndromic"
-            ],
-            "08 Head & Neck - Acquired Pathologies": [
-                "1. Head & Neck Anatomy",
-                "2 head & Neck Swellings 1.1 Sky View",
-                "2. Head & Neck Swellings 1.2 Congenitals",
-                "3. Salivary Gland Pathologies",
-                "4. Jaw Pathologies",
-                "Squamous cell Carcinoma",
-                "5. PRINCIPLES OF HEAD AND NECK CANCER: STAGING AND MANAGEMENT"
-            ],
-            "09 Head & Neck - Trauma & Reconstruction": [
-                "17. Trauma Intro Facial Assessment & Trauma Dangerous Zones",
-                "18. Facial soft Tissue Trauma Assessment",
-                "19. Mandibular Fractures",
-                "20. Zygoma Maxilla & ZMC fracture",
-                "21. Orbital Fracture",
-                "22. Nasal & NOE fracture",
-                "23.1 Frontal - Temporal - Palatal - Panfacial Fracture",
-                "23.2 Intro for Orthognathic Surgery",
-                "24. Scalp Reconstruction",
-                "24. Scalp Recon Sum UP",
-                "24. CALVARIAL RECONSTRUCTION",
-                "25.1 Eye Lid Recon 1 Anatomy",
-                "25.2 EYELID RECONSTRUCTION Algorithm",
-                "25.3 Ptosis",
-                "25.4 Ectropion",
-                "25.5 Entropion",
-                "26. NASAL Recon Anatomy & Principles",
-                "26.1 Nasal Anatomy & Nerve Supply Tricks",
-                "27. NASAL RECONSTRUCTION Algorithm",
-                "28. Cheeck Reconstruction",
-                "29. Lip Reconstruction",
-                "30. Surgical Treatment of Migraine Headache ( Audio )",
-                "31 Facial Aesthetic Anatomy - White Board",
-                "32 Aesthetic Facial Canons of Divine Proportions",
-                "33 Facial Palsy - White Board"
-            ],
-            "10 Breast": [
-                "01 Breast Clinical History & Examination",
-                "02 Breast Anatomy & Embryology",
-                "03 Congenital Breast Deformities",
-                "04 Gynecomastia & Male Breast Cancer",
-                "05 Breast Benign Lesions",
-                "06 Breast Cancer Types & Management",
-                "07 Implant Based Breast Reconstruction",
-                "08 Autologous Breast Reconstruction Latismus Flap",
-                "09 Autologus Breast Reconstruction Abdominal Based Flaps TRAM DIEP SIEA",
-                "10 DIEP Congestion",
-                "11 Autologus Breast Reconstruction Gluteal Flaps SGAP & IGAP",
-                "12 Autologus Breast Reconstruction Thigh Flaps based",
-                "13 Extra Options for Breast Reconstruciton",
-                "14 Breast Reconstruction Follow up",
-                "15 Nipple areolar Reconstruction & Inverted Nipple",
-                "16 Secondary Breast Reconstruction & Patient Disatisfaction",
-                "17 Breast Reduction Introduction",
-                "18 Breast Reduction Pedicle Choice",
-                "19 Breast Reduction Skin Resection Pattern",
-                "20 Breast Augmentation Implant History & Choice Parameters",
-                "21 Breast Augmentation Surgical Incision & Pocket",
-                "22 Breast Augmentation Post Operative Care & Complications",
-                "23 Mastopexy Indications & Contraindications",
-                "24 Mastopexy Surgical Techniques",
-                "25 Mastopexy Augmentation Mastopexy & Explantation",
-                "26 Mastopexy Post Massive Weight Loss Patient General Rules",
-                "27 Mastopexy PMWL Breast + Tuberous + Complications"
-            ],
-            "11 Trunk": [
-                "01 Chest wall Anatomy",
-                "02 Poland Syndrome",
-                "03 Pectus Excavatum & Carnatum",
-                "04 Aquired Cheast wall Deformities & Reconstruction",
-                "05 Abdominal Wall Anatomy",
-                "06 Abdominal Wall Defects",
-                "07 Abdominal Wall Reconstruction",
-                "08 Pressure Sores Staging & Workup",
-                "09 Pressure Sores Management",
-                "10 Pressure Sores Wound Dressing",
-                "11 Pressure Sores Wound Coverage"
-            ],
-            "12 Lower Limb": [
-                "01 Lower Extremity Gross Anatomy",
-                "02 Lower Limb NeuroVascular Anatomy",
-                "03 Principles of Lower Limb Salvage",
-                "04 Bone Reconstruction",
-                "05 Soft Tissue Reconstruction Principles & Thigh Reconstruction",
-                "06 Knee - Leg - Foot Reconstruction",
-                "07 Ankle Block Step By Step",
-                "08 Foot Ulcers"
-            ],
-            "13 Genito-Urinary": [
-                "01 Genitourinary Applied Anatomy",
-                "02 GenitoUrinary Male & Female Congenital Anomalies Intro",
-                "03 Hypospadius Pathophysiology & Classification",
-                "04 Hypospadias Management",
-                "05 Hypospadias Complications & Epispadius",
-                "06 Acquired PenoScrotal Defects 1 Pyrone Disease",
-                "07 Aquired Penoscrotal Defects 2 Circumcision Pitfalls – Phalloplasty & Radial Forearm Flap",
-                "08 Acquired PenoScrotal Defects 3 Scrotal Reconstruction – Fournier Gangrene",
-                "09 Gender Affirmation Surgeries"
-            ],
-            "14 Hand - Anatomy & Principles": [
-                "01 Flexors",
-                "02 Camper's Chiasm & Pulley System",
-                "03 Extensors",
-                "04 Interensics",
-                "05 Vasculature",
-                "06 Applied NeuroAnatomy Median Ulnar Radial & Anastomosis",
-                "07 Bone Ligaments & Joints",
-                "08 Hand Spaces & Retinacular System",
-                "09 Tourniquet",
-                "10 WALANT Wide Awake",
-                "11 Hand Nerve Blocks",
-                "12 Detailed Wrist Block Plasticology Skills",
-                "13 One Minute Wrist Block Plasticology Skills",
-                "14 Hand Incisions",
-                "15 Hand Splints",
-                "16 Rehabilitation & PhysioTherapy 1 Assesment Tests",
-                "17 Rehabilitation of Hand & Wrist Metacarpal & Phalangeal",
-                "18 Rehabilitation Flexors & Extensors Principles",
-                "19 Rehabilitation MCQ Revision"
-            ],
-            "15 Hand - Tendon Injuries": [
-                "20 Tendon Injuries Repair Principles with Aplied Anatomy Recap",
-                "21 MCQ 1 Extensors & Flexors Tendon injuries Applied Anatomy",
-                "22 Flexor Tendon Injuries Repair Applied Principles",
-                "23 Tips & tricks in Flexor Tendon Repair Oblique injury & Pulvertaft Repair",
-                "24 Flexors Zone 1 Jersey Finger Reverse Mallet",
-                "25 Flexors Zone 2-3-4-5 & Pulley System",
-                "26 Extensor Tendon Injuries Introduction",
-                "27 Extensors Zone 1",
-                "28 Extensors Zone 2-3",
-                "29 Extensors Zone 4-5",
-                "30 Extensors Zone 6 - 7",
-                "31 Extensors Zone 8-9 + General Post Op Routine",
-                "32 Complications of Tendon Repair",
-                "33 Tendonitis 1 Trigger Finger",
-                "34 Tendonitis 2 Dequervian - Intersection & Others"
-            ],
-            "16 Hand - Fingertip, Nerves & Trauma": [
-                "35 Nail Bed Injuries",
-                "36 Nail Bed Injuries Summary",
-                "37 Finger Tip Injury 1 Anatomy Classifications & Algorithm",
-                "38 Finger Tip Injury 2 Flaps",
-                "39 Volar Defect Cross Finger Flap - Plasticology Skill Lab",
-                "40 Finger Tip Injuries 3 Summary",
-                "41 Groin Flap Marking - Plasticology Skill Lab",
-                "42 Upper Extremity Compression Syndrome",
-                "43 Upper Extremity Compression Syndrome (Duplicate Title)",
-                "44 Brachial Plexus"
-            ],
-            "17 Hand - Congenitals & Pathologies": [
-                "01 Failure of Formation",
-                "02 Failure of Differentation",
-                "03 Hand Benign Conditions P1",
-                "04 Hand Benign Conditions P2",
-                "05 Hand Malignant Tumores",
-                "06 Hand Mass Excision - Skill Lab",
-                "07 Hand Cyst Excision Midaxial Incision - Skill Lab",
-                "08 Hand Infections",
-                "09 Dupuytren’s Disease – Rheumatoid Arthritis – OsteoArthritis"
-            ],
-            "18 Aesthetics": [
-                "Special Audio Edition until Release of Aesthetics Stand Alone Private Course"
-            ],
-            "19 Misc": [
-                "01 Plastic Anatomy Review",
-                "02 Physiology Revision",
-                "03 Hemostasis",
-                "04 DVT",
-                "05 OncoGenesis",
-                "06 Lipoma",
-                "07 Hypersensitivity",
-                "08 Sterilization"
-            ]
+            "01 Orientation - How to Study": ["Orientation Lecture How to Study"],
+            "02 Fundamentals - Wound Healing": ["01 Skin & Wound Healing", "02 Skin Layers & Cancer Embryology Summary", "03 Abnormal Tissue Healing", "04 Other Types of Tissue Healing", "05.1 Nerve Healing", "05.2 Neuroma - Skills"],
+            "03 Fundamentals - Basics of Flaps": ["06 Principles of Flaps", "07 Fasciocutaneous Flaps", "08.1 Myocutaneous Flaps", "08.2 Perforator Flaps", "09 Flaps Classifications", "10 Flaps Modifications", "11 Flaps Monitoring"],
+            "04 Fundamentals - Grafts Course": ["12.1 Watson Knife for Skin Grafting Illustration - Plasticology Skill Lab", "12.2 Skin Grafts", "12.3 Integra Illustration - Plasticology Skill Lab", "13 Homografts", "14 Bone Grafts", "15 Cartilage Graft", "16 Fat Graft", "17 Tendon Graft", "18.1 Nerve Graft", "18.2 Sural Nerve Graft - Plasticology Skill Lab", "19 Tissue Expansion", "20 Negative Pressure Wound Therapy", "21 Lasers in Plastic Surgery", "22 Biomaterials"],
+            "05 Burn": ["01 Principles of Burn Assessment & Resuscitation", "02.1 Burn Debridement, Coverage and Positioning", "02.2 Escharotomy vs Escharectomy - Skills", "03 Burn Nutrition", "04 Electric Burn", "05 Chemical Burn", "06 Frostbite", "07 Drug Burn SJS & TEN", "08 Burn Reconstruction", "09.1 Burn Summary Lecture P1 Principles", "09.2 Burn Summary Lecture P2 Other Types of Burn"],
+            "06 Skin Lesions": ["01 Lesion / Skin Lesions Examination", "02 BCC", "03 SCC", "04 Melanoma", "05 Congenital Nevocytic Nevi", "06 Soft Tissue Sarcoma", "07 Hemangioma", "08 Vascular Malformation", "09 Lymphedema", "10 Misc Epithelial & Melanocytic Skin Lesions", "11 Misc Adnexal Skin Lesions", "12 Misc Cysts", "13 Misc Bursa", "14 Misc Lipoma", "15 Misc Neurofibroma", "16 Misc Skin Disorders"],
+            "07 Head & Neck - Congenitals": ["01.1 Head & Neck Anatomy & Embryology P1", "01.2 Head & Neck Anatomy & Embryology P2", "01.3 Facial Development Defect Pathological Embryology", "02 Ear Anatomy & Congenital Anomalies", "03 Microtia", "04 Prominent Ear", "05 Misc Congenital Ear Anomalies", "06.1 Ear Trauma", "06.2 Ear Trauma", "07.1 Ear Revision", "07.2 Ear Local Nerve Block - Plasticology Skill Lab", "08 Congenital Nose Deformities", "09 Cleft Lip", "10 Cleft Palate", "11 Velopharyngeal Dysfunction (White Board)", "12.1 Craniofacial Clefts Tessier Classification", "12.2 Craniofacial Clefts Hemifacial Microsomia", "13.1 Craniosynostosis Pathology", "13.2 Craniosynostosis Non Syndromic", "13.3 Craniosynostosis Syndromic"],
+            "08 Head & Neck - Acquired Pathologies": ["1. Head & Neck Anatomy", "2 head & Neck Swellings 1.1 Sky View", "2. Head & Neck Swellings 1.2 Congenitals", "3. Salivary Gland Pathologies", "4. Jaw Pathologies", "Squamous cell Carcinoma", "5. PRINCIPLES OF HEAD AND NECK CANCER: STAGING AND MANAGEMENT"],
+            "09 Head & Neck - Trauma & Reconstruction": ["17. Trauma Intro Facial Assessment & Trauma Dangerous Zones", "18. Facial soft Tissue Trauma Assessment", "19. Mandibular Fractures", "20. Zygoma Maxilla & ZMC fracture", "21. Orbital Fracture", "22. Nasal & NOE fracture", "23.1 Frontal - Temporal - Palatal - Panfacial Fracture", "23.2 Intro for Orthognathic Surgery", "24. Scalp Reconstruction", "24. Scalp Recon Sum UP", "24. CALVARIAL RECONSTRUCTION", "25.1 Eye Lid Recon 1 Anatomy", "25.2 EYELID RECONSTRUCTION Algorithm", "25.3 Ptosis", "25.4 Ectropion", "25.5 Entropion", "26. NASAL Recon Anatomy & Principles", "26.1 Nasal Anatomy & Nerve Supply Tricks", "27. NASAL RECONSTRUCTION Algorithm", "28. Cheeck Reconstruction", "29. Lip Reconstruction", "30. Surgical Treatment of Migraine Headache ( Audio )", "31 Facial Aesthetic Anatomy - White Board", "32 Aesthetic Facial Canons of Divine Proportions", "33 Facial Palsy - White Board"],
+            "10 Breast": ["01 Breast Clinical History & Examination", "02 Breast Anatomy & Embryology", "03 Congenital Breast Deformities", "04 Gynecomastia & Male Breast Cancer", "05 Breast Benign Lesions", "06 Breast Cancer Types & Management", "07 Implant Based Breast Reconstruction", "08 Autologous Breast Reconstruction Latismus Flap", "09 Autologus Breast Reconstruction Abdominal Based Flaps TRAM DIEP SIEA", "10 DIEP Congestion", "11 Autologus Breast Reconstruction Gluteal Flaps SGAP & IGAP", "12 Autologus Breast Reconstruction Thigh Flaps based", "13 Extra Options for Breast Reconstruciton", "14 Breast Reconstruction Follow up", "15 Nipple areolar Reconstruction & Inverted Nipple", "16 Secondary Breast Reconstruction & Patient Disatisfaction", "17 Breast Reduction Introduction", "18 Breast Reduction Pedicle Choice", "19 Breast Reduction Skin Resection Pattern", "20 Breast Augmentation Implant History & Choice Parameters", "21 Breast Augmentation Surgical Incision & Pocket", "22 Breast Augmentation Post Operative Care & Complications", "23 Mastopexy Indications & Contraindications", "24 Mastopexy Surgical Techniques", "25 Mastopexy Augmentation Mastopexy & Explantation", "26 Mastopexy Post Massive Weight Loss Patient General Rules", "27 Mastopexy PMWL Breast + Tuberous + Complications"],
+            "11 Trunk": ["01 Chest wall Anatomy", "02 Poland Syndrome", "03 Pectus Excavatum & Carnatum", "04 Aquired Cheast wall Deformities & Reconstruction", "05 Abdominal Wall Anatomy", "06 Abdominal Wall Defects", "07 Abdominal Wall Reconstruction", "08 Pressure Sores Staging & Workup", "09 Pressure Sores Management", "10 Pressure Sores Wound Dressing", "11 Pressure Sores Wound Coverage"],
+            "12 Lower Limb": ["01 Lower Extremity Gross Anatomy", "02 Lower Limb NeuroVascular Anatomy", "03 Principles of Lower Limb Salvage", "04 Bone Reconstruction", "05 Soft Tissue Reconstruction Principles & Thigh Reconstruction", "06 Knee - Leg - Foot Reconstruction", "07 Ankle Block Step By Step", "08 Foot Ulcers"],
+            "13 Genito-Urinary": ["01 Genitourinary Applied Anatomy", "02 GenitoUrinary Male & Female Congenital Anomalies Intro", "03 Hypospadius Pathophysiology & Classification", "04 Hypospadias Management", "05 Hypospadias Complications & Epispadius", "06 Acquired PenoScrotal Defects 1 Pyrone Disease", "07 Aquired Penoscrotal Defects 2 Circumcision Pitfalls – Phalloplasty & Radial Forearm Flap", "08 Acquired PenoScrotal Defects 3 Scrotal Reconstruction – Fournier Gangrene", "09 Gender Affirmation Surgeries"],
+            "14 Hand - Anatomy & Principles": ["01 Flexors", "02 Camper's Chiasm & Pulley System", "03 Extensors", "04 Interensics", "05 Vasculature", "06 Applied NeuroAnatomy Median Ulnar Radial & Anastomosis", "07 Bone Ligaments & Joints", "08 Hand Spaces & Retinacular System", "09 Tourniquet", "10 WALANT Wide Awake", "11 Hand Nerve Blocks", "12 Detailed Wrist Block Plasticology Skills", "13 One Minute Wrist Block Plasticology Skills", "14 Hand Incisions", "15 Hand Splints", "16 Rehabilitation & PhysioTherapy 1 Assesment Tests", "17 Rehabilitation of Hand & Wrist Metacarpal & Phalangeal", "18 Rehabilitation Flexors & Extensors Principles", "19 Rehabilitation MCQ Revision"],
+            "15 Hand - Tendon Injuries": ["20 Tendon Injuries Repair Principles with Aplied Anatomy Recap", "21 MCQ 1 Extensors & Flexors Tendon injuries Applied Anatomy", "22 Flexor Tendon Injuries Repair Applied Principles", "23 Tips & tricks in Flexor Tendon Repair Oblique injury & Pulvertaft Repair", "24 Flexors Zone 1 Jersey Finger Reverse Mallet", "25 Flexors Zone 2-3-4-5 & Pulley System", "26 Extensor Tendon Injuries Introduction", "27 Extensors Zone 1", "28 Extensors Zone 2-3", "29 Extensors Zone 4-5", "30 Extensors Zone 6 - 7", "31 Extensors Zone 8-9 + General Post Op Routine", "32 Complications of Tendon Repair", "33 Tendonitis 1 Trigger Finger", "34 Tendonitis 2 Dequervian - Intersection & Others"],
+            "16 Hand - Fingertip, Nerves & Trauma": ["35 Nail Bed Injuries", "36 Nail Bed Injuries Summary", "37 Finger Tip Injury 1 Anatomy Classifications & Algorithm", "38 Finger Tip Injury 2 Flaps", "39 Volar Defect Cross Finger Flap - Plasticology Skill Lab", "40 Finger Tip Injuries 3 Summary", "41 Groin Flap Marking - Plasticology Skill Lab", "42 Upper Extremity Compression Syndrome", "43 Upper Extremity Compression Syndrome (Duplicate Title)", "44 Brachial Plexus"],
+            "17 Hand - Congenitals & Pathologies": ["01 Failure of Formation", "02 Failure of Differentation", "03 Hand Benign Conditions P1", "04 Hand Benign Conditions P2", "05 Hand Malignant Tumores", "06 Hand Mass Excision - Skill Lab", "07 Hand Cyst Excision Midaxial Incision - Skill Lab", "08 Hand Infections", "09 Dupuytren’s Disease – Rheumatoid Arthritis – OsteoArthritis"],
+            "18 Aesthetics": ["Special Audio Edition until Release of Aesthetics Stand Alone Private Course"],
+            "19 Misc": ["01 Plastic Anatomy Review", "02 Physiology Revision", "03 Hemostasis", "04 DVT", "05 OncoGenesis", "06 Lipoma", "07 Hypersensitivity", "08 Sterilization"]
         };
 
         function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
-
-        function createCardHTML(pkg) {
-            const isDark = pkg.theme === 'dark';
-            const theme = pkg.theme || 'gray';
+        
+        function createFullPackageCardHTML(pkg) {
             const isScaled = pkg.isScaled || false;
-            
             const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
             const savingText = saving > 0 ? `<span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">وفر ${formatPrice(saving)} ج.م</span>` : '';
-            const originalPriceText = pkg.originalPrice ? `<p class="${isDark ? 'text-gray-400' : 'text-gray-500'} line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
-            const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 ${isDark ? 'bg-yellow-400 text-gray-900' : `bg-${theme}-500 text-white`} px-4 py-1 rounded-full text-xs font-bold shadow-lg">${pkg.highlight}</div>` : '';
-            
-            const scaleClass = isScaled ? 'lg:scale-105 highlight-glow-popular' : (isDark ? 'highlight-glow-value' : '');
-            const cardBg = isDark ? 'bg-gray-800 text-white' : 'bg-white text-gray-800';
-            const priceColor = isDark ? 'text-yellow-400' : `text-${theme}-600`;
-            const buttonClass = isDark ? 'bg-yellow-500 hover:bg-yellow-600 text-gray-900' : `bg-${theme}-600 hover:bg-${theme}-700 text-white`;
-            const borderColor = isDark ? 'border-yellow-400' : `border-${theme}-500`;
-            const usdPriceText = pkg.priceUSD ? `<p class="text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} -mt-2 mb-2">(≈ $${pkg.priceUSD} USD)</p>` : '';
+            const originalPriceText = pkg.originalPrice ? `<p class="text-gray-500 line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
+            const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-${pkg.theme}-500 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">${pkg.highlight}</div>` : '';
+            const scaleClass = isScaled ? 'lg:scale-105 highlight-glow-popular' : '';
 
             return `
-                <div class="${cardBg} rounded-xl shadow-lg p-6 card-hover border-t-8 ${borderColor} text-center flex flex-col h-full relative ${scaleClass}">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-${pkg.theme}-500 text-center flex flex-col h-full relative ${scaleClass}">
                     ${highlightText}
-                    <h3 class="text-xl font-bold mb-3 ${pkg.highlight ? 'mt-4' : ''}">${pkg.title}</h3>
-                    <p class="text-4xl font-extrabold ${priceColor} mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>
-                    ${usdPriceText}
+                    <h3 class="text-2xl font-bold mb-1 ${pkg.highlight ? 'mt-4' : ''}">Full Package Course</h3>
+                    <p class="text-lg font-semibold text-gray-500 mb-4">${pkg.title}</p>
+                    <p class="text-4xl font-extrabold text-${pkg.theme}-600 mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>
                     ${originalPriceText}
                     ${savingText}
-                    <div class="my-6 flex-grow"></div>
-                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block ${buttonClass} py-3 rounded-lg font-bold transition-colors mt-auto text-lg">اشترك الآن</a>
+                    <ul class="text-right my-6 space-y-3 text-gray-600 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i>وصول لجميع فصول المنهج</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i>أكثر من 200 محاضرة فيديو</li>
+                        <li class="flex items-center"><i class="fas fa-info-circle text-blue-500 ml-3"></i><span class="font-semibold">${pkg.recommendation}</span></li>
+                    </ul>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-${pkg.theme}-600 hover:bg-${pkg.theme}-700 text-white py-3 rounded-lg font-bold transition-colors mt-auto text-lg">اشترك الآن</a>
+                </div>`;
+        }
+
+        function createQBankCardHTML(pkg) {
+            const theme = pkg.theme || 'indigo';
+            const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
+            const savingText = saving > 0 ? `<span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">وفر ${formatPrice(saving)} ج.م</span>` : '';
+            const originalPriceText = pkg.originalPrice ? `<p class="text-gray-500 line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
+            
+            return `
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-${theme}-500 text-center flex flex-col h-full relative">
+                    <h3 class="text-2xl font-bold mb-1">QBank Bundle</h3>
+                    <p class="text-lg font-semibold text-gray-500 mb-4">${pkg.title}</p>
+                    <p class="text-4xl font-extrabold text-${theme}-600 mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>
+                    ${originalPriceText}
+                    ${savingText}
+                    <ul class="text-right my-6 space-y-3 text-gray-600 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i><b>Exam Mode:</b> +9000 MCQ</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i><b>Learning Mode:</b> Study with answers</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i><b>Study Planner:</b> Smart study plans</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i><b>Progress Log:</b> Track your performance</li>
+                    </ul>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-${theme}-600 hover:bg-${theme}-700 text-white py-3 rounded-lg font-bold transition-colors mt-auto text-lg">اشترك الآن</a>
+                </div>`;
+        }
+
+        function createComboCardHTML(pkg) {
+            const theme = pkg.theme || 'green';
+            const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
+            const savingText = saving > 0 ? `<span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">وفر ${formatPrice(saving)} ج.م</span>` : '';
+            const originalPriceText = pkg.originalPrice ? `<p class="text-gray-500 line-through mb-2 text-sm">${formatPrice(pkg.originalPrice)} ج.م</p>` : '';
+            const highlightText = pkg.highlight ? `<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-${pkg.theme}-500 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">${pkg.highlight}</div>` : '';
+            const scaleClass = pkg.isScaled ? 'lg:scale-105 highlight-glow-popular' : '';
+
+             return `
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-${theme}-500 text-center flex flex-col h-full relative ${scaleClass}">
+                    ${highlightText}
+                    <h3 class="text-2xl font-bold mb-1 ${pkg.highlight ? 'mt-4' : ''}">Combo Bundle</h3>
+                    <p class="text-lg font-semibold text-gray-500 mb-4">${pkg.title}</p>
+                    <p class="text-4xl font-extrabold text-${theme}-600 mb-1">${formatPrice(pkg.price)}<span class="text-base font-medium"> ج.م</span></p>
+                    ${originalPriceText}
+                    ${savingText}
+                    <ul class="text-right my-6 space-y-3 text-gray-600 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i><b>كل مميزات</b> باقة المنهج الكامل</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 ml-3"></i><b>كل مميزات</b> باقة بنك الأسئلة</li>
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 ml-3"></i><span class="font-semibold">أفضل قيمة مقابل السعر</span></li>
+                    </ul>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-${theme}-600 hover:bg-${theme}-700 text-white py-3 rounded-lg font-bold transition-colors mt-auto text-lg">اشترك الآن</a>
                 </div>`;
         }
         
         function createGroupCardHTML(group, type) {
-            const basePackages = packagesData.filter(p => p.category === type && [3, 6, 12].includes(p.duration));
+            const basePackages = packagesData.filter(p => p.category === type);
             let priceDetailsHTML = basePackages.sort((a,b) => a.duration - b.duration).map(pkg => {
                 const newPrice = pkg.price * (1 - group.discount);
                 const newPriceUSD = pkg.priceUSD * (1 - group.discount);
-                return `<p><b>${pkg.duration} شهور:</b> <span class="font-bold text-green-600">${formatPrice(newPrice)} ج.م</span> <span class="text-gray-500 text-sm">(≈ $${Math.round(newPriceUSD)})</span> <span class="line-through text-gray-500 text-sm">${formatPrice(pkg.price)}</span> / للفرد</p>`
+                return `<p><b>${pkg.duration} ${pkg.duration === 1 ? 'شهر' : 'شهور'}:</b> <span class="font-bold text-green-600">${formatPrice(newPrice)} ج.م</span> <span class="text-gray-500 text-sm">(≈ $${Math.round(newPriceUSD)})</span> <span class="line-through text-gray-500 text-sm">${formatPrice(pkg.price)}</span> / للفرد</p>`
             }).join('');
             return `<div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-${group.theme}-500 text-center"><i class="fas ${group.icon} text-5xl text-${group.theme}-500 mb-4"></i><h4 class="text-2xl font-bold text-gray-800 mb-2">${group.name}</h4><p class="text-3xl font-extrabold text-gray-800 mb-4">خصم ${group.discount * 100}%</p><div class="text-left space-y-2 border-t pt-4">${priceDetailsHTML}</div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-${group.theme}-600 text-white py-3 rounded-lg font-bold hover:bg-${group.theme}-700 transition-colors mt-6">تواصل معنا</a></div>`;
         }
-
+        
         function createTestimonialHTML(testimonial) {
             const flag = testimonial.country.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
             return `<div class="bg-white p-6 rounded-xl shadow-lg card-hover flex flex-col"><i class="fas fa-quote-right text-yellow-500 text-2xl mb-4"></i><p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p><div class="flex items-center border-t pt-4"><img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full mr-4 bg-gray-200 object-cover"><div><h4 class="font-bold text-gray-800">د. ${testimonial.initials}</h4><p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p></div></div></div>`;
@@ -988,7 +878,23 @@
             return `<div class="bg-white rounded-lg overflow-hidden shadow-sm"><button class="w-full text-left p-6 flex justify-between items-center accordion-toggle"><h3 class="font-bold text-lg text-gray-800">${faqItem.q}</h3><i class="fas fa-chevron-down transition-transform duration-300"></i></button><div class="accordion-content"><div class="p-6 pt-0 text-gray-600"><p>${faqItem.a}</p></div></div></div>`;
         }
         
-        // New function to create chapter and lecture accordion items
+        function renderChapterBasedCard() {
+            const container = document.getElementById('chapter-based-card-container');
+            if (!container) return;
+            container.innerHTML = `
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-purple-500 text-center flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-2">Chapter Based Course</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">اختر الأبواب التي تحتاجها فقط وركز على نقاط ضعفك أو استعد لاختبار معين.</p>
+                     <ul class="text-right my-6 space-y-3 text-gray-600 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 ml-3"></i><span class="font-semibold">الاختيار الأمثل للتركيز</span></li>
+                        <li class="flex items-center"><i class="fas fa-lightbulb text-yellow-500 ml-3"></i>نوصي بالبدء بـ Fundamentals و Burn</li>
+                    </ul>
+                    <button onclick="openChapterSelectionModal()" class="w-full block bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-bold transition-colors mt-auto text-lg">
+                        <i class="fas fa-cogs ml-2"></i>اختر الأبواب والمدة
+                    </button>
+                </div>`;
+        }
+        
         function createChapterAccordionHTML(chapterTitle, lectures) {
             const lecturesHTML = lectures.map(lecture =>
                 `<li class="flex items-center p-2 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer"><i class="fas fa-play-circle text-yellow-500 mr-3"></i><span>${lecture}</span></li>`
@@ -1009,7 +915,6 @@
             `;
         }
         
-        // New function to toggle the accordion
         function toggleAccordion(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i:last-child');
@@ -1023,117 +928,128 @@
             }
         }
 
-        function renderAll() {
-            // Render existing sections
-            ['lectures', 'mcq', 'combo'].forEach(cat => { const container = document.getElementById(`${cat}-cards`); if(container) { const sortedPackages = packagesData.filter(p => p.category === cat).sort((a, b) => a.duration - b.duration); container.innerHTML = sortedPackages.map(createCardHTML).join(''); } });
-            const groupsTabContainer = document.getElementById('groups-tab');
-            if (groupsTabContainer) {
-                groupsTabContainer.innerHTML = `<div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-xl mx-auto"><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showSubTab('group-lectures', this)">خصومات الشرح</button><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('group-combo', this)">خصومات الباقات المتكاملة</button></div><div class="mt-12"><div id="group-lectures-content" class="sub-tab-content active"><div id="group-lectures-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div><div id="group-combo-content" class="sub-tab-content"><div id="group-combo-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div></div>`;
-                document.getElementById('group-lectures-cards').innerHTML = groupDiscounts.lectures.map(group => createGroupCardHTML(group, 'lectures')).join('');
-                document.getElementById('group-combo-cards').innerHTML = groupDiscounts.combo.map(group => createGroupCardHTML(group, 'combo')).join('');
-            }
-            const testimonialsGrid = document.getElementById('testimonials-grid');
-            if(testimonialsGrid) { testimonialsGrid.innerHTML = testimonialsData.map(createTestimonialHTML).join(''); }
-            const faqContainer = document.getElementById('faq-accordion');
-            if(faqContainer) {
-                faqContainer.innerHTML = faqData.map(createFaqItemHTML).join('');
-                // Attach event listener to new accordion items
-                document.querySelectorAll('.accordion-toggle').forEach(button => {
-                    button.addEventListener('click', () => {
-                        const content = button.nextElementSibling;
-                        button.querySelector('i').classList.toggle('rotate-180');
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        } 
-                    });
-                });
-            }
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+        const chapterModal = document.getElementById('chapter-selection-modal');
+        const chaptersListContainer = document.getElementById('chapters-list-container');
+        const customPackagePriceEl = document.getElementById('custom-package-price');
+        const customPackageSubscribeBtn = document.getElementById('custom-package-subscribe-btn');
+
+        function openChapterSelectionModal() {
+            let chapterHtml = '';
+            Object.keys(chapterGroups).forEach((groupName, index) => {
+                const group = chapterGroups[groupName];
+                chapterHtml += `
+                    <div>
+                        <input type="checkbox" id="chapter-group-${index}" class="hidden chapter-checkbox" value="${groupName}" ${group.disabled ? 'disabled' : ''}>
+                        <label for="chapter-group-${index}" class="block w-full text-right p-3 border rounded-lg cursor-pointer transition-colors">
+                            ${groupName}
+                            <span class="text-sm text-gray-500 block">${group.hours > 0 ? `~${group.hours} ساعة` : ''}</span>
+                        </label>
+                    </div>
+                `;
+            });
+            chaptersListContainer.innerHTML = chapterHtml;
             
-            // Render the new chapters section
-            const chaptersListContainer = document.getElementById('chapters-accordion-list');
-            if (chaptersListContainer) {
-                let chaptersHTML = '';
-                for (const chapter in chaptersData) {
-                    chaptersHTML += createChapterAccordionHTML(chapter, chaptersData[chapter]);
-                }
-                chaptersListContainer.innerHTML = chaptersHTML;
+            updateCustomPackagePrice(); // Reset price on open
+            
+            chaptersListContainer.querySelectorAll('.chapter-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateCustomPackagePrice);
+            });
+
+            chapterModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChapterSelectionModal() {
+            chapterModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateCustomPackagePrice() {
+            const selectedCount = chaptersListContainer.querySelectorAll('.chapter-checkbox:checked').length;
+            const selectedDuration = document.querySelector('.duration-radio:checked').value;
+            
+            let price = 0;
+            if (selectedCount > 0 && selectedCount <= 3) {
+                 price = customChapterPrices[selectedCount] ? customChapterPrices[selectedCount][selectedDuration] || 0 : 0;
+            } else if (selectedCount > 3) {
+                 const fullPackage = packagesData.find(p => p.category === 'full-package' && p.duration == selectedDuration);
+                 if(fullPackage) price = fullPackage.price;
+            }
+
+            customPackagePriceEl.textContent = `${formatPrice(price)} ج.م`;
+
+            if (selectedCount > 0) {
+                customPackageSubscribeBtn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                customPackageSubscribeBtn.classList.add('opacity-50', 'pointer-events-none');
             }
         }
         
-        // This function now handles updating the active state of the secondary navigation cards as well
-        function showPage(pageId, button) {
-            // Deactivate all sections and secondary nav cards
-            document.querySelectorAll('.page-section').forEach(el => {
-                if (el) el.classList.remove('active');
-            });
-            document.querySelectorAll('.sub-nav-card').forEach(el => {
-                if (el) el.classList.remove('active');
-            });
-
-            // Activate the target section
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
+        function renderAll() {
+            // Render Full Package
+            const fullPackageContainer = document.getElementById('full-package-cards');
+            if (fullPackageContainer) {
+                const fullPackages = packagesData.filter(p => p.category === 'full-package').sort((a, b) => a.duration - b.duration);
+                fullPackageContainer.innerHTML = fullPackages.map(createFullPackageCardHTML).join('');
             }
+
+            // Render QBank
+            const mcqContainer = document.getElementById('mcq-cards');
+            if (mcqContainer) {
+                const mcqPackages = packagesData.filter(p => p.category === 'mcq').sort((a, b) => a.duration - b.duration);
+                mcqContainer.innerHTML = mcqPackages.map(createQBankCardHTML).join('');
+            }
+
+            // Render Combo
+            const comboContainer = document.getElementById('combo-cards');
+            if (comboContainer) {
+                const comboPackages = packagesData.filter(p => p.category === 'combo').sort((a, b) => a.duration - b.duration);
+                comboContainer.innerHTML = comboPackages.map(createComboCardHTML).join('');
+            }
+
+            renderChapterBasedCard();
             
-
-            // If a button was clicked, activate it
-            if (button) {
-                button.classList.add('active');
-            } else {
-                // Default case if no button is passed
-                if (pageId === 'bundles') {
-                    const btn = document.querySelector('.sub-nav-card:nth-child(1)');
-                    if (btn) btn.classList.add('active');
-                } else if (pageId === 'testimonials') {
-                    const btn = document.querySelector('.sub-nav-card:nth-child(2)');
-                    if (btn) btn.classList.add('active');
-                } else if (pageId === 'features') {
-                    const btn = document.querySelector('.sub-nav-card:nth-child(3)');
-                    if (btn) btn.classList.add('active');
-                } else if (pageId === 'about') {
-                    const btn = document.querySelector('.sub-nav-card:nth-child(4)');
-                    if (btn) btn.classList.add('active');
-                } else if (pageId === 'chapters') {
-                        const btn = document.querySelector('.sub-nav-card:nth-child(5)');
-                    if (btn) btn.classList.add('active');
-                } else if (pageId === 'faq') {
-                    const btn = document.querySelector('.sub-nav-card:nth-child(6)');
-                    if (btn) btn.classList.add('active');
-                }
+            const groupsTabContainer = document.getElementById('groups-tab');
+            if (groupsTabContainer) {
+                groupsTabContainer.innerHTML = `<div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-xl mx-auto"><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors active" onclick="showSubTab('group-lectures', this)">خصومات الشرح</button><button class="sub-tab-button flex-1 px-4 py-3 text-base font-bold rounded-full transition-colors" onclick="showSubTab('group-combo', this)">خصومات الباقات المتكاملة</button></div><div class="mt-12"><div id="group-lectures-content" class="sub-tab-content active"><div id="group-lectures-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div><div id="group-combo-content" class="sub-tab-content"><div id="group-combo-cards" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div></div></div>`;
+                document.getElementById('group-lectures-cards').innerHTML = groupDiscounts.lectures.map(group => createGroupCardHTML(group, 'full-package')).join('');
+                document.getElementById('group-combo-cards').innerHTML = groupDiscounts.combo.map(group => createGroupCardHTML(group, 'combo')).join('');
             }
-            // Smooth scroll to the top of the main content area
+            const testimonialsGrid = document.getElementById('testimonials-grid');
+            if(testimonialsGrid) { testimonialsGrid.innerHTML = testimonialsData.slice(0, 4).map(createTestimonialHTML).join(''); }
+            const faqContainer = document.getElementById('faq-accordion');
+            if(faqContainer) {
+                faqContainer.innerHTML = faqData.map(createFaqItemHTML).join('');
+                document.querySelectorAll('.accordion-toggle').forEach(button => button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    button.querySelector('i').classList.toggle('rotate-180');
+                    content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+                }));
+            }
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            const chaptersListContainer = document.getElementById('chapters-accordion-list');
+            if (chaptersListContainer) {
+                chaptersListContainer.innerHTML = Object.keys(chaptersData).map(chapter => createChapterAccordionHTML(chapter, chaptersData[chapter])).join('');
+            }
+        }
+        
+        function showPage(pageId, button) {
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.sub-nav-card').forEach(el => el.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.classList.add('active');
+            if (button) button.classList.add('active');
             const mainContent = document.getElementById('main-content');
-            if (mainContent) {
-                mainContent.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (mainContent) mainContent.scrollIntoView({ behavior: 'smooth' });
         }
 
         function showMainTab(tabId, button) {
-            // Deactivate all main tabs and activate the selected one
-            const mainTabButtons = document.querySelectorAll('.main-tab-button');
-            if (mainTabButtons) {
-                mainTabButtons.forEach(el => el.classList.remove('active'));
-            }
-            if (button) {
-                button.classList.add('active');
-            }
-            
-
-            // Hide all tab content sections
-            const tabContents = document.querySelectorAll('.tab-content');
-            if (tabContents) {
-                tabContents.forEach(el => el.classList.remove('active'));
-            }
-            
-            // Show the selected tab content
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                selectedTab.classList.add('active');
-            }
+            const mainTabButtons = button.parentElement.querySelectorAll('.main-tab-button');
+            mainTabButtons.forEach(el => el.classList.remove('active'));
+            button.classList.add('active');
+            const tabContents = button.closest('.text-center').querySelectorAll('.tab-content');
+            tabContents.forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
         }
 
         function showSubTab(tabId, button) {
