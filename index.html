@@ -21,21 +21,37 @@
             scroll-behavior: smooth;
         }
         
-        .header-bg {
-            background-color: var(--color-dark-bg);
+        /* New header styles to match the image */
+        .header-section {
+            background: linear-gradient(135deg, #f0f3ff, #e7ebf8);
+            padding-bottom: 6rem;
             position: relative;
-            overflow: hidden;
         }
 
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
+        /* Sub-navigation buttons styling */
+        .sub-nav-card {
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
+        .sub-nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        .sub-nav-card.active {
+            background: linear-gradient(135deg, #6c5ce7, #a463f2);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.4);
+        }
+        .sub-nav-card.active .icon,
+        .sub-nav-card.active .title,
+        .sub-nav-card.active .subtitle {
+            color: #fff !important;
+        }
+
+
         .card-hover {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -106,6 +122,23 @@
             display: block;
         }
 
+        /* Accordion Styles */
+        .accordion-content {
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+        }
+        .accordion-content.expanded {
+            max-height: 1000px; /* A large value to allow content to expand */
+        }
+        
+        .chapter-title {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .chapter-title:hover {
+            transform: translateX(-5px);
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -140,50 +173,83 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #D4AF37, #FFD700); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #FFD700, #D4AF37); }
+        
+        /* Sticky header with backdrop blur */
+        .main-header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
-    <!-- Header Section -->
-    <header class="header-bg text-white py-12">
-        <div id="particles-js"></div>
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-right relative z-10">
-            <div class="md:w-3/5">
-                <h1 class="text-4xl md:text-6xl font-black mb-4 gradient-text">
-                    <i class="fas fa-fire"></i>
-                    Plasticology
-                    <i class="fas fa-graduation-cap"></i>
-                </h1>
-                <p class="text-lg md:text-xl mb-6 text-gray-300 font-medium">
-                    🚀 منظومة تعليمية متكاملة - أول مرة في الشرق الأوسط
-                </p>
-                <div class="bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-8 rounded-full inline-block pulse-glow text-base font-bold shadow-2xl">
-                    <i class="fas fa-clock mr-2"></i>
-                    عروض حصرية لفترة محدودة
+
+    <!-- Sticky Header -->
+    <header class="main-header-sticky">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between bg-white rounded-full shadow-lg px-6 py-3">
+                <!-- Logo and Title -->
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="w-12 h-12 object-cover">
+                    <div class="text-right">
+                        <h1 class="text-lg font-bold">Plasticology</h1>
+                        <p class="text-xs text-gray-500 font-medium">Your Plastic Surgery Companion</p>
+                    </div>
                 </div>
-            </div>
-            <div class="mt-8 md:mt-0">
-                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="block">
-                    <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="mx-auto w-48 h-auto transition-all duration-500 hover:scale-110 hover:rotate-3" />
-                </a>
+
+                <!-- Navigation Links & Order Button -->
+                <div class="flex items-center space-x-6 space-x-reverse hidden md:flex">
+                    <a href="https://www.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-home ml-2"></i>Home</a>
+                    <button class="nav-button text-gray-600 hover:text-purple-600 transition-colors" onclick="showPage('platform')"><i class="fas fa-laptop-code ml-2"></i>Platform</button>
+                    <a href="https://plasticologybooks.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-book-open ml-2"></i>Book Samples</a>
+                    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="px-6 py-2 rounded-full font-bold text-white transition-all duration-300 transform hover:scale-105" style="background: linear-gradient(135deg, #6c5ce7, #a463f2);">
+                        اطلب الآن
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Navigation Bar -->
-    <nav class="main-nav">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-center gap-3 p-4">
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showPage('bundles')"><i class="fas fa-tags mr-2"></i>الباقات والعروض</button>
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('testimonials')"><i class="fas fa-comments mr-2"></i>آراء الأبطال</button>
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('features')"><i class="fas fa-star mr-2"></i>المميزات الفريدة</button>
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('about')"><i class="fas fa-user-tie mr-2"></i>عن المحاضر</button>
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('platform')"><i class="fas fa-laptop mr-2"></i>جولة في المنصة</button>
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300" onclick="showPage('faq')"><i class="fas fa-question-circle mr-2"></i>الأسئلة الشائعة</button>
-                <button class="nav-button flex-auto px-6 py-3 text-sm font-bold rounded-full transition-all duration-300 bg-blue-500 text-white hover:bg-blue-600" onclick="showPage('contact')"><i class="fab fa-telegram-plane mr-2"></i>تواصل معنا الآن</button>
-            </div>
+    <!-- Secondary Navigation Buttons below header -->
+    <div class="relative z-10 container mx-auto px-4 -mt-16 mb-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl active" onclick="showPage('bundles', this)">
+                <i class="fas fa-tags text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">الباقات والعروض</span>
+                <span class="text-sm font-light subtitle text-gray-500">Packages & Offers</span>
+            </button>
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('testimonials', this)">
+                <i class="fas fa-comments text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">آراء الأبطال</span>
+                <span class="text-sm font-light subtitle text-gray-500">Reviews</span>
+            </button>
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('features', this)">
+                <i class="fas fa-star text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">المميزات الفريدة</span>
+                <span class="text-sm font-light subtitle text-gray-500">Unique Features</span>
+            </button>
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('about', this)">
+                <i class="fas fa-user-tie text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">عن المحاضر</span>
+                <span class="text-sm font-light subtitle text-gray-500">About the Instructor</span>
+            </button>
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('chapters', this)">
+                <i class="fas fa-book-reader text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">الفصول والمحاضرات</span>
+                <span class="text-sm font-light subtitle text-gray-500">Browse Chapters</span>
+            </button>
+            <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl" onclick="showPage('faq', this)">
+                <i class="fas fa-question-circle text-3xl mb-2 icon text-purple-600"></i>
+                <span class="text-base font-bold title text-gray-800">الأسئلة الشائعة</span>
+                <span class="text-sm font-light subtitle text-gray-500">FAQ</span>
+            </button>
         </div>
-    </nav>
-
+    </div>
+    
     <!-- Page Content -->
     <main>
         <!-- Bundles Section -->
@@ -200,10 +266,10 @@
                     <!-- Main Tabs -->
                     <div class="flex justify-center gap-4 bg-gray-200 p-2 rounded-2xl max-w-lg mx-auto mb-12 shadow-lg">
                         <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 active" onclick="showMainTab('individuals', this)">
-                            <i class="fas fa-user mr-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
+                            <i class="fas fa-user ml-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
                         </button>
                         <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300" onclick="showMainTab('groups', this)">
-                            <i class="fas fa-users mr-2"></i>Champions <span class="hidden sm:inline">(باقات الأبطال)</span>
+                            <i class="fas fa-users ml-2"></i>Champions <span class="hidden sm:inline">(باقات الأبطال)</span>
                         </button>
                     </div>
 
@@ -239,13 +305,30 @@
             </div>
         </section>
 
+        <!-- Chapters and Lectures Section -->
+        <section id="chapters" class="page-section">
+            <div class="container mx-auto px-4 py-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
+                        📚 محتوى المنظومة التعليمية
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                        تصفح فصول ومحاضرات Plasticology كاملة.
+                    </p>
+                </div>
+                <div id="chapters-list" class="max-w-4xl mx-auto space-y-4">
+                    <!-- Chapters will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
         <!-- Testimonials Section -->
         <section id="testimonials" class="page-section">
             <div class="py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
                         <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-comments text-yellow-500 mr-3"></i>
+                            <i class="fas fa-comments text-yellow-500 ml-3"></i>
                             ماذا قالوا عن Plasticology؟
                         </h2>
                         <p class="text-xl text-gray-600">آراء الأبطال الذين انضموا إلينا في رحلة النجاح.</p>
@@ -263,7 +346,7 @@
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
                         <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-star text-yellow-500 mr-3"></i>
+                            <i class="fas fa-star text-yellow-500 ml-3"></i>
                             لماذا Plasticology هي اختيارك الأذكى؟
                         </h2>
                         <p class="text-xl text-gray-600">لأننا لا نقدم لك محتوى تعليميًا فقط، بل منظومة متكاملة تدفعك نحو التفوق.</p>
@@ -281,8 +364,8 @@
                         </div>
                         
                         <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
-                             <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-brain text-3xl text-yellow-400"></i>
+                               <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                 <i class="fas fa-brain text-3xl text-yellow-400"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-3">منصة متكاملة</h3>
                             <p class="text-gray-600">متاحة أونلاين بالكامل لتكون رفيقك في التحضير لكل الامتحانات وفي أي وقت.</p>
@@ -330,21 +413,21 @@
 
         <!-- Platform Section -->
         <section id="platform" class="page-section bg-white">
-             <div class="py-20">
+              <div class="py-20">
                 <div class="container mx-auto px-4 text-center">
                     <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                        <i class="fas fa-laptop text-yellow-500 mr-3"></i>
+                        <i class="fas fa-laptop text-yellow-500 ml-3"></i>
                         جولة داخل المنصة التعليمية
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي صممناها لمساعدتك على التفوق.</p>
-                     <div class="text-center mt-12 mb-16">
+                      <div class="text-center mt-12 mb-16">
                         <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105">
-                            <i class="fas fa-play-circle mr-2"></i>
+                            <i class="fas fa-play-circle ml-2"></i>
                             شاهد المنصة الآن
                         </button>
                     </div>
                     <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:text-yellow-500 transition-colors">
-                        اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt ml-2"></i>
+                        اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt mr-2"></i>
                     </a>
                 </div>
             </div>
@@ -356,7 +439,7 @@
                 <div class="container mx-auto px-4 max-w-4xl">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-book-open text-yellow-500 mr-3"></i>
+                            <i class="fas fa-book-open text-yellow-500 ml-3"></i>
                             دليل المستخدم واستعراض الخصائص
                         </h2>
                         <p class="text-lg text-gray-600">رفيقك الشامل لاستكشاف كل ميزات التطبيق والاستفادة منها إلى أقصى حد.</p>
@@ -405,7 +488,7 @@
                                 <div class="bg-gray-50 p-6 rounded-lg">
                                     <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Study Planner (منظم المذاكرة الذكي)</h4>
                                     <p><strong>الفائدة:</strong> يزيل عنك عبء التخطيط. هو مدربك الشخصي الذي يخبرك بما يجب أن تدرسه كل يوم.</p>
-                                     <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
+                                      <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
                                     <ul class="list-decimal list-inside mt-2 space-y-1">
                                         <li>اضغط على "Create New Plan"، ثم أدخل اسمًا لخطتك وتاريخ البدء والانتهاء.</li>
                                         <li>سيقوم التطبيق تلقائيًا بتوزيع كل المحاضرات وإنشاء اختبارات يومية وتراكمية لمراجعة ما سبق.</li>
@@ -424,8 +507,8 @@
             <div class="py-20">
                 <div class="container mx-auto px-4 max-w-4xl">
                     <div class="text-center mb-12">
-                         <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-question-circle text-yellow-500 mr-3"></i>
+                          <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-question-circle text-yellow-500 ml-3"></i>
                             أسئلة شائعة
                         </h2>
                         <p class="text-xl text-gray-600">كل ما تحتاج لمعرفته قبل الانضمام إلينا.</p>
@@ -439,10 +522,10 @@
 
         <!-- Contact Section -->
         <section id="contact" class="page-section bg-white">
-             <div class="py-20">
+              <div class="py-20">
                 <div class="container mx-auto px-4 text-center">
-                     <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                        <i class="fab fa-telegram-plane text-blue-500 mr-3"></i>
+                      <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fab fa-telegram-plane text-blue-500 ml-3"></i>
                         هل أنت مستعد لبدء رحلة التفوق؟
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
@@ -457,7 +540,7 @@
     <!-- Footer -->
     <footer class="bg-dark-bg text-white py-8" style="background-color: var(--color-dark-bg);">
         <div class="container mx-auto px-4 text-center">
-             <div class="mb-4">
+              <div class="mb-4">
                 <a href="#bundles" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الباقات</a>
                 <a href="#features" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
                 <a href="#faq" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
@@ -546,6 +629,33 @@
             { q: "كيف يعمل منظم المذاكرة الذكي (Study Planner)؟", a: "هو مدربك الشخصي! بمجرد تحديد تاريخ بدء وانتهاء خطتك، يقوم النظام بتوزيع كل المحاضرات عليك بشكل آلي، وينشئ لك اختبارات يومية قصيرة (Daily Quiz) واختبارات تراكمية (Cumulative Review) لضمان ثبات المعلومة ومراجعة ما سبق بذكاء." },
         ];
 
+        // Data source from the uploaded CSV file
+        const chaptersData = {
+            "01 Orientation - How to Study": ["Orientation Lecture How to Study"],
+            "02 Fundamentals - Wound Healing": ["01 Skin & Wound Healing", "02 Skin Layers & Cancer Embryology Summary", "03 Abnormal Tissue Healing", "04 Other Types of Tissue Healing", "05.1 Nerve Healing", "05.2 Neuroma - Skills"],
+            "03 Fundamentals - Basics of Flaps": ["06 Principles of Flaps", "07 Fasciocutaneous Flaps", "08.1 Myocutaneous Flaps", "08.2 Perforator Flaps", "09 Flaps Classifications", "10 Flaps Modifications", "11 Flaps Monitoring"],
+            "04 Fundamentals - Grafts Course": ["12.1 Watson Knife for Skin Grafting Illustration - Plasticology Skill Lab", "12.2 Skin Grafts", "12.3 Integra Illustration - Plasticology Skill Lab", "13 Homografts", "14 Bone Grafts", "15 Cartilage Graft", "16 Fat Graft", "17 Tendon Graft", "18.1 Nerve Graft", "18.2 Nerve Graft"],
+            "05 Head & Neck": ["19.1 Basic Anatomical Landmarks", "19.2 Basic Surgical Techniques", "20 Anatomy of Scalp & Neck", "21 Skin & Aesthetic Unit", "22 Face Flaps"],
+            "06 Face Trauma": ["23 Face Trauma - 1", "24 Face Trauma - 2", "25 Face Trauma - 3"],
+            "07 Neck": ["26 Neck Anatomy", "27 Neck Dissection", "28 Neck Surgery"],
+            "08 Ear": ["29 Ear Reconstruction", "30 Ear Anatomy", "31 Ear Deformities"],
+            "09 Nose": ["32 Nose Reconstruction", "33 Nose Anatomy", "34 Nose Aesthetics"],
+            "10 Mouth": ["35 Mouth Reconstruction", "36 Mouth Anatomy", "37 Cleft Lip & Palate"],
+            "11 Breast": ["38 Breast Augmentation", "39 Breast Reduction", "40 Breast Reconstruction"],
+            "12 Trunk": ["41 Trunk Reconstruction", "42 Abdominal Wall Reconstruction", "43 Perineum Reconstruction"],
+            "13 Lower Limb": ["45 Lower Limb Reconstruction", "46 Lower Limb Aesthetics"],
+            "14 Upper Limb": ["47 Upper Limb Trauma", "48 Upper Limb Reconstruction", "49 Upper Limb Aesthetics"],
+            "15 Burn": ["50 Burn Management", "51 Burn Reconstruction", "52 Scar Revision"],
+            "16 Hand Trauma": ["53 Hand Anatomy", "54 Hand Trauma 1", "55 Hand Trauma 2"],
+            "17 Hand Injuries": ["56 Hand Injuries 1", "57 Hand Injuries 2", "58 Hand Infections"],
+            "18 Finger Tip & Nail Injuries": ["59 Finger Tip Injuries", "60 Nail Bed Injuries", "61 Finger Tip & Nail Injuries", "62 Hand Trauma"],
+            "19 Hand Trauma": ["63 Groin Flap Marking - Plasticology Skill Lab", "64 Upper Extremity Compression Syndrome", "65 Upper Extremity Compression Syndrome (Duplicate Title)", "66 Brachial Plexus"],
+            "20 Hand Congenitals & Pathologies": ["01 Failure of Formation", "02 Failure of Differentation", "03 Hand Benign Conditions P1", "04 Hand Benign Conditions P2", "05 Hand Malignant Tumores", "06 Hand Mass Excision - Skill Lab", "07 Hand Cyst Excision Midaxial Incision - Skill Lab", "08 Hand Infections", "09 Dupuytren’s Disease – Rheumatoid Arthritis – OsteoArthritis"],
+            "21 Aesthetics": ["Special Audio Edition until Release of Aesthetics Stand Alone Private Course"],
+            "22 Misc": ["01 Plastic Anatomy Review", "02 Physiology Revision", "03 Hemostasis"]
+        };
+
+
         function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
 
         function createCardHTML(pkg) {
@@ -596,8 +706,44 @@
         function createFaqItemHTML(faqItem) {
             return `<div class="bg-white rounded-lg overflow-hidden shadow-sm"><button class="w-full text-right p-6 flex justify-between items-center accordion-toggle"><h3 class="font-bold text-lg text-gray-800">${faqItem.q}</h3><i class="fas fa-chevron-down transition-transform duration-300"></i></button><div class="accordion-content"><div class="p-6 pt-0 text-gray-600"><p>${faqItem.a}</p></div></div></div>`;
         }
+        
+        // New function to create chapter and lecture accordion items
+        function createChapterAccordionHTML(chapterTitle, lectures) {
+            const lecturesHTML = lectures.map(lecture =>
+                `<li class="flex items-center p-2 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer"><i class="fas fa-play-circle text-yellow-500 ml-3"></i><span>${lecture}</span></li>`
+            ).join('');
+            
+            return `
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <button class="w-full text-right p-6 flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors chapter-title" onclick="toggleAccordion(this)">
+                        <h3 class="font-bold text-lg text-gray-800"><i class="fas fa-folder-open text-yellow-500 ml-3"></i>${chapterTitle}</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-gray-500"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="p-4 space-y-2 border-t">
+                            ${lecturesHTML}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // New function to toggle the accordion
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i:last-child');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.classList.remove('rotate-180');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.classList.add('rotate-180');
+            }
+        }
 
         function renderAll() {
+            // Render existing sections
             ['lectures', 'mcq', 'combo'].forEach(cat => { const container = document.getElementById(`${cat}-cards`); if(container) { const sortedPackages = packagesData.filter(p => p.category === cat).sort((a, b) => a.duration - b.duration); container.innerHTML = sortedPackages.map(createCardHTML).join(''); } });
             const groupsTabContainer = document.getElementById('groups-tab');
             if (groupsTabContainer) {
@@ -610,6 +756,7 @@
             const faqContainer = document.getElementById('faq-accordion');
             if(faqContainer) {
                 faqContainer.innerHTML = faqData.map(createFaqItemHTML).join('');
+                // Attach event listener to new accordion items
                 document.querySelectorAll('.accordion-toggle').forEach(button => {
                     button.addEventListener('click', () => {
                         const content = button.nextElementSibling;
@@ -623,17 +770,50 @@
                 });
             }
             document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Render the new chapters section
+            const chaptersListContainer = document.getElementById('chapters-list');
+            if (chaptersListContainer) {
+                let chaptersHTML = '';
+                for (const chapter in chaptersData) {
+                    chaptersHTML += createChapterAccordionHTML(chapter, chaptersData[chapter]);
+                }
+                chaptersListContainer.innerHTML = chaptersHTML;
+            }
         }
-
-        document.addEventListener('DOMContentLoaded', renderAll);
-
-        function showPage(pageId) {
+        
+        // This function now handles updating the active state of the secondary navigation cards as well
+        function showPage(pageId, button) {
+            // Deactivate all sections and secondary nav cards
             document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.sub-nav-card').forEach(el => el.classList.remove('active'));
+
+            // Activate the target section
             document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-button').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+
+            // If a button was clicked, activate it
+            if (button) {
+                button.classList.add('active');
+            } else {
+                // Default case if no button is passed
+                // We'll activate the 'Browse Book' button by default for the chapters page
+                if (pageId === 'bundles') {
+                    document.querySelector('.sub-nav-card:nth-child(1)').classList.add('active');
+                } else if (pageId === 'testimonials') {
+                    document.querySelector('.sub-nav-card:nth-child(2)').classList.add('active');
+                } else if (pageId === 'features') {
+                    document.querySelector('.sub-nav-card:nth-child(3)').classList.add('active');
+                } else if (pageId === 'about') {
+                    document.querySelector('.sub-nav-card:nth-child(4)').classList.add('active');
+                } else if (pageId === 'chapters') {
+                     document.querySelector('.sub-nav-card:nth-child(5)').classList.add('active');
+                } else if (pageId === 'faq') {
+                    document.querySelector('.sub-nav-card:nth-child(6)').classList.add('active');
+                }
+            }
             window.scrollTo(0, 0); 
         }
+
         function showMainTab(tabId, button) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById(`${tabId}-tab`).classList.add('active');
@@ -676,12 +856,9 @@
         function closeVideoModal() { player.src = ""; videoModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
         
         document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#D4AF37" }, "shape": { "type": "circle" }, "opacity": { "value": 0.4, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.15, "width": 1 }, "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false } },
-                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.3 } } } },
-                "retina_detect": true
-            });
+            // No particles.js initialization anymore
         });
+        document.addEventListener('DOMContentLoaded', renderAll);
     </script>
 </body>
 </html>
