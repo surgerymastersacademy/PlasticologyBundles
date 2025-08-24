@@ -16,17 +16,37 @@
             --color-text-dark: #212529;
         }
 
-        * {
-            font-family: 'Cairo', sans-serif;
+        html {
             scroll-behavior: smooth;
         }
-        
-        /* New header styles to match the image */
-        .header-section {
-            background: linear-gradient(135deg, #f0f3ff, #e7ebf8);
-            padding-bottom: 6rem;
-            position: relative;
+
+        * {
+            font-family: 'Cairo', sans-serif;
         }
+        
+        /* --- Hero Section Styling --- */
+        .hero-section {
+            background: linear-gradient(135deg, #f5f7fa, #eef2f7);
+        }
+
+        .hero-button {
+             background: linear-gradient(135deg, #6c5ce7, #a463f2);
+             transition: all 0.3s ease;
+             box-shadow: 0 10px 30px -10px rgba(108, 92, 231, 0.5);
+        }
+        .hero-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px -10px rgba(108, 92, 231, 0.6);
+        }
+        .hero-button-secondary {
+            transition: all 0.3s ease;
+        }
+        .hero-button-secondary:hover {
+             transform: translateY(-3px);
+             background-color: #fff;
+             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
 
         /* Sub-navigation buttons styling */
         .sub-nav-card {
@@ -214,8 +234,28 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero-section text-center py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-black text-gray-800 mb-4 leading-tight">
+                المنصة الأشمل لإتقان <span class="text-purple-600">جراحة التجميل</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                شروحات فيديو، بنوك أسئلة ذكية، وخطط دراسية مخصصة لتضمن تفوقك في جميع الاختبارات.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#pricing" onclick="showPage('bundles', document.querySelector('.sub-nav-card:nth-child(1)'))" class="hero-button text-white font-bold py-4 px-10 rounded-full text-lg w-full sm:w-auto">
+                    <i class="fas fa-tags ml-2"></i>اكتشف الباقات
+                </a>
+                 <a href="#chapters" onclick="showPage('chapters', document.querySelector('.sub-nav-card:nth-child(5)'))" class="hero-button-secondary bg-white text-gray-800 font-bold py-4 px-10 rounded-full text-lg w-full sm:w-auto border border-gray-200">
+                    <i class="fas fa-book-reader ml-2"></i>تصفح المحاضرات
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Secondary Navigation Buttons below header -->
-    <div class="relative z-10 container mx-auto px-4 -mt-16 mb-8">
+    <div id="main-content" class="container mx-auto px-4 py-12">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl active" onclick="showPage('bundles', this)">
                 <i class="fas fa-tags text-3xl mb-2 icon text-purple-600"></i>
@@ -253,8 +293,8 @@
     <!-- Page Content -->
     <main>
         <!-- Bundles Section -->
-        <section id="bundles" class="page-section active">
-            <div id="pricing" class="container mx-auto px-4 py-10">
+        <section id="bundles" class="page-section active bg-gray-50 pt-10 pb-20">
+            <div id="pricing" class="container mx-auto px-4">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
                         🎯 اختر الباقة المثالية لك
@@ -264,7 +304,7 @@
                     </p>
                     
                     <!-- Main Tabs -->
-                    <div class="flex justify-center gap-4 bg-gray-200 p-2 rounded-2xl max-w-lg mx-auto mb-12 shadow-lg">
+                    <div class="flex justify-center gap-4 bg-white p-2 rounded-2xl max-w-lg mx-auto mb-12 shadow-md">
                         <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 active" onclick="showMainTab('individuals-tab', this)">
                             <i class="fas fa-user mr-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
                         </button>
@@ -275,7 +315,7 @@
 
                     <!-- Individuals Tab Content -->
                     <div id="individuals-tab" class="tab-content active">
-                        <div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-4xl mx-auto">
+                        <div class="flex flex-col sm:flex-row justify-center gap-3 bg-white p-2 rounded-full max-w-4xl mx-auto shadow-md">
                             <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('lectures', this)">
                                 Lectures Bundles <span class="block text-xs opacity-75 font-normal">عروض الشرح</span>
                             </button>
@@ -306,126 +346,118 @@
         </section>
 
         <!-- Chapters Section -->
-        <section id="chapters" class="page-section bg-white">
-            <div class="py-20">
-                <div class="container mx-auto px-4">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
-                            <i class="fas fa-book-reader text-yellow-500 ml-3"></i>
-                            الفصول والمحاضرات
-                        </h2>
-                        <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                            تصفح المنهج الكامل لمنظومة Plasticology التعليمية. اضغط على أي فصل لعرض المحاضرات الخاصة به.
-                        </p>
-                    </div>
-                    <div id="chapters-accordion-list" class="max-w-4xl mx-auto space-y-4">
-                        <!-- قائمة الفصول والمحاضرات ستظهر هنا بواسطة JavaScript -->
-                    </div>
+        <section id="chapters" class="page-section bg-white py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">
+                        <i class="fas fa-book-reader text-yellow-500 ml-3"></i>
+                        الفصول والمحاضرات
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                        تصفح المنهج الكامل لمنظومة Plasticology التعليمية. اضغط على أي فصل لعرض المحاضرات الخاصة به.
+                    </p>
+                </div>
+                <div id="chapters-accordion-list" class="max-w-4xl mx-auto space-y-4">
+                    <!-- قائمة الفصول والمحاضرات ستظهر هنا بواسطة JavaScript -->
                 </div>
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="page-section">
-            <div class="py-20">
-                <div class="container mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-comments text-yellow-500 ml-3"></i>
-                            ماذا قالوا عن Plasticology؟
-                        </h2>
-                        <p class="text-xl text-gray-600">آراء الأبطال الذين انضموا إلينا في رحلة النجاح.</p>
-                    </div>
-                    <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Testimonials will be dynamically inserted here -->
-                    </div>
+        <section id="testimonials" class="page-section bg-gray-50 py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-comments text-yellow-500 ml-3"></i>
+                        ماذا قالوا عن Plasticology؟
+                    </h2>
+                    <p class="text-xl text-gray-600">آراء الأبطال الذين انضموا إلينا في رحلة النجاح.</p>
+                </div>
+                <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Testimonials will be dynamically inserted here -->
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="page-section bg-white">
-            <div class="py-20">
-                <div class="container mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-star text-yellow-500 ml-3"></i>
-                            لماذا Plasticology هي اختيارك الأذكى؟
-                        </h2>
-                        <p class="text-xl text-gray-600">لأننا لا نقدم لك محتوى تعليميًا فقط، بل منظومة متكاملة تدفعك نحو التفوق.</p>
-                        <div class="w-32 h-1.5 bg-gradient-to-r from-yellow-500 to-yellow-300 mx-auto rounded mt-4"></div>
+        <section id="features" class="page-section bg-white py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-star text-yellow-500 ml-3"></i>
+                        لماذا Plasticology هي اختيارك الأذكى؟
+                    </h2>
+                    <p class="text-xl text-gray-600">لأننا لا نقدم لك محتوى تعليميًا فقط، بل منظومة متكاملة تدفعك نحو التفوق.</p>
+                    <div class="w-32 h-1.5 bg-gradient-to-r from-yellow-500 to-yellow-300 mx-auto rounded mt-4"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                        <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <i class="fas fa-sync-alt text-3xl text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">تحديث دوري</h3>
+                        <p class="text-gray-600">المحتوى يتم تحديثه دورياً ليواكب أحدث المعلومات والمصادر العالمية.</p>
+                        <button onclick="openFeatureModal('daily_updates')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                    <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
                             <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-sync-alt text-3xl text-yellow-400"></i>
+                                <i class="fas fa-brain text-3xl text-yellow-400"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">تحديث دوري</h3>
-                            <p class="text-gray-600">المحتوى يتم تحديثه دورياً ليواكب أحدث المعلومات والمصادر العالمية.</p>
-                            <button onclick="openFeatureModal('daily_updates')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">منصة متكاملة</h3>
+                        <p class="text-gray-600">متاحة أونلاين بالكامل لتكون رفيقك في التحضير لكل الامتحانات وفي أي وقت.</p>
+                        <button onclick="openFeatureModal('integrated_platform')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                        <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <i class="fas fa-tools text-3xl text-yellow-400"></i>
                         </div>
-                        
-                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
-                                <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                    <i class="fas fa-brain text-3xl text-yellow-400"></i>
-                                </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">منصة متكاملة</h3>
-                            <p class="text-gray-600">متاحة أونلاين بالكامل لتكون رفيقك في التحضير لكل الامتحانات وفي أي وقت.</p>
-                            <button onclick="openFeatureModal('integrated_platform')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">أدوات ذكية</h3>
+                        <p class="text-gray-600">بنك أسئلة ومنظم مذاكرة ذكي لتجربة تعليمية فريدة.</p>
+                        <button onclick="openFeatureModal('smart_tools')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                        <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <i class="fas fa-diagnoses text-3xl text-yellow-400"></i>
                         </div>
-                        
-                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
-                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-tools text-3xl text-yellow-400"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">أدوات ذكية</h3>
-                            <p class="text-gray-600">بنك أسئلة ومنظم مذاكرة ذكي لتجربة تعليمية فريدة.</p>
-                            <button onclick="openFeatureModal('smart_tools')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">بنك حالات إكلينيكية (OSCE)</h3>
+                        <p class="text-gray-600">تدرب على سيناريوهات واقعية تحاكي الامتحانات العملية.</p>
+                        <button onclick="openFeatureModal('osce_bank')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                        <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <i class="fas fa-redo-alt text-3xl text-yellow-400"></i>
                         </div>
-                        
-                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
-                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-diagnoses text-3xl text-yellow-400"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">بنك حالات إكلينيكية (OSCE)</h3>
-                            <p class="text-gray-600">تدرب على سيناريوهات واقعية تحاكي الامتحانات العملية.</p>
-                            <button onclick="openFeatureModal('osce_bank')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
-                        </div>
-                        
-                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
-                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-redo-alt text-3xl text-yellow-400"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">مراجعة ذكية للأخطاء</h3>
-                            <p class="text-gray-600">تجمع كل الأسئلة التي أخطأت فيها لتركز على نقاط ضعفك.</p>
-                            <button onclick="openFeatureModal('practice_mistakes')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
-                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">مراجعة ذكية للأخطاء</h3>
+                        <p class="text-gray-600">تجمع كل الأسئلة التي أخطأت فيها لتركز على نقاط ضعفك.</p>
+                        <button onclick="openFeatureModal('practice_mistakes')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About the Instructor Section -->
-        <section id="about" class="page-section">
-            <div class="py-20">
-                <div class="container mx-auto px-4">
-                    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex">
-                        <div class="md:w-1/3">
-                            <img src="https://github.com/surgerymastersacademy/PlasticologyBundles/raw/99c9d11a399bdee884266a4402c67c22ef5797f2/DrBishoy%20Plasticology%2020250601_231618.jpg" alt="Dr. Bishoy Nagy" class="h-full w-full object-cover">
-                        </div>
-                        <div class="md:w-2/3 p-8">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-2">د. بيشوي ناجي</h2>
-                            <p class="text-yellow-500 font-semibold mb-4">استشاري جراحة التجميل والحروق</p>
-                            <p class="text-gray-600 mb-4">
-                                بخبرة أكاديمية وعملية واسعة، يجمع د. بيشوي بين التفوق الجراحي وشغف التعليم. هو العقل المدبر وراء Plasticology، حيث يهدف إلى تقديم تجربة تعليمية غير مسبوقة تربط بين العلم النظري والتطبيق العملي.
-                            </p>
-                            <div class="space-y-3 text-gray-700">
-                                <p><i class="fas fa-graduation-cap text-yellow-500 ml-2"></i>حاصل على الدكتوراه في جراحة التجميل.</p>
-                                <p><i class="fas fa-award text-yellow-500 ml-2"></i>زميل البورد المصري لجراحة التجميل.</p>
-                                <p><i class="fas fa-book-open text-yellow-500 ml-2"></i>مؤلف سلسلة Plasticology المرجعية.</p>
-                                <p><i class="fas fa-lightbulb text-yellow-500 ml-2"></i>مؤسس منصات تعليمية رائدة.</p>
-                            </div>
+        <section id="about" class="page-section bg-gray-50 py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://github.com/surgerymastersacademy/PlasticologyBundles/raw/99c9d11a399bdee884266a4402c67c22ef5797f2/DrBishoy%20Plasticology%2020250601_231618.jpg" alt="Dr. Bishoy Nagy" class="h-full w-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">د. بيشوي ناجي</h2>
+                        <p class="text-yellow-500 font-semibold mb-4">استشاري جراحة التجميل والحروق</p>
+                        <p class="text-gray-600 mb-4">
+                            بخبرة أكاديمية وعملية واسعة، يجمع د. بيشوي بين التفوق الجراحي وشغف التعليم. هو العقل المدبر وراء Plasticology، حيث يهدف إلى تقديم تجربة تعليمية غير مسبوقة تربط بين العلم النظري والتطبيق العملي.
+                        </p>
+                        <div class="space-y-3 text-gray-700">
+                            <p><i class="fas fa-graduation-cap text-yellow-500 ml-2"></i>حاصل على الدكتوراه في جراحة التجميل.</p>
+                            <p><i class="fas fa-award text-yellow-500 ml-2"></i>زميل البورد المصري لجراحة التجميل.</p>
+                            <p><i class="fas fa-book-open text-yellow-500 ml-2"></i>مؤلف سلسلة Plasticology المرجعية.</p>
+                            <p><i class="fas fa-lightbulb text-yellow-500 ml-2"></i>مؤسس منصات تعليمية رائدة.</p>
                         </div>
                     </div>
                 </div>
@@ -433,89 +465,85 @@
         </section>
 
         <!-- Platform Section -->
-        <section id="platform" class="page-section bg-white">
-                <div class="py-20">
-                    <div class="container mx-auto px-4 text-center">
-                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-laptop text-yellow-500 ml-3"></i>
-                            جولة داخل المنصة التعليمية
-                        </h2>
-                        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي صممناها لمساعدتك على التفوق.</p>
-                            <div class="text-center mt-12 mb-16">
-                                <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105">
-                                    <i class="fas fa-play-circle ml-2"></i>
-                                    شاهد المنصة الآن
-                                </button>
-                            </div>
-                        <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:text-yellow-500 transition-colors">
-                            اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt mr-2"></i>
-                        </a>
-                    </div>
+        <section id="platform" class="page-section bg-white py-20">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-laptop text-yellow-500 ml-3"></i>
+                        جولة داخل المنصة التعليمية
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">شاهد الفيديو لتتعرف على كل الخصائص والأدوات التي صممناها لمساعدتك على التفوق.</p>
+                        <div class="text-center mt-12 mb-16">
+                            <button onclick="openVideoModal()" class="bg-gray-800 text-yellow-400 font-bold py-4 px-10 rounded-full hover:bg-black transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105">
+                                <i class="fas fa-play-circle ml-2"></i>
+                                شاهد المنصة الآن
+                            </button>
+                        </div>
+                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="text-xl font-bold text-gray-800 hover:text-yellow-500 transition-colors">
+                        اذهب إلى المنصة مباشرة <i class="fas fa-external-link-alt mr-2"></i>
+                    </a>
                 </div>
         </section>
         
         <!-- User Guide Section -->
-        <section id="user-guide" class="page-section">
-            <div class="py-16 bg-white">
-                <div class="container mx-auto px-4 max-w-4xl">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-book-open text-yellow-500 ml-3"></i>
-                            دليل المستخدم واستعراض الخصائص
-                        </h2>
-                        <p class="text-lg text-gray-600">رفيقك الشامل لاستكشاف كل ميزات التطبيق والاستفادة منها إلى أقصى حد.</p>
+        <section id="user-guide" class="page-section bg-gray-50 py-20">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-book-open text-yellow-500 ml-3"></i>
+                        دليل المستخدم واستعراض الخصائص
+                    </h2>
+                    <p class="text-lg text-gray-600">رفيقك الشامل لاستكشاف كل ميزات التطبيق والاستفادة منها إلى أقصى حد.</p>
+                </div>
+
+                <div class="space-y-8 text-right">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">1. البدء</h3>
+                        <div class="space-y-4 bg-white p-6 rounded-lg shadow-sm">
+                            <p><strong>تسجيل الدخول:</strong> استخدم اسم المستخدم وكلمة المرور الخاصين بك للدخول إلى حسابك.</p>
+                            <p><strong>تجربة مجانية:</strong> إذا كنت مستخدمًا جديدًا، يمكنك الضغط على "Free Test" لتجربة عينة من بنك الأسئلة دون الحاجة لتسجيل الدخول.</p>
+                            <p><strong>إعدادات الواجهة:</strong> يمكنك في أي وقت الضغط على أيقونة الشمس/القمر للتبديل بين الوضع الفاتح والداكن، وأيقونة التشغيل/الإيقاف للتحكم في الخلفية المتحركة.</p>
+                        </div>
                     </div>
 
-                    <div class="space-y-8 text-right">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">1. البدء</h3>
-                            <div class="space-y-4 bg-gray-50 p-6 rounded-lg">
-                                <p><strong>تسجيل الدخول:</strong> استخدم اسم المستخدم وكلمة المرور الخاصين بك للدخول إلى حسابك.</p>
-                                <p><strong>تجربة مجانية:</strong> إذا كنت مستخدمًا جديدًا، يمكنك الضغط على "Free Test" لتجربة عينة من بنك الأسئلة دون الحاجة لتسجيل الدخول.</p>
-                                <p><strong>إعدادات الواجهة:</strong> يمكنك في أي وقت الضغط على أيقونة الشمس/القمر للتبديل بين الوضع الفاتح والداكن، وأيقونة التشغيل/الإيقاف للتحكم في الخلفية المتحركة.</p>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">2. القائمة الرئيسية: مركز التحكم الخاص بك</h3>
+                        <p class="mb-4">بعد تسجيل الدخول، ستجد نفسك في القائمة الرئيسية التي تمنحك وصولاً سريعًا إلى كل أقسام التطبيق:</p>
+                        <ul class="list-disc list-inside space-y-2 bg-white p-6 rounded-lg shadow-sm">
+                            <li><strong>Lectures (المحاضرات):</strong> شاهد محاضرات الفيديو عالية الجودة، منظمة حسب الفصول الدراسية.</li>
+                            <li><strong>Exam Mode (وضع الاختبار):</strong> اختبر معلوماتك عبر إنشاء اختبارات مخصصة أو خوض تجربة محاكاة كاملة للامتحان.</li>
+                            <li><strong>Learning Mode (وضع التعلم):</strong> ادرس الأسئلة مع إجاباتها وشروحاتها دون ضغط الوقت.</li>
+                            <li><strong>OSCE Bank (بنك الحالات الإكلينيكية):</strong> تدرب على سيناريوهات وحالات إكلينيكية واقعية.</li>
+                            <li><strong>Study Planner (منظم المذاكرة):</strong> دع التطبيق ينشئ لك خطة دراسية ذكية ومخصصة.</li>
+                            <li><strong>Library (المكتبة):</strong> تصفح قائمة بالكتب والمصادر التعليمية الموصى بها.</li>
+                            <li><strong>Leaderboard (لوحة الصدارة):</strong> شاهد ترتيبك بين أفضل 10 مستخدمين.</li>
+                            <li><strong>Activity Log (سجل النشاط):</strong> تتبع كل نشاطاتك السابقة.</li>
+                            <li><strong>My Notes (ملاحظاتي):</strong> ارجع إلى كل الملاحظات الشخصية التي دونتها.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">3. شرح تفصيلي للخصائص</h3>
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Exam Mode (وضع الاختبار)</h4>
+                                <p><strong>الفائدة:</strong> هي الأداة الأقوى للتحضير للاختبار. تتيح لك قياس مستواك وتحديد نقاط ضعفك.</p>
+                                <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
+                                <ul class="list-decimal list-inside mt-2 space-y-1">
+                                    <li><strong>Create a Mock Exam:</strong> حدد عدد الأسئلة والوقت، وقم بفلترة الأسئلة حسب الفصول.</li>
+                                    <li><strong>Exam Simulation:</strong> خض تجربة تحاكي الامتحان الحقيقي باختبار من 100 سؤال ومؤقت زمني.</li>
+                                    <li><strong>Practice Mistakes:</strong> ميزة ذكية تجمع كل الأسئلة التي أخطأت فيها سابقًا في اختبار واحد.</li>
+                                    <li><strong>Practice Bookmarked:</strong> ابدأ اختبارًا من كل الأسئلة التي حفظتها للمراجعة.</li>
+                                </ul>
                             </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">2. القائمة الرئيسية: مركز التحكم الخاص بك</h3>
-                            <p class="mb-4">بعد تسجيل الدخول، ستجد نفسك في القائمة الرئيسية التي تمنحك وصولاً سريعًا إلى كل أقسام التطبيق:</p>
-                            <ul class="list-disc list-inside space-y-2 bg-gray-50 p-6 rounded-lg">
-                                <li><strong>Lectures (المحاضرات):</strong> شاهد محاضرات الفيديو عالية الجودة، منظمة حسب الفصول الدراسية.</li>
-                                <li><strong>Exam Mode (وضع الاختبار):</strong> اختبر معلوماتك عبر إنشاء اختبارات مخصصة أو خوض تجربة محاكاة كاملة للامتحان.</li>
-                                <li><strong>Learning Mode (وضع التعلم):</strong> ادرس الأسئلة مع إجاباتها وشروحاتها دون ضغط الوقت.</li>
-                                <li><strong>OSCE Bank (بنك الحالات الإكلينيكية):</strong> تدرب على سيناريوهات وحالات إكلينيكية واقعية.</li>
-                                <li><strong>Study Planner (منظم المذاكرة):</strong> دع التطبيق ينشئ لك خطة دراسية ذكية ومخصصة.</li>
-                                <li><strong>Library (المكتبة):</strong> تصفح قائمة بالكتب والمصادر التعليمية الموصى بها.</li>
-                                <li><strong>Leaderboard (لوحة الصدارة):</strong> شاهد ترتيبك بين أفضل 10 مستخدمين.</li>
-                                <li><strong>Activity Log (سجل النشاط):</strong> تتبع كل نشاطاتك السابقة.</li>
-                                <li><strong>My Notes (ملاحظاتي):</strong> ارجع إلى كل الملاحظات الشخصية التي دونتها.</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 border-r-4 border-yellow-400 pr-4 mb-4">3. شرح تفصيلي للخصائص</h3>
-                            <div class="space-y-6">
-                                <div class="bg-gray-50 p-6 rounded-lg">
-                                    <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Exam Mode (وضع الاختبار)</h4>
-                                    <p><strong>الفائدة:</strong> هي الأداة الأقوى للتحضير للاختبار. تتيح لك قياس مستواك وتحديد نقاط ضعفك.</p>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Study Planner (منظم المذاكرة الذكي)</h4>
+                                <p><strong>الفائدة:</strong> يزيل عنك عبء التخطيط. هو مدربك الشخصي الذي يخبرك بما يجب أن تدرسه كل يوم.</p>
                                     <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
-                                    <ul class="list-decimal list-inside mt-2 space-y-1">
-                                        <li><strong>Create a Mock Exam:</strong> حدد عدد الأسئلة والوقت، وقم بفلترة الأسئلة حسب الفصول.</li>
-                                        <li><strong>Exam Simulation:</strong> خض تجربة تحاكي الامتحان الحقيقي باختبار من 100 سؤال ومؤقت زمني.</li>
-                                        <li><strong>Practice Mistakes:</strong> ميزة ذكية تجمع كل الأسئلة التي أخطأت فيها سابقًا في اختبار واحد.</li>
-                                        <li><strong>Practice Bookmarked:</strong> ابدأ اختبارًا من كل الأسئلة التي حفظتها للمراجعة.</li>
-                                    </ul>
-                                </div>
-                                <div class="bg-gray-50 p-6 rounded-lg">
-                                    <h4 class="text-xl font-bold text-gray-800 mb-2">خاصية: Study Planner (منظم المذاكرة الذكي)</h4>
-                                    <p><strong>الفائدة:</strong> يزيل عنك عبء التخطيط. هو مدربك الشخصي الذي يخبرك بما يجب أن تدرسه كل يوم.</p>
-                                        <p class="mt-2"><strong>كيفية الاستخدام:</strong></p>
-                                    <ul class="list-decimal list-inside mt-2 space-y-1">
-                                        <li>اضغط على "Create New Plan"، ثم أدخل اسمًا لخطتك وتاريخ البدء والانتهاء.</li>
-                                        <li>سيقوم التطبيق تلقائيًا بتوزيع كل المحاضرات وإنشاء اختبارات يومية وتراكمية لمراجعة ما سبق.</li>
-                                        <li>عند إكمال أي مهمة، ضع علامة ✔ بجانبها ليتم تسجيل تقدمك.</li>
-                                    </ul>
-                                </div>
+                                <ul class="list-decimal list-inside mt-2 space-y-1">
+                                    <li>اضغط على "Create New Plan"، ثم أدخل اسمًا لخطتك وتاريخ البدء والانتهاء.</li>
+                                    <li>سيقوم التطبيق تلقائيًا بتوزيع كل المحاضرات وإنشاء اختبارات يومية وتراكمية لمراجعة ما سبق.</li>
+                                    <li>عند إكمال أي مهمة، ضع علامة ✔ بجانبها ليتم تسجيل تقدمك.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -524,37 +552,33 @@
         </section>
         
         <!-- FAQ Section -->
-        <section id="faq" class="page-section">
-            <div class="py-20">
-                <div class="container mx-auto px-4 max-w-4xl">
-                    <div class="text-center mb-12">
-                            <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                                <i class="fas fa-question-circle text-yellow-500 ml-3"></i>
-                                أسئلة شائعة
-                            </h2>
-                        <p class="text-xl text-gray-600">كل ما تحتاج لمعرفته قبل الانضمام إلينا.</p>
-                    </div>
-                    <div id="faq-accordion" class="space-y-4">
-                        <!-- FAQ items will be dynamically inserted here -->
-                    </div>
+        <section id="faq" class="page-section bg-white py-20">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-question-circle text-yellow-500 ml-3"></i>
+                            أسئلة شائعة
+                        </h2>
+                    <p class="text-xl text-gray-600">كل ما تحتاج لمعرفته قبل الانضمام إلينا.</p>
+                </div>
+                <div id="faq-accordion" class="space-y-4">
+                    <!-- FAQ items will be dynamically inserted here -->
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="page-section bg-white">
-                <div class="py-20">
-                    <div class="container mx-auto px-4 text-center">
-                            <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                                <i class="fab fa-telegram-plane text-blue-500 ml-3"></i>
-                                هل أنت مستعد لبدء رحلة التفوق؟
-                            </h2>
-                        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
-                        <a href="https://t.me/DrBishoyAcademy" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl pulse">
-                            تواصل معنا عبر تيليجرام
-                        </a>
-                    </div>
-                </div>
+        <!-- Final CTA Section -->
+        <section id="contact" class="page-section bg-gray-50 py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fab fa-telegram-plane text-blue-500 ml-3"></i>
+                    هل أنت مستعد لبدء رحلة التفوق؟
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">تواصل معنا الآن عبر تيليجرام للاستفسار أو لإتمام عملية الاشتراك. فريقنا جاهز لمساعدتك في أي وقت.</p>
+                <a href="https://t.me/DrBishoyAcademy" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl pulse-glow">
+                    تواصل معنا عبر تيليجرام
+                </a>
+            </div>
         </section>
     </main>
 
@@ -562,9 +586,9 @@
     <footer class="bg-dark-bg text-white py-8" style="background-color: var(--color-dark-bg);">
         <div class="container mx-auto px-4 text-center">
                 <div class="mb-4">
-                    <a href="#bundles" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الباقات</a>
-                    <a href="#features" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
-                    <a href="#faq" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
+                    <a href="#main-content" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الباقات</a>
+                    <a href="#main-content" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">المميزات</a>
+                    <a href="#main-content" class="text-gray-400 hover:text-yellow-400 mx-3 transition-colors">الأسئلة الشائعة</a>
                 </div>
             <div class="flex justify-center space-x-6 my-4">
                 <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors"><i class="fab fa-facebook"></i></a>
@@ -1081,7 +1105,11 @@
                     if (btn) btn.classList.add('active');
                 }
             }
-            window.scrollTo(0, 0); 
+            // Smooth scroll to the top of the main content area
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function showMainTab(tabId, button) {
@@ -1148,4 +1176,4 @@
         document.addEventListener('DOMContentLoaded', renderAll);
     </script>
 </body>
-</ht
+</html>
