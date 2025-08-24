@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plasticology | المنظومة التعليمية المتكاملة</title>
+    <title>Plasticology | The Integrated Educational System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -193,21 +193,21 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between bg-white rounded-full shadow-lg px-6 py-3">
                 <!-- Logo and Title -->
-                <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="flex items-center space-x-2">
                     <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="w-12 h-12 object-cover">
-                    <div class="text-right">
+                    <div class="text-left">
                         <h1 class="text-lg font-bold">Plasticology</h1>
                         <p class="text-xs text-gray-500 font-medium">Your Plastic Surgery Companion</p>
                     </div>
                 </div>
 
                 <!-- Navigation Links & Order Button -->
-                <div class="flex items-center space-x-6 space-x-reverse hidden md:flex">
-                    <a href="https://www.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-home ml-2"></i>Home</a>
-                    <button class="nav-button text-gray-600 hover:text-purple-600 transition-colors" onclick="showPage('platform')"><i class="fas fa-laptop-code ml-2"></i>Platform</button>
-                    <a href="https://plasticologybooks.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-book-open ml-2"></i>Book Samples</a>
+                <div class="flex items-center space-x-6 hidden md:flex">
+                    <a href="https://www.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-home mr-2"></i>Home</a>
+                    <button class="nav-button text-gray-600 hover:text-purple-600 transition-colors" onclick="showPage('platform')"><i class="fas fa-laptop-code mr-2"></i>Platform</button>
+                    <a href="https://plasticologybooks.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-book-open mr-2"></i>Book Samples</a>
                     <a href="https://t.me/DrBishoyAcademy" target="_blank" class="px-6 py-2 rounded-full font-bold text-white transition-all duration-300 transform hover:scale-105" style="background: linear-gradient(135deg, #6c5ce7, #a463f2);">
-                        اطلب الآن
+                        Order Now
                     </a>
                 </div>
             </div>
@@ -275,6 +275,14 @@
 
                     <!-- Individuals Tab Content -->
                     <div id="individuals-tab" class="tab-content active">
+                        <!-- New section for lecture navigation -->
+                        <div class="bg-gray-100 p-6 rounded-2xl shadow-inner text-center mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">تصفح محتوى المحاضرات أولاً</h3>
+                            <p class="text-gray-600 mb-4 max-w-2xl mx-auto">قبل اختيار الباقة، يمكنك استعراض جميع فصول ومحاضرات المنظومة بالكامل لمعرفة المحتوى المشروح.</p>
+                            <button onclick="showPage('chapters', document.querySelector('.sub-nav-card:nth-child(5)'))" class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-book-reader ml-2"></i> استعرض الفصول والمحاضرات الآن
+                            </button>
+                        </div>
                         <div class="flex flex-col sm:flex-row justify-center gap-3 bg-gray-200 p-2 rounded-full max-w-4xl mx-auto">
                             <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('lectures', this)">
                                 Lectures Bundles <span class="block text-xs opacity-75 font-normal">عروض الشرح</span>
@@ -353,7 +361,7 @@
                         <div class="w-32 h-1.5 bg-gradient-to-r from-yellow-500 to-yellow-300 mx-auto rounded mt-4"></div>
                     </div>
                     
-                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                         <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
                             <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                                 <i class="fas fa-sync-alt text-3xl text-yellow-400"></i>
@@ -379,6 +387,24 @@
                             <h3 class="text-xl font-bold text-gray-800 mb-3">أدوات ذكية</h3>
                             <p class="text-gray-600">بنك أسئلة ومنظم مذاكرة ذكي لتجربة تعليمية فريدة.</p>
                             <button onclick="openFeatureModal('smart_tools')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        </div>
+                        
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-diagnoses text-3xl text-yellow-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">بنك حالات إكلينيكية (OSCE)</h3>
+                            <p class="text-gray-600">تدرب على سيناريوهات واقعية تحاكي الامتحانات العملية.</p>
+                            <button onclick="openFeatureModal('osce_bank')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
+                        </div>
+                        
+                        <div class="text-center p-8 bg-gray-50 rounded-xl card-hover">
+                            <div class="bg-gradient-to-br from-gray-700 to-gray-900 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <i class="fas fa-redo-alt text-3xl text-yellow-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">مراجعة ذكية للأخطاء</h3>
+                            <p class="text-gray-600">تجمع كل الأسئلة التي أخطأت فيها لتركز على نقاط ضعفك.</p>
+                            <button onclick="openFeatureModal('practice_mistakes')" class="mt-4 text-gray-800 font-bold hover:text-yellow-500 transition-colors">اعرف أكثر <i class="fas fa-arrow-left mr-2"></i></button>
                         </div>
                     </div>
                 </div>
@@ -695,28 +721,28 @@
                 const newPriceUSD = pkg.priceUSD * (1 - group.discount);
                 return `<p><b>${pkg.duration} شهور:</b> <span class="font-bold text-green-600">${formatPrice(newPrice)} ج.م</span> <span class="text-gray-500 text-sm">(≈ $${Math.round(newPriceUSD)})</span> <span class="line-through text-gray-500 text-sm">${formatPrice(pkg.price)}</span> / للفرد</p>`
             }).join('');
-            return `<div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-${group.theme}-500 text-center"><i class="fas ${group.icon} text-5xl text-${group.theme}-500 mb-4"></i><h4 class="text-2xl font-bold text-gray-800 mb-2">${group.name}</h4><p class="text-3xl font-extrabold text-gray-800 mb-4">خصم ${group.discount * 100}%</p><div class="text-right space-y-2 border-t pt-4">${priceDetailsHTML}</div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-${group.theme}-600 text-white py-3 rounded-lg font-bold hover:bg-${group.theme}-700 transition-colors mt-6">تواصل معنا</a></div>`;
+            return `<div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-8 border-${group.theme}-500 text-center"><i class="fas ${group.icon} text-5xl text-${group.theme}-500 mb-4"></i><h4 class="text-2xl font-bold text-gray-800 mb-2">${group.name}</h4><p class="text-3xl font-extrabold text-gray-800 mb-4">خصم ${group.discount * 100}%</p><div class="text-left space-y-2 border-t pt-4">${priceDetailsHTML}</div><a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-${group.theme}-600 text-white py-3 rounded-lg font-bold hover:bg-${group.theme}-700 transition-colors mt-6">تواصل معنا</a></div>`;
         }
 
         function createTestimonialHTML(testimonial) {
             const flag = testimonial.country.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
-            return `<div class="bg-white p-6 rounded-xl shadow-lg card-hover flex flex-col"><i class="fas fa-quote-right text-yellow-500 text-2xl mb-4"></i><p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p><div class="flex items-center border-t pt-4"><img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full ml-4 bg-gray-200 object-cover"><div><h4 class="font-bold text-gray-800">د. ${testimonial.initials}</h4><p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p></div></div></div>`;
+            return `<div class="bg-white p-6 rounded-xl shadow-lg card-hover flex flex-col"><i class="fas fa-quote-right text-yellow-500 text-2xl mb-4"></i><p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p><div class="flex items-center border-t pt-4"><img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full mr-4 bg-gray-200 object-cover"><div><h4 class="font-bold text-gray-800">د. ${testimonial.initials}</h4><p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p></div></div></div>`;
         }
 
         function createFaqItemHTML(faqItem) {
-            return `<div class="bg-white rounded-lg overflow-hidden shadow-sm"><button class="w-full text-right p-6 flex justify-between items-center accordion-toggle"><h3 class="font-bold text-lg text-gray-800">${faqItem.q}</h3><i class="fas fa-chevron-down transition-transform duration-300"></i></button><div class="accordion-content"><div class="p-6 pt-0 text-gray-600"><p>${faqItem.a}</p></div></div></div>`;
+            return `<div class="bg-white rounded-lg overflow-hidden shadow-sm"><button class="w-full text-left p-6 flex justify-between items-center accordion-toggle"><h3 class="font-bold text-lg text-gray-800">${faqItem.q}</h3><i class="fas fa-chevron-down transition-transform duration-300"></i></button><div class="accordion-content"><div class="p-6 pt-0 text-gray-600"><p>${faqItem.a}</p></div></div></div>`;
         }
         
         // New function to create chapter and lecture accordion items
         function createChapterAccordionHTML(chapterTitle, lectures) {
             const lecturesHTML = lectures.map(lecture =>
-                `<li class="flex items-center p-2 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer"><i class="fas fa-play-circle text-yellow-500 ml-3"></i><span>${lecture}</span></li>`
+                `<li class="flex items-center p-2 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer"><i class="fas fa-play-circle text-yellow-500 mr-3"></i><span>${lecture}</span></li>`
             ).join('');
             
             return `
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <button class="w-full text-right p-6 flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors chapter-title" onclick="toggleAccordion(this)">
-                        <h3 class="font-bold text-lg text-gray-800"><i class="fas fa-folder-open text-yellow-500 ml-3"></i>${chapterTitle}</h3>
+                    <button class="w-full text-left p-6 flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors chapter-title" onclick="toggleAccordion(this)">
+                        <h3 class="font-bold text-lg text-gray-800"><i class="fas fa-folder-open text-yellow-500 mr-3"></i>${chapterTitle}</h3>
                         <i class="fas fa-chevron-down transition-transform duration-300 text-gray-500"></i>
                     </button>
                     <div class="accordion-content">
@@ -796,7 +822,6 @@
                 button.classList.add('active');
             } else {
                 // Default case if no button is passed
-                // We'll activate the 'Browse Book' button by default for the chapters page
                 if (pageId === 'bundles') {
                     document.querySelector('.sub-nav-card:nth-child(1)').classList.add('active');
                 } else if (pageId === 'testimonials') {
@@ -835,6 +860,8 @@
             practice_mistakes: { title: "مراجعة ذكية للأخطاء", features: [ { icon: "fas fa-target", title: "تركيز على نقاط الضعف", text: "هذه الميزة هي أقوى أداة للتحسن. تجمع كل الأسئلة التي أجبت عليها بشكل خاطئ في مكان واحد." }, { icon: "fas fa-redo-alt", title: "اختبارات الأخطاء", text: "يمكنك إنشاء اختبار جديد من أخطائك السابقة فقط، مما يضمن أنك لن تكرر نفس الخطأ مرة أخرى." }, { icon: "fas fa-check-double", title: "ترسيخ المعلومة", text: "تكرار حل الأسئلة الصعبة عليك هو أسرع طريق لتحويل نقاط ضعفك إلى نقاط قوة." } ] },
             daily_updates: { title: "محتوى متجدد باستمرار", features: [ { icon: "fas fa-sync-alt", title: "تحديثات مستمرة", text: "المحاضرات وبنك الأسئلة يتم تحديثها دوريًا لتواكب أحدث المعلومات والمصادر." }, { icon: "fas fa-chart-line", title: "مواكبة التطورات", text: "تضمن لك المذاكرة دائمًا من أحدث المصادر المعتمدة عالميًا." }, { icon: "fas fa-book", title: "تحسينات دورية", text: "نضيف شروحات وأسئلة جديدة باستمرار بناءً على ملاحظاتكم وتطورات العلم." } ] },
             performance_tracking: { title: "تتبع الأداء والتقدم", features: [ { icon: "fas fa-history", title: "سجل النشاط الكامل", text: "تتبع كل نشاطاتك السابقة من اختبارات ومحاضرات مع نتائجها وتواريخها." }, { icon: "fas fa-chart-bar", title: "رسوم بيانية للأداء", text: "شاهد رسومًا بيانية توضح كثافة مذاكرتك وتقدمك خلال الفترات المختلفة." }, { icon: "fas fa-trophy", title: "لوحة الصدارة (Leaderboard)", text: "شاهد ترتيبك بين أفضل المستخدمين في التطبيق، مما يضيف عنصرًا من المنافسة والتحفيز." } ] },
+            integrated_platform: { title: "منصة متكاملة", features: [ { icon: "fas fa-desktop", title: "متاحة على كل الأجهزة", text: "منصتنا تعمل بكفاءة على جميع الأجهزة (كمبيوتر، تابلت، موبايل)." }, { icon: "fas fa-globe", title: "وصول دائم وأونلاين", text: "تكون معك أينما ذهبت لتستطيع المذاكرة في أي وقت ومن أي مكان." }, { icon: "fas fa-tools", title: "أدوات تعليمية مدمجة", text: "تجمع بين المحاضرات، بنك الأسئلة، ومنظم المذاكرة في مكان واحد." } ] },
+            smart_tools: { title: "أدوات ذكية", features: [ { icon: "fas fa-check-double", title: "بنك أسئلة شامل", text: "يضم آلاف الأسئلة عالية الجودة مع شروحات مفصلة لكل إجابة." }, { icon: "fas fa-calendar-alt", title: "منظم مذاكرة ذكي", text: "ينشئ لك خطط دراسية مخصصة ويتابع تقدمك بذكاء." }, { icon: "fas fa-poll", title: "تحليل الأداء", text: "يوفر لك إحصائيات دقيقة عن نقاط قوتك وضعفك لمساعدتك على التحسين." } ] },
         };
         const featureModal = document.getElementById('featureModal');
         const modalTitle = document.getElementById('modalTitle');
