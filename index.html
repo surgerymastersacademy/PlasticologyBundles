@@ -30,9 +30,9 @@
         }
 
         .hero-button {
-             background: linear-gradient(135deg, #6c5ce7, #a463f2);
-             transition: all 0.3s ease;
-             box-shadow: 0 10px 30px -10px rgba(108, 92, 231, 0.5);
+            background: linear-gradient(135deg, #6c5ce7, #a463f2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -10px rgba(108, 92, 231, 0.5);
         }
         .hero-button:hover {
             transform: translateY(-3px) scale(1.05);
@@ -42,9 +42,9 @@
             transition: all 0.3s ease;
         }
         .hero-button-secondary:hover {
-             transform: translateY(-3px);
-             background-color: #fff;
-             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            background-color: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
 
@@ -226,11 +226,9 @@
 </head>
 <body class="bg-gray-100 min-h-screen">
 
-    <!-- Sticky Header -->
     <header class="main-header-sticky" dir="ltr">
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between bg-white rounded-full shadow-lg px-6 py-3">
-                <!-- Logo and Title -->
                 <div class="flex items-center space-x-4">
                     <img src="https://raw.githubusercontent.com/doctorbishoy/Plasticology/dade7aaae57cead68a13f4dd8439bcc3e17011d5/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="w-12 h-12 object-cover">
                     <div class="text-left">
@@ -239,7 +237,6 @@
                     </div>
                 </div>
 
-                <!-- Navigation Links & Order Button -->
                 <div class="flex items-center space-x-6 hidden md:flex">
                     <a href="https://www.surgerymastersacademy.com/" class="nav-button text-gray-600 hover:text-purple-600 transition-colors"><i class="fas fa-home mr-2"></i>Home</a>
                     <button class="nav-button text-gray-600 hover:text-purple-600 transition-colors" onclick="showPage('platform')"><i class="fas fa-laptop-code mr-2"></i>Platform</button>
@@ -253,7 +250,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-section text-center py-20 md:py-32">
         <div class="container mx-auto px-4">
             <h1 class="text-4xl md:text-6xl font-black text-gray-800 mb-4 leading-tight">
@@ -273,7 +269,6 @@
         </div>
     </section>
 
-    <!-- Secondary Navigation Buttons below header -->
     <div id="main-content" class="container mx-auto px-4 py-12">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             <button class="sub-nav-card flex flex-col items-center p-6 rounded-2xl active" onclick="showPage('bundles', this)">
@@ -314,9 +309,7 @@
         </div>
     </div>
     
-    <!-- Page Content -->
     <main>
-        <!-- Bundles Section -->
         <section id="bundles" class="page-section active bg-gray-50 pt-10 pb-20">
             <div id="pricing" class="container mx-auto px-4">
                 <div class="text-center mb-16">
@@ -327,7 +320,6 @@
                         كل الباقات تشمل تحديثات مستمرة، دعم فني متميز، وضمان الجودة 💯
                     </p>
                     
-                    <!-- Main Tabs -->
                     <div class="flex justify-center gap-4 bg-white p-2 rounded-2xl max-w-lg mx-auto mb-12 shadow-md">
                         <button class="main-tab-button flex-1 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 active" onclick="showMainTab('individuals-tab', this)">
                             <i class="fas fa-user mr-2"></i>Individuals <span class="hidden sm:inline">(باقات الأفراد)</span>
@@ -337,7 +329,6 @@
                         </button>
                     </div>
 
-                    <!-- Individuals Tab Content -->
                     <div id="individuals-tab" class="tab-content active">
                         <div class="flex flex-wrap justify-center gap-3 bg-white p-2 rounded-full max-w-5xl mx-auto shadow-md">
                             <button class="sub-tab-button flex-1 px-4 py-3 text-sm font-bold rounded-full transition-all duration-300 active" onclick="showSubTab('full-package', this)">
@@ -369,13 +360,11 @@
                         </div>
                     </div>
 
-                    <!-- Groups Tab Content -->
                     <div id="groups-tab" class="tab-content"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Chapters Section -->
         <section id="chapters" class="page-section bg-white py-20">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16">
@@ -388,12 +377,10 @@
                     </p>
                 </div>
                 <div id="chapters-accordion-list" class="max-w-4xl mx-auto space-y-4">
-                    <!-- قائمة الفصول والمحاضرات ستظهر هنا بواسطة JavaScript -->
-                </div>
+                    </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
         <section id="testimonials" class="page-section bg-gray-50 py-20">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
@@ -404,12 +391,10 @@
                     <p class="text-xl text-gray-600">آراء الأبطال الذين انضموا إلينا في رحلة النجاح.</p>
                 </div>
                 <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Testimonials will be dynamically inserted here -->
-                </div>
+                    </div>
             </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="page-section bg-white py-20">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
@@ -470,7 +455,6 @@
             </div>
         </section>
 
-        <!-- About the Instructor Section -->
         <section id="about" class="page-section bg-gray-50 py-20">
             <div class="container mx-auto px-4">
                 <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex">
@@ -494,7 +478,6 @@
             </div>
         </section>
 
-        <!-- Platform Section -->
         <section id="platform" class="page-section bg-white py-20">
                 <div class="container mx-auto px-4 text-center">
                     <h2 class="text-4xl font-bold text-gray-800 mb-4">
@@ -514,7 +497,6 @@
                 </div>
         </section>
         
-        <!-- User Guide Section -->
         <section id="user-guide" class="page-section bg-gray-50 py-20">
             <div class="container mx-auto px-4 max-w-4xl">
                 <div class="text-center mb-12">
@@ -581,7 +563,6 @@
             </div>
         </section>
         
-        <!-- FAQ Section -->
         <section id="faq" class="page-section bg-white py-20">
             <div class="container mx-auto px-4 max-w-4xl">
                 <div class="text-center mb-12">
@@ -592,12 +573,10 @@
                     <p class="text-xl text-gray-600">كل ما تحتاج لمعرفته قبل الانضمام إلينا.</p>
                 </div>
                 <div id="faq-accordion" class="space-y-4">
-                    <!-- FAQ items will be dynamically inserted here -->
-                </div>
+                    </div>
             </div>
         </section>
 
-        <!-- New Contact Page Section -->
         <section id="contact-page" class="page-section bg-gray-50 py-20">
             <div class="container mx-auto px-4">
                 <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
@@ -629,7 +608,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-dark-bg text-white py-8" style="background-color: var(--color-dark-bg);">
         <div class="container mx-auto px-4 text-center">
                 <div class="mb-4">
@@ -649,7 +627,6 @@
         </div>
     </footer>
 
-    <!-- Modals -->
     <div id="featureModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden modal-overlay" onclick="closeFeatureModal()">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 modal-content" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b pb-4 mb-6">
@@ -665,7 +642,6 @@
             <iframe id="youtube-player" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
-    <!-- Chapter Selection Modal -->
     <div id="chapter-selection-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-[60] hidden modal-overlay" onclick="closeChapterSelectionModal()">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col modal-content" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b p-6">
@@ -689,8 +665,7 @@
                 <div>
                      <h4 class="font-bold text-lg mb-3">2. اختر الأبواب التي تناسبك:</h4>
                     <div id="chapters-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <!-- Chapter checkboxes will be inserted here -->
-                    </div>
+                        </div>
                 </div>
             </div>
             <div class="border-t p-6 bg-gray-50 rounded-b-2xl">
@@ -745,13 +720,6 @@
             lectures: [ { name: 'باقة الرفقاء (Partners)', discount: 0.15, theme: 'cyan', icon: 'fa-user-friends' }, { name: 'باقة التحالف (Alliance)', discount: 0.25, theme: 'emerald', icon: 'fa-users' }, { name: 'باقة الأساطير (Legends)', discount: 0.35, theme: 'amber', icon: 'fa-crown' } ],
             combo: [ { name: 'باقة الرفقاء (Partners)', discount: 0.10, theme: 'cyan', icon: 'fa-user-friends' }, { name: 'باقة التحالف (Alliance)', discount: 0.20, theme: 'emerald', icon: 'fa-users' }, { name: 'باقة الأساطير (Legends)', discount: 0.30, theme: 'amber', icon: 'fa-crown' } ]
         };
-
-        const testimonialsData = [
-            { quote: "بصراحة، Plasticology غيرت حياتي الدراسية. شرح دكتور بيشوي المبهر والمنصة الذكية حولوا أصعب المواضيع لقصص ممتعة. دخلت الامتحان وأنا واثق من نفسي لأول مرة، والنتيجة كانت مبهرة. شكرًا من القلب.", initials: "ع. ف.", title: "زمالة كلية الجراحين الملكية", country: "eg", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Adel" },
-            { quote: "من السعودية، أقولها وبكل ثقة: Plasticology هي أفضل استثمار عملته في مسيرتي الطبية. دكتور بيشوي ناجي قدم لنا كنزًا علميًا حقيقيًا ومنصة تضاهي أقوى المنصات العالمية. فخور بوجود محتوى عربي بهذه الجودة.", initials: "ن. العتيبي", title: "بورد سعودي، جراحة تجميل", country: "sa", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Noura" },
-            { quote: "كنت أبحث عن مصدر يجمع بين الشرح العميق والتدريب العملي، ووجدت كل هذا وأكثر في Plasticology. طريقة عرض الحالات الإكلينيكية والشرح الصوتي من دكتور بيشوي كانت نقلة نوعية في فهمي. المنصة دي مش مجرد كورس، دي مدرسة كاملة.", initials: "ي. منصور", title: "ماجستير جراحة تجميل", country: "jo", avatarUrl: "https://avatar.iran.liara.run/public/boy?username=Yazan" },
-            { quote: "Plasticology هي الإجابة لكل طالب جراحة تجميل محتار. بعد ما كنت أتنقل بين عشرات المصادر، الآن كل شيء أحتاجه موجود في مكان واحد وبأعلى جودة ممكنة. شكرًا دكتور بيشوي على هذا العمل العظيم.", initials: "ف. حسين", title: "طبيبة مقيمة", country: "iq", avatarUrl: "https://avatar.iran.liara.run/public/girl?username=Fatima" },
-        ];
 
         const faqData = [
             { q: "كيف يتم تفعيل الاشتراك؟", a: "بعد اختيار الباقة المناسبة والتواصل معنا عبر تيليجرام، سيتم تفعيل اشتراكك يدويًا على بريدك الإلكتروني الخاص فور تأكيد الدفع." },
@@ -870,8 +838,41 @@
         }
         
         function createTestimonialHTML(testimonial) {
-            const flag = testimonial.country.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
+            // Added a check for empty country field
+            const flag = testimonial.country ? testimonial.country.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397)) : '';
             return `<div class="bg-white p-6 rounded-xl shadow-lg card-hover flex flex-col"><i class="fas fa-quote-right text-yellow-500 text-2xl mb-4"></i><p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p><div class="flex items-center border-t pt-4"><img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full mr-4 bg-gray-200 object-cover"><div><h4 class="font-bold text-gray-800">د. ${testimonial.initials}</h4><p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p></div></div></div>`;
+        }
+
+        async function fetchAndRenderTestimonials() {
+            const testimonialsGrid = document.getElementById('testimonials-grid');
+            if (!testimonialsGrid) return;
+
+            testimonialsGrid.innerHTML = '<p class="text-center col-span-full text-gray-500">جاري تحميل آراء الأبطال...</p>';
+
+            // ######################################################################
+            // ### هام: قم باستبدال النص التالي برابط API الجديد الخاص بك ###
+            // ######################################################################
+            const reviewsApiUrl = 'YOUR_NEW_GOOGLE_SCRIPT_API_URL_HERE'; 
+
+            try {
+                const response = await fetch(reviewsApiUrl);
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                const data = await response.json();
+                
+                if (Array.isArray(data) && data.length > 0) {
+                     // Shuffle the array to show different testimonials on each load
+                     const shuffled = data.sort(() => 0.5 - Math.random());
+                     // Display a maximum of 4 testimonials
+                     testimonialsGrid.innerHTML = shuffled.slice(0, 4).map(createTestimonialHTML).join('');
+                } else {
+                     testimonialsGrid.innerHTML = '<p class="text-center col-span-full text-gray-500">لا توجد آراء حاليًا.</p>';
+                }
+            } catch (error) {
+                console.error('Failed to fetch testimonials:', error);
+                testimonialsGrid.innerHTML = '<p class="text-center col-span-full text-red-500">حدث خطأ أثناء تحميل الآراء. يرجى المحاولة مرة أخرى لاحقًا.</p>';
+            }
         }
 
         function createFaqItemHTML(faqItem) {
@@ -1015,8 +1016,10 @@
                 document.getElementById('group-lectures-cards').innerHTML = groupDiscounts.lectures.map(group => createGroupCardHTML(group, 'full-package')).join('');
                 document.getElementById('group-combo-cards').innerHTML = groupDiscounts.combo.map(group => createGroupCardHTML(group, 'combo')).join('');
             }
-            const testimonialsGrid = document.getElementById('testimonials-grid');
-            if(testimonialsGrid) { testimonialsGrid.innerHTML = testimonialsData.slice(0, 4).map(createTestimonialHTML).join(''); }
+            
+            // Fetch and render testimonials from the API
+            fetchAndRenderTestimonials();
+
             const faqContainer = document.getElementById('faq-accordion');
             if(faqContainer) {
                 faqContainer.innerHTML = faqData.map(createFaqItemHTML).join('');
