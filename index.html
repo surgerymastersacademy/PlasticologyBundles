@@ -838,7 +838,7 @@
         }
         
         function createTestimonialHTML(testimonial) {
-            // Added a check for empty country field
+            // This function creates the flag emoji from a 2-letter country code (e.g., "eg", "sa")
             const flag = testimonial.country ? testimonial.country.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397)) : '';
             return `<div class="bg-white p-6 rounded-xl shadow-lg card-hover flex flex-col"><i class="fas fa-quote-right text-yellow-500 text-2xl mb-4"></i><p class="text-gray-600 mb-6 flex-grow">"${testimonial.quote}"</p><div class="flex items-center border-t pt-4"><img src="${testimonial.avatarUrl}" alt="Student Avatar" class="w-12 h-12 rounded-full mr-4 bg-gray-200 object-cover"><div><h4 class="font-bold text-gray-800">د. ${testimonial.initials}</h4><p class="text-sm text-gray-500">${testimonial.title} <span>${flag}</span></p></div></div></div>`;
         }
@@ -849,9 +849,7 @@
 
             testimonialsGrid.innerHTML = '<p class="text-center col-span-full text-gray-500">جاري تحميل آراء الأبطال...</p>';
 
-            // ######################################################################
-            // ### هام: قم باستبدال النص التالي برابط API الجديد الخاص بك ###
-            // ######################################################################
+            // Use the API URL provided by the user
             const reviewsApiUrl = 'https://script.google.com/macros/s/AKfycbwFOrAT-iglbDfcilsB3fNFiF0iLhV_HUAQB8KevdhXh8Y-JQv2izZBP7xlYhWNxOOmRA/exec'; 
 
             try {
@@ -862,10 +860,8 @@
                 const data = await response.json();
                 
                 if (Array.isArray(data) && data.length > 0) {
-                     // Shuffle the array to show different testimonials on each load
-                     const shuffled = data.sort(() => 0.5 - Math.random());
-                     // Display a maximum of 4 testimonials
-                     testimonialsGrid.innerHTML = shuffled.slice(0, 4).map(createTestimonialHTML).join('');
+                     // Display ALL testimonials returned from the API
+                     testimonialsGrid.innerHTML = data.map(createTestimonialHTML).join('');
                 } else {
                      testimonialsGrid.innerHTML = '<p class="text-center col-span-full text-gray-500">لا توجد آراء حاليًا.</p>';
                 }
