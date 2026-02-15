@@ -10,7 +10,9 @@
     
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="min-h-screen text-gray-800 font-sans pt-12"> <div class="fixed top-0 left-0 w-full h-12 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white z-[60] flex items-center justify-center shadow-lg cursor-pointer" onclick="window.open('https://plasticology.surgerymastersacademy.com/login', '_blank')">
+<body class="min-h-screen text-gray-800 font-sans pt-12"> 
+    
+    <div class="fixed top-0 left-0 w-full h-12 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white z-[60] flex items-center justify-center shadow-lg cursor-pointer" onclick="window.open('https://plasticology.surgerymastersacademy.com/login', '_blank')">
         <p class="font-bold text-sm md:text-base animate-pulse">
             🎁 <span class="mx-2">عرض خاص:</span> أنشئ حساب مجاني الآن واحصل على <span class="bg-white text-purple-700 px-2 py-0.5 rounded-full mx-1">3 أيام دخول شامل</span> لكل المميزات مجاناً!
             <i class="fas fa-arrow-left mr-2"></i>
@@ -19,11 +21,13 @@
 
     <div class="fixed inset-0 -z-10 overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full bg-slate-50"></div>
-        <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-purple-200 opacity-40 blur-[100px]"></div>
-        <div class="absolute top-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-pink-200 opacity-40 blur-[100px]"></div>
+        <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-purple-200 opacity-40 blur-[100px] bg-blob blob-1"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-pink-200 opacity-40 blur-[100px] bg-blob blob-2"></div>
+        <div class="absolute bottom-[10%] left-[20%] w-[30%] h-[30%] rounded-full bg-blue-200 opacity-40 blur-[100px] bg-blob blob-3"></div>
     </div>
 
-    <header class="main-header-sticky top-12" dir="ltr"> <div class="container mx-auto px-4 py-4">
+    <header class="main-header-sticky top-12" dir="ltr"> 
+        <div class="container mx-auto px-4 py-4">
             <div class="glass-nav flex items-center justify-between px-6 py-3">
                 <div class="flex items-center space-x-4">
                     <img src="https://pub-fb0d46cb77cb4e22b5863540fe118da4.r2.dev/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="w-10 h-10 object-contain">
@@ -34,11 +38,9 @@
 
                 <div class="flex items-center space-x-1 hidden md:flex">
                     <a href="https://www.surgerymastersacademy.com/" class="nav-button"><i class="fas fa-home mr-1"></i>Home</a>
-                    
                     <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="nav-button text-purple-600 font-bold bg-purple-50 hover:bg-purple-100">
                         <i class="fas fa-laptop-code mr-1"></i>Platform
                     </a>
-                    
                     <a href="https://plasticologybooks.surgerymastersacademy.com/" class="nav-button"><i class="fas fa-book-open mr-1"></i>Books</a>
                     <button class="nav-button" onclick="showPage('community', this)"><i class="fas fa-users mr-1"></i>Community</button>
                     <a href="https://t.me/DrBishoyAcademy" target="_blank" class="btn-candy-sm ml-4">
@@ -62,11 +64,11 @@
                 Transform your knowledge into confidence. Join the community of elite surgeons creating the future of aesthetics.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
-                <a href="#pricing" onclick="showPage('bundles', document.querySelector('.sub-nav-card:nth-child(1)'))" class="btn-candy text-lg px-12 py-4">
+                <a href="#pricing" onclick="showPage('bundles', document.querySelector('.sub-nav-card:nth-child(2)'))" class="btn-candy text-lg px-12 py-4">
                     <i class="fas fa-rocket ml-2"></i>ابدأ رحلتك
                 </a>
-                 <a href="https://plasticology.surgerymastersacademy.com/login" target="_blank" class="px-10 py-4 rounded-full font-bold text-gray-700 bg-white border border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-300 flex items-center gap-2">
-                    <i class="fas fa-gift text-pink-500"></i> جرب مجاناً (3 أيام)
+                 <a href="#plasticology-tv" onclick="document.getElementById('plasticology-tv').scrollIntoView({behavior: 'smooth'})" class="px-10 py-4 rounded-full font-bold text-gray-700 bg-white border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                    <i class="fab fa-youtube text-red-500 text-xl"></i> Free Samples
                 </a>
             </div>
         </div>
@@ -74,25 +76,17 @@
 
     <div id="main-content" class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
-            <button class="sub-nav-card active" onclick="showPage('bundles', this)">
+            <button class="sub-nav-card active" onclick="showPage('features', this)">
+                <div class="icon-box bg-yellow-100 text-yellow-600"><i class="fas fa-star"></i></div>
+                <span class="title">المميزات</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('bundles', this)">
                 <div class="icon-box bg-purple-100 text-purple-600"><i class="fas fa-tags"></i></div>
                 <span class="title">الباقات</span>
             </button>
             <button class="sub-nav-card" onclick="showPage('chapters', this)">
                 <div class="icon-box bg-green-100 text-green-600"><i class="fas fa-layer-group"></i></div>
                 <span class="title">المحاضرات</span>
-            </button>
-            <button class="sub-nav-card" onclick="showPage('community', this)">
-                <div class="icon-box bg-blue-100 text-blue-600"><i class="fas fa-users"></i></div>
-                <span class="title">المجتمع</span>
-            </button>
-            <button class="sub-nav-card" onclick="showPage('features', this)">
-                <div class="icon-box bg-yellow-100 text-yellow-600"><i class="fas fa-star"></i></div>
-                <span class="title">المميزات</span>
-            </button>
-            <button class="sub-nav-card" onclick="showPage('about', this)">
-                <div class="icon-box bg-indigo-100 text-indigo-600"><i class="fas fa-user-md"></i></div>
-                <span class="title">المحاضر</span>
             </button>
             <button class="sub-nav-card" onclick="showPage('testimonials', this)">
                 <div class="icon-box bg-pink-100 text-pink-600"><i class="fas fa-heart"></i></div>
@@ -102,6 +96,14 @@
                 <div class="icon-box bg-orange-100 text-orange-600"><i class="fas fa-question"></i></div>
                 <span class="title">الأسئلة</span>
             </button>
+            <button class="sub-nav-card" onclick="showPage('about', this)">
+                <div class="icon-box bg-indigo-100 text-indigo-600"><i class="fas fa-user-md"></i></div>
+                <span class="title">المحاضر</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('community', this)">
+                <div class="icon-box bg-blue-100 text-blue-600"><i class="fas fa-users"></i></div>
+                <span class="title">المجتمع</span>
+            </button>
             <button class="sub-nav-card" onclick="showPage('contact-page', this)">
                 <div class="icon-box bg-gray-100 text-gray-600"><i class="fas fa-paper-plane"></i></div>
                 <span class="title">تواصل</span>
@@ -110,7 +112,99 @@
     </div>
     
     <main class="container mx-auto px-4 mb-20">
-        <section id="bundles" class="page-section active">
+        
+        <section id="features" class="page-section active">
+            <div class="text-center mb-16">
+                <h2 class="section-title">لماذا Plasticology؟ 🚀</h2>
+                <p class="section-subtitle">نحن لا نقدم كورس.. نحن نقدم نظاماً متكاملاً لصناعة الجراح الماهر</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                 <div class="glass-card p-6 hover:bg-purple-50 transition-colors cursor-pointer group" onclick="openFeatureModal('integrated_platform')">
+                    <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Global Search Engine</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">ابحث عن أي كلمة أو موضوع داخل آلاف الأسئلة والمحاضرات في ثوانٍ. محرك بحث ذكي يوصلك للمعلومة فوراً.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-pink-50 transition-colors cursor-pointer group" onclick="openFeatureModal('daily_updates')">
+                    <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Plasticology Radio</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">استغل وقت المواصلات! مكتبة صوتية كاملة للمراجعة السمعية السريعة (Audio Recap) بعيداً عن الشاشات.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-blue-50 transition-colors cursor-pointer group" onclick="openFeatureModal('smart_tools')">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Anki Flashcards Mode</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">ذاكر بذكاء. نظام الكروت التعليمية (Spaced Repetition) يساعدك على تثبيت المعلومات التي تنساها باستمرار.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-green-50 transition-colors cursor-pointer group" onclick="openFeatureModal('osce_bank')">
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">24/7 Scientific Support</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">لست وحدك. فريق علمي ودعم فني متاح على مدار الساعة للإجابة على أسئلتك وحل أي مشكلة تواجهك.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-orange-50 transition-colors cursor-pointer group" onclick="openFeatureModal('practice_mistakes')">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Mistake Hunter</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">المنصة تتعلم من أخطائك. تجمع لك الأسئلة التي أجبتها خطأ لتراجعها مرة أخرى وتضمن عدم تكرار الخطأ.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-teal-50 transition-colors cursor-pointer group" onclick="openFeatureModal('exam_simulation')">
+                    <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center text-teal-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Exam Simulator</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">عش جو الامتحان الحقيقي. حدد الوقت، عدد الأسئلة، والمواضيع، واختبر نفسك تحت ضغط الوقت الفعلي.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-indigo-50 transition-colors cursor-pointer group" onclick="openFeatureModal('integrated_platform')">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Multi-Platform Access</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">حساب واحد، دخول من أي مكان. سواء كنت على اللابتوب في البيت أو الموبايل في المستشفى.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-red-50 transition-colors cursor-pointer group" onclick="openFeatureModal('smart_tools')">
+                    <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Battle Arena</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">تحدي الزملاء! ادخل في منافسات علمية مباشرة مع زملائك وشاهد اسمك يرتفع في لوحة المتصدرين.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="plasticology-tv" class="netflix-section -mx-4 md:-mx-8 lg:-mx-20 px-4 md:px-8 lg:px-20 mb-20">
+            <div class="netflix-container">
+                <div class="text-left mb-4">
+                    <h2 class="netflix-title"><span class="text-red-600">Plasticology</span> TV <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded">LIVE SAMPLES</span></h2>
+                    <p class="text-gray-400 text-sm">شاهد مقتطفات حصرية من جودة الشرح والأسلوب</p>
+                </div>
+                
+                <div class="slider-wrapper group">
+                    <div class="slider-arrow left" onclick="slideLeft()"><i class="fas fa-chevron-left"></i></div>
+                    
+                    <div class="video-slider" id="video-slider">
+                        </div>
+                    
+                    <div class="slider-arrow right" onclick="slideRight()"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bundles" class="page-section">
             <div id="pricing">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-black text-gray-800 mb-4">خطط تناسب طموحك 🎯</h2>
@@ -142,30 +236,34 @@
                             <i class="fas fa-user mr-2"></i>الأفراد (Individuals)
                         </button>
                         <button class="tab-pill" onclick="showMainTab('groups-tab', this)">
-                            <i class="fas fa-users mr-2"></i>الأبطال (Champions)
+                            <i class="fas fa-users mr-2"></i>المجموعات (Groups)
                         </button>
                     </div>
                 </div>
 
                 <div id="individuals-tab" class="tab-content active">
                     <div class="flex flex-wrap justify-center gap-2 mb-10">
-                        <button class="filter-pill active" onclick="showSubTab('full-package', this)">المنهج الكامل</button>
-                        <button class="filter-pill" onclick="showSubTab('chapter-based', this)">باقة الأبواب</button>
-                        <button class="filter-pill" onclick="showSubTab('mcq', this)">بنك الأسئلة</button>
-                        <button class="filter-pill" onclick="showSubTab('combo', this)">باقة الكومبو 🔥</button>
+                        <button class="filter-pill active" onclick="showSubTab('residents-bundles', this)">باقات النواب (Residents)</button>
+                        <button class="filter-pill" onclick="showSubTab('exam-bundles', this)">التحضير المكثف (Exams)</button>
+                        <button class="filter-pill" onclick="showSubTab('qbank-bundles', this)">بنك الأسئلة (QBank)</button>
                     </div>
 
-                    <div id="full-package-content" class="sub-tab-content active">
-                        <div id="full-package-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-                    </div>
-                    <div id="chapter-based-content" class="sub-tab-content">
+                    <div id="residents-bundles-content" class="sub-tab-content active">
                         <div id="chapter-based-card-container" class="max-w-xl mx-auto"></div>
                     </div>
-                    <div id="mcq-content" class="sub-tab-content">
-                        <div id="mcq-cards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+                    <div id="exam-bundles-content" class="sub-tab-content">
+                        <div class="text-center mb-6">
+                             <span class="bg-purple-100 text-purple-700 px-4 py-1 rounded-full text-sm font-bold">شرح + مراجعة + أسئلة</span>
+                        </div>
+                        <div id="full-package-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
                     </div>
-                    <div id="combo-content" class="sub-tab-content">
-                        <div id="combo-cards" class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"></div>
+                    
+                    <div id="qbank-bundles-content" class="sub-tab-content">
+                        <div class="text-center mb-6">
+                            <span class="bg-teal-100 text-teal-700 px-4 py-1 rounded-full text-sm font-bold">تدريب مكثف + محاكاة امتحانات</span>
+                        </div>
+                        <div id="mcq-cards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
                     </div>
                 </div>
 
@@ -184,58 +282,6 @@
             <div id="chapters-accordion-list" class="max-w-4xl mx-auto space-y-4"></div>
         </section>
 
-        <section id="community" class="page-section">
-            <div class="text-center mb-12">
-                <h2 class="section-title">مجتمع الجراحين 🌍</h2>
-                <p class="section-subtitle">تواصل مع زملائك وشارك المعرفة</p>
-            </div>
-            
-            <div class="max-w-5xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="glass-card p-6 border-t-4 border-blue-600">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mb-4">
-                            <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-4">Facebook Hub</h3>
-                        <div class="space-y-3">
-                            <a href="https://www.facebook.com/groups/912100319624846" target="_blank" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm font-semibold transition-colors">Academy Official Group</a>
-                            <a href="https://www.facebook.com/groups/3334492170114962/" target="_blank" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm font-semibold transition-colors">Study Camp Group</a>
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-6 border-t-4 border-sky-500">
-                        <div class="w-12 h-12 bg-sky-100 text-sky-500 rounded-full flex items-center justify-center text-2xl mb-4">
-                            <i class="fab fa-telegram-plane"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-4">Telegram Updates</h3>
-                        <div class="space-y-3">
-                            <a href="https://t.me/EgyPSA" target="_blank" class="block p-3 bg-gray-50 hover:bg-sky-50 rounded-lg text-sm font-semibold transition-colors">Official Channel</a>
-                            <a href="https://t.me/joinchat/WHEthd8_TLosaDKR" target="_blank" class="block p-3 bg-gray-50 hover:bg-sky-50 rounded-lg text-sm font-semibold transition-colors">Discussion Group</a>
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-6 border-t-4 border-green-500">
-                        <div class="w-12 h-12 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-2xl mb-4">
-                            <i class="fab fa-google-drive"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-4">Resources</h3>
-                        <div class="space-y-3">
-                            <a href="https://drive.google.com/drive/folders/1bJz7npAAxqJKUsPtnhgBYu7Km6wGYRFd?usp=sharing" target="_blank" class="block p-3 bg-gray-50 hover:bg-green-50 rounded-lg text-sm font-semibold transition-colors">Resource Drive (Books)</a>
-                            <a href="https://www.youtube.com/channel/UC-JTAKMZZ9qcC5eqc9PvDeA" target="_blank" class="block p-3 bg-gray-50 hover:bg-red-50 rounded-lg text-sm font-semibold transition-colors">YouTube Channel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-card p-8 text-center bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-                    <h3 class="text-2xl font-bold mb-4">انضم إلى مجتمع EPSA الرسمي</h3>
-                    <p class="text-gray-300 mb-6 max-w-2xl mx-auto">لضمان جودة النقاشات العلمية، نطلب من الأعضاء إثبات التخصص (جراحة تجميل) للانضمام إلى المجموعات المغلقة.</p>
-                    <button onclick="document.getElementById('notice-modal-backdrop').classList.remove('hidden')" class="btn-candy px-8 py-3 bg-white text-purple-600 hover:bg-gray-100 shadow-none">
-                        <i class="fas fa-id-card mr-2"></i> طلب انضمام (التحقق من الهوية)
-                    </button>
-                </div>
-            </div>
-        </section>
-
         <section id="testimonials" class="page-section">
             <div class="text-center mb-12">
                 <h2 class="section-title">قصص نجاح 🌟</h2>
@@ -244,37 +290,11 @@
             <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </section>
 
-        <section id="features" class="page-section">
+        <section id="faq" class="page-section">
             <div class="text-center mb-12">
-                <h2 class="section-title">تقنيات التعليم الحديثة 🚀</h2>
+                <h2 class="section-title">أسئلة شائعة 🤔</h2>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                 <div class="glass-card p-8 text-center cursor-pointer" onclick="openFeatureModal('daily_updates')">
-                    <div class="w-16 h-16 mx-auto bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl mb-4"><i class="fas fa-sync-alt"></i></div>
-                    <h3 class="font-bold text-xl mb-2">تحديث مستمر</h3>
-                    <p class="text-gray-500 text-sm">محتوى يواكب أحدث البروتوكولات العالمية.</p>
-                </div>
-                 <div class="glass-card p-8 text-center cursor-pointer" onclick="openFeatureModal('integrated_platform')">
-                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-2xl mb-4"><i class="fas fa-laptop"></i></div>
-                    <h3 class="font-bold text-xl mb-2">منصة متكاملة</h3>
-                    <p class="text-gray-500 text-sm">تعلم في أي وقت ومن أي جهاز.</p>
-                </div>
-                 <div class="glass-card p-8 text-center cursor-pointer" onclick="openFeatureModal('smart_tools')">
-                    <div class="w-16 h-16 mx-auto bg-yellow-100 rounded-2xl flex items-center justify-center text-yellow-600 text-2xl mb-4"><i class="fas fa-brain"></i></div>
-                    <h3 class="font-bold text-xl mb-2">أدوات ذكية</h3>
-                    <p class="text-gray-500 text-sm">خطط دراسية وتحليل أداء بالذكاء الاصطناعي.</p>
-                </div>
-                 <div class="glass-card p-8 text-center cursor-pointer" onclick="openFeatureModal('osce_bank')">
-                    <div class="w-16 h-16 mx-auto bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-4"><i class="fas fa-user-injured"></i></div>
-                    <h3 class="font-bold text-xl mb-2">OSCE Cases</h3>
-                    <p class="text-gray-500 text-sm">تدريب عملي على الحالات الإكلينيكية.</p>
-                </div>
-                 <div class="glass-card p-8 text-center cursor-pointer" onclick="openFeatureModal('practice_mistakes')">
-                    <div class="w-16 h-16 mx-auto bg-red-100 rounded-2xl flex items-center justify-center text-red-600 text-2xl mb-4"><i class="fas fa-bug"></i></div>
-                    <h3 class="font-bold text-xl mb-2">صائد الأخطاء</h3>
-                    <p class="text-gray-500 text-sm">نجمع أخطاءك لنتأكد من عدم تكرارها.</p>
-                </div>
-            </div>
+            <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4"></div>
         </section>
 
         <section id="about" class="page-section py-20 relative overflow-hidden">
@@ -342,11 +362,56 @@
             </div>
         </section>
 
-        <section id="faq" class="page-section">
+        <section id="community" class="page-section">
             <div class="text-center mb-12">
-                <h2 class="section-title">أسئلة شائعة 🤔</h2>
+                <h2 class="section-title">مجتمع الجراحين 🌍</h2>
+                <p class="section-subtitle">تواصل مع زملائك وشارك المعرفة</p>
             </div>
-            <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4"></div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="glass-card p-6 border-t-4 border-blue-600">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-4">Facebook Hub</h3>
+                        <div class="space-y-3">
+                            <a href="https://www.facebook.com/groups/912100319624846" target="_blank" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm font-semibold transition-colors">Academy Official Group</a>
+                            <a href="https://www.facebook.com/groups/3334492170114962/" target="_blank" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm font-semibold transition-colors">Study Camp Group</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-t-4 border-sky-500">
+                        <div class="w-12 h-12 bg-sky-100 text-sky-500 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fab fa-telegram-plane"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-4">Telegram Updates</h3>
+                        <div class="space-y-3">
+                            <a href="https://t.me/EgyPSA" target="_blank" class="block p-3 bg-gray-50 hover:bg-sky-50 rounded-lg text-sm font-semibold transition-colors">Official Channel</a>
+                            <a href="https://t.me/joinchat/WHEthd8_TLosaDKR" target="_blank" class="block p-3 bg-gray-50 hover:bg-sky-50 rounded-lg text-sm font-semibold transition-colors">Discussion Group</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-t-4 border-green-500">
+                        <div class="w-12 h-12 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fab fa-google-drive"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-4">Resources</h3>
+                        <div class="space-y-3">
+                            <a href="https://drive.google.com/drive/folders/1bJz7npAAxqJKUsPtnhgBYu7Km6wGYRFd?usp=sharing" target="_blank" class="block p-3 bg-gray-50 hover:bg-green-50 rounded-lg text-sm font-semibold transition-colors">Resource Drive (Books)</a>
+                            <a href="https://www.youtube.com/channel/UC-JTAKMZZ9qcC5eqc9PvDeA" target="_blank" class="block p-3 bg-gray-50 hover:bg-red-50 rounded-lg text-sm font-semibold transition-colors">YouTube Channel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+                    <h3 class="text-2xl font-bold mb-4">انضم إلى مجتمع EPSA الرسمي</h3>
+                    <p class="text-gray-300 mb-6 max-w-2xl mx-auto">لضمان جودة النقاشات العلمية، نطلب من الأعضاء إثبات التخصص (جراحة تجميل) للانضمام إلى المجموعات المغلقة.</p>
+                    <button onclick="document.getElementById('notice-modal-backdrop').classList.remove('hidden')" class="btn-candy px-8 py-3 bg-white text-purple-600 hover:bg-gray-100 shadow-none">
+                        <i class="fas fa-id-card mr-2"></i> طلب انضمام (التحقق من الهوية)
+                    </button>
+                </div>
+            </div>
         </section>
 
         <section id="contact-page" class="page-section">
@@ -365,6 +430,18 @@
             &copy; <span id="current-year"></span> Plasticology. Crafted with <i class="fas fa-heart text-red-400 mx-1"></i> for Surgeons.
         </p>
     </footer>
+
+    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="floating-btn" title="تواصل معنا">
+        <i class="fab fa-telegram-plane"></i>
+        <div class="tooltip-text">تواصل مع د. بيشوي</div>
+    </a>
+
+    <div id="videoModal" class="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 z-[100] hidden" onclick="closeVideoModal()">
+        <div class="w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">&times;</button>
+            <iframe id="youtube-player" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <div id="notice-modal-backdrop" class="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 hidden backdrop-blur-sm" onclick="this.classList.add('hidden')">
         <div class="bg-white border border-gray-200 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 shadow-2xl" onclick="event.stopPropagation()">
@@ -406,24 +483,14 @@
     <div id="chapter-selection-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-[60] hidden" onclick="closeChapterSelectionModal()">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b p-6 bg-gray-50">
-                <h3 class="text-xl font-bold text-gray-800">تخصيص الباقة (Chapter Based)</h3>
+                <h3 class="text-xl font-bold text-gray-800">تخصيص الباقة (Residents Bundle)</h3>
                 <button onclick="closeChapterSelectionModal()" class="w-8 h-8 rounded-full bg-white border hover:bg-red-50 text-gray-500 hover:text-red-500 flex items-center justify-center">&times;</button>
             </div>
             <div class="p-8 overflow-y-auto flex-grow">
                  <h4 class="font-bold text-gray-800 mb-4">1. المدة الزمنية:</h4>
-                 <div class="grid grid-cols-3 gap-4 mb-8">
-                     <label class="cursor-pointer">
-                         <input type="radio" name="duration" value="1" class="hidden peer duration-radio" checked onchange="updateCustomPackagePrice()">
-                         <div class="p-3 text-center rounded-xl border-2 border-gray-200 peer-checked:border-purple-500 peer-checked:bg-purple-50 peer-checked:text-purple-700 font-bold transition-all">شهر واحد</div>
-                     </label>
-                     <label class="cursor-pointer">
-                         <input type="radio" name="duration" value="3" class="hidden peer duration-radio" onchange="updateCustomPackagePrice()">
-                         <div class="p-3 text-center rounded-xl border-2 border-gray-200 peer-checked:border-purple-500 peer-checked:bg-purple-50 peer-checked:text-purple-700 font-bold transition-all">3 شهور</div>
-                     </label>
-                     <label class="cursor-pointer">
-                         <input type="radio" name="duration" value="6" class="hidden peer duration-radio" onchange="updateCustomPackagePrice()">
-                         <div class="p-3 text-center rounded-xl border-2 border-gray-200 peer-checked:border-purple-500 peer-checked:bg-purple-50 peer-checked:text-purple-700 font-bold transition-all">6 شهور</div>
-                     </label>
+                 <div class="mb-8 p-4 bg-purple-50 border border-purple-200 rounded-xl text-center">
+                     <p class="font-bold text-purple-700">شهر واحد لكل باب (1 Month)</p>
+                     <p class="text-xs text-gray-500 mt-1">مدة كافية جداً للدراسة العملية والعلمية أثناء الـ Rotation</p>
                  </div>
                  
                  <h4 class="font-bold text-gray-800 mb-4">2. اختر الفصول:</h4>
@@ -434,9 +501,9 @@
                     <span class="text-gray-500 text-sm block">الإجمالي</span>
                     <span id="custom-package-price" class="text-3xl font-black text-purple-600">0 ج.م</span>
                 </div>
-                <a id="custom-package-subscribe-btn" href="https://t.me/DrBishoyAcademy" target="_blank" class="btn-candy px-8 py-3 opacity-50 pointer-events-none transition-all">
+                <button id="custom-package-subscribe-btn" class="btn-candy px-8 py-3 opacity-50 pointer-events-none transition-all">
                     اشترك الآن
-                </a>
+                </button>
             </div>
         </div>
     </div>

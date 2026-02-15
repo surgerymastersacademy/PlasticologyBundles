@@ -1,20 +1,16 @@
 // --- js/data.js ---
 
 const packagesData = [
-    // --- Full Packages ---
-    { category: 'full-package', duration: 1, title: 'شهر واحد', price: 10000, priceUSD: 200, theme: 'blue', recommendation: "للمراجعة السريعة" },
-    { category: 'full-package', duration: 3, title: '3 شهور', price: 25000, priceUSD: 500, originalPrice: 30000, theme: 'green', highlight: 'BEST SELLER', isScaled: true, recommendation: "الخيار الأمثل للمنهج" },
-    { category: 'full-package', duration: 6, title: '6 شهور', price: 45000, priceUSD: 900, originalPrice: 60000, theme: 'purple', recommendation: "للدراسة المتعمقة" },
+    // --- Full Packages (Exam/Revision Focus) ---
+    { category: 'full-package', duration: 1, title: 'شهر واحد', price: 10000, priceUSD: 200, theme: 'blue', recommendation: "مراجعة مكثفة قبل الامتحان", includesQBank: true },
+    { category: 'full-package', duration: 3, title: '3 شهور', price: 25000, priceUSD: 500, originalPrice: 30000, theme: 'green', highlight: 'BEST SELLER', isScaled: true, recommendation: "دورة مكثفة + حل أسئلة", includesQBank: true },
+    { category: 'full-package', duration: 6, title: '6 شهور', price: 45000, priceUSD: 900, originalPrice: 60000, theme: 'purple', recommendation: "تأسيس ومراجعة شاملة", includesQBank: true },
     
     // --- QBank Packages ---
     { category: 'mcq', duration: 1, title: 'شهر واحد', price: 1000, priceUSD: 20, theme: 'indigo' },
     { category: 'mcq', duration: 3, title: '3 شهور', price: 2500, priceUSD: 50, theme: 'teal' },
     { category: 'mcq', duration: 6, title: '6 شهور', price: 4500, priceUSD: 90, originalPrice: 6000, theme: 'pink' },
     { category: 'mcq', duration: 12, title: '12 شهر', price: 8000, priceUSD: 160, originalPrice: 12000, theme: 'orange' },
-    
-    // --- Combo Packages (FIXED & DISCOUNTED) ---
-    { category: 'combo', duration: 3, title: 'باقة 3 شهور', price: 26000, priceUSD: 520, originalPrice: 27500, theme: 'green', highlight: 'توفير ذكي', isScaled: true },
-    { category: 'combo', duration: 6, title: 'باقة 6 شهور', price: 46000, priceUSD: 920, originalPrice: 49500, theme: 'purple' },
 ];
 
 const chapterGroups = {
@@ -31,9 +27,9 @@ const chapterGroups = {
 };
 
 const customChapterPrices = {
-    1: { 1: 4000, 3: 10000, 6: 18000 },
-    2: { 1: 7000, 3: 18000, 6: 32000 },
-    3: { 1: 10000, 3: 25000, 6: 45000 },
+    1: { 1: 4000 },
+    2: { 1: 7000 },
+    3: { 1: 10000 },
 };
 
 const groupDiscounts = {
@@ -46,21 +42,17 @@ const groupDiscounts = {
         { name: 'Buddies QBank', description: 'أسئلة - 3 أفراد', discount: 0.15, theme: 'indigo', icon: 'fa-laptop-code' },
         { name: 'Group QBank', description: 'أسئلة - 5 أفراد', discount: 0.25, theme: 'teal', icon: 'fa-users-cog' },
         { name: 'Batch QBank', description: 'أسئلة - +10 أفراد', discount: 0.35, theme: 'pink', icon: 'fa-school' }
-    ],
-    combo: [
-        { name: 'Partners Combo', description: 'شامل - 3 أفراد', discount: 0.15, theme: 'cyan', icon: 'fa-user-friends' },
-        { name: 'Alliance Combo', description: 'شامل - 5 أفراد', discount: 0.25, theme: 'emerald', icon: 'fa-users' },
-        { name: 'Legends Combo', description: 'شامل - +10 أفراد', discount: 0.35, theme: 'amber', icon: 'fa-crown' }
     ]
 };
 
 const faqData = [
-    { q: "كيف يتم تفعيل الاشتراك؟", a: "بعد اختيار الباقة المناسبة والتواصل معنا عبر تيليجرام، سيتم تفعيل اشتراكك يدويًا على بريدك الإلكتروني الخاص فور تأكيد الدفع." },
+    { q: "ما الفرق بين باقات النواب (Residents) وباقات الامتحانات؟", a: "باقات النواب مخصصة للتركيز على موضوع محدد أثناء الـ Rotation لمدة شهر، وهي مثالية للتعلم العميق واكتساب المهارات. أما باقات الامتحانات فهي شاملة ومكثفة ومصممة للمراجعة السريعة وحل الأسئلة قبل الامتحانات (ماجستير/دكتوراه/زمالة)." },
+    { q: "كيف أحصل على بنك الأسئلة مجاناً؟", a: "عند اشتراكك في أي من باقات الشرح المكثف (Exam Bundles)، يتم تفعيل بنك الأسئلة لك تلقائياً كهدية مجانية طوال فترة اشتراكك." },
+    { q: "ما هو Global Search وكيف يفيدني؟", a: "هو محرك بحث متطور داخل المنصة. إذا واجهت حالة إكلينيكية ولا تتذكر تفاصيلها، فقط اكتب اسم الحالة وسيظهر لك كل الأسئلة والمحاضرات المتعلقة بها فوراً." },
     { q: "هل يمكنني الترقية من باقة لأخرى؟", a: "نعم، يمكنك في أي وقت الترقية من باقة أقل إلى باقة أعلى (مثلاً من باقة باب واحد إلى المنهج كامل) عن طريق دفع الفرق فقط." },
-    { q: "كم يبلغ حجم المحتوى التعليمي؟", a: "أكثر من 120 ساعة من المحاضرات المرئية، وأكثر من 11,000 سؤال MCQ مع شروحات تفصيلية." },
-    { q: "هل يمكنني استخدام حسابي على أكثر من جهاز؟", a: "نعم، ولكن ليس في نفس الوقت. النظام يسمح بجلسة نشطة واحدة فقط للحفاظ على أمان الحساب." },
-    { q: "ما هو وضع التعلم (Learning Mode)؟", a: "وضع للمذاكرة يظهر الإجابة والشرح فوراً بعد كل سؤال، دون التقيد بوقت." },
-    { q: "كيف يعمل منظم المذاكرة (Study Planner)؟", a: "تدخل تاريخ امتحانك، ويقوم النظام تلقائياً بتوزيع المحاضرات والأسئلة على الأيام المتاحة لك." },
+    { q: "كم يبلغ حجم المحتوى التعليمي؟", a: "أكثر من 120 ساعة من المحاضرات المرئية عالية الجودة، وأكثر من 11,000 سؤال MCQ مع شروحات تفصيلية لكل إجابة." },
+    { q: "هل يعمل التطبيق على الموبايل والتابلت؟", a: "بالتأكيد. المنصة متجاوبة بالكامل (Responsive) وتعمل بكفاءة على جميع الأجهزة." },
+    { q: "كيف أستفيد من نظام Anki Flashcards؟", a: "هذا النظام يساعدك على المراجعة المتباعدة (Spaced Repetition). الأسئلة التي تخطئ فيها ستظهر لك بشكل متكرر في أوقات مدروسة علمياً لضمان حفظها وعدم نسيانها." },
 ];
 
 const chaptersData = {

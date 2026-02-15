@@ -2,19 +2,139 @@
 
 function formatPrice(price) { return new Intl.NumberFormat('ar-EG').format(price); }
 
+// --- Handle Telegram Subscription ---
+function sendTelegramMessage(packageName, price, type, details = "") {
+    const message = `
+السلام عليكم د. بيشوي 👋
+أرغب في الاشتراك في الباقة التالية:
+
+📦 *الباقة:* ${packageName}
+💰 *السعر:* ${price}
+🏷️ *النوع:* ${type}
+${details ? `📝 *التفاصيل:* ${details}` : ''}
+
+في انتظار تفاصيل الدفع وتفعيل الحساب. شكراً!
+    `.trim();
+
+    navigator.clipboard.writeText(message).then(() => {
+        alert("✅ تم نسخ تفاصيل الباقة بنجاح!\n\nسيتم تحويلك الآن إلى تيليجرام.. فقط قم بعمل 'لصق' (Paste) للرسالة في المحادثة.");
+        window.open("https://t.me/DrBishoyAcademy", "_blank");
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+        window.open("https://t.me/DrBishoyAcademy", "_blank");
+    });
+}
+
+// --- 🎬 PLASTICOLOGY TV LOGIC ---
+
+// 1. All Video IDs from your list
+const allVideoIds = [
+    "mxJDmg_Bn48", "oqWrMn8FKlQ", "e9g-6VXsUBQ", "iwVLHNyA_Ds", "V2sSOFiWlyE", 
+    "EE-JQIiLljE", "ew-MwLxw6tM", "o9u49LjSpX0", "5PiNW9nHNAQ", "rCqgHzki4E4", 
+    "NVwcSnAgJ2A", "Rb7h1sVPXdA", "00AWhK1OfE4", "4sP5qg7ei8k", "zqoD4UQDXm0", 
+    "kosbGQ6PmtU", "H1VXfIwKFY0", "YcBcwwhsODM", "5qM9Tozue1I", "gPHWeeGMR1A", 
+    "uN6u6UgyTK0", "C3wcdlyKB_c", "8oroVa3LHbE", "MC8wHiuiDDk", "lbn8x2HN4oE", 
+    "h4N35ZMCcBg", "ehov9qQk9bU", "N9KwJTa5q3s", "NVyVXgk0l9Q", "ifwr8Y_aAgw", 
+    "ks3ufXgYj_M", "uPgwkoEtmqw", "5EijQznfF8E", "rOtSSwszF2I", "PxmNsiL9BNw", 
+    "kjDii2iygGM", "Xx7hm6BQLqo", "PsCY-E3hnCA", "DO2H3_xaQSs", "87u8HdWG6mY", 
+    "eMkIG8Y5DHo", "Z-MNmTlEH78", "owYV3yu_AAg", "FgsdQvMz_5o", "U79bXOJNsWM", 
+    "2EqP0P4Hsao", "5tAaThHZ_HE", "PrBf_ymRptY", "YNqenV6BIPI", "NcmH4P2GNes", 
+    "Qq9fWWSKj0E", "aGfZEbB3sXU", "99JwgBSohnQ", "RdTrtXmUsSc", "5VyFy7EmUdE", 
+    "0toh9eN6mgI", "SjKdvb5EOB0", "CdZ9lGvobEU", "2TXasQdKZrk", "p4WgZE6DggM", 
+    "5lo5n26AfD0", "V0gdnHbMp8w", "0ahM94QCJEI", "9mpjbmeU0bY", "QyzCC3KUQuI", 
+    "3BlrQm8zXrk", "Qyc3EzFol4k", "5jOwg2MmpBA", "lr7G9tb75dE", "ruMdNKsqZUc", 
+    "nDQECWsUWhY", "XFoil6OMkjU", "nS4f1iP6FXU", "lmb-KP4dBlw", "PBxKRmsi4ro", 
+    "Kks8MfwR858", "AgzkbUEmFLs", "RDea-9BGpOM", "pe7rn9375vo", "vr4-38PsPjM", 
+    "AaaNosGhbWY", "fOzGarRvVDA", "-myls8ZYnXg", "VXF8WmA3c0A", "VIbaS276YXY", 
+    "bga-Oxo-vlA", "Gfbw5NAWQeY", "IcmQQzMpAXA", "Iad2cD-I6n8", "Auc504AXMG4", 
+    "6OsMbc48ATg", "jDo1hyVkLM4", "saaYIfHVcSE", "bHx9sOId6jg", "vEnEXZvAX5k"
+];
+
+// 2. Generic Professional Titles to cycle through (Since we can't fetch real titles without API)
+const displayTitles = [
+    "Advanced Flap Reconstruction", "Hand Surgery Principles", "Burn Resuscitation Protocols", 
+    "Microsurgery Techniques", "Cleft Lip & Palate Repair", "Rhinoplasty Aesthetics", 
+    "Breast Reconstruction Strategies", "Skin Grafting Masterclass", "Nerve Repair & Grafting", 
+    "Facial Trauma Management", "Lower Limb Salvage", "Abdominal Wall Reconstruction", 
+    "Tendons Repair Algorithms", "Congenital Hand Anomalies", "Head & Neck Tumors",
+    "Blepharoplasty Techniques", "Otoplasty & Ear Reconstruction", "Liposuction & Body Contouring",
+    "Tissue Expansion Principles", "Laser Surgery Fundamentals"
+];
+
+// 3. Shuffle Function (Fisher-Yates Algorithm)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function renderNetflixSlider() {
+    const slider = document.getElementById('video-slider');
+    if(!slider) return;
+    
+    // Shuffle the video IDs
+    const shuffledVideos = shuffleArray([...allVideoIds]);
+    
+    // Take the first 20 videos to display in the slider (for performance)
+    const videosToDisplay = shuffledVideos.slice(0, 20);
+
+    // Generate HTML
+    slider.innerHTML = videosToDisplay.map((videoId, index) => {
+        // Assign a title from our list (looping if necessary)
+        const title = displayTitles[index % displayTitles.length];
+        
+        return `
+        <div class="video-card" onclick="openVideoModal('${videoId}')">
+            <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="Plasticology Video" loading="lazy">
+            <div class="video-info">
+                <h4 class="text-white text-xs font-bold text-shadow">${title}</h4>
+                <div class="mt-1 flex items-center gap-2">
+                    <i class="fas fa-play-circle text-red-600 text-lg"></i>
+                    <span class="text-[10px] text-gray-300">Watch Sample</span>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function slideLeft() {
+    const slider = document.getElementById('video-slider');
+    slider.scrollBy({ left: -300, behavior: 'smooth' });
+}
+
+function slideRight() {
+    const slider = document.getElementById('video-slider');
+    slider.scrollBy({ left: 300, behavior: 'smooth' });
+}
+
+function openVideoModal(id) { 
+    if(!videoModal) initDOMElements();
+    player.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`; 
+    videoModal.classList.remove('hidden'); 
+    document.body.style.overflow = 'hidden'; 
+}
+
+// --- CARD CREATION LOGIC ---
+
 function createFullPackageCardHTML(pkg) {
     const isScaled = pkg.isScaled || false;
     const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
     const savingText = saving > 0 ? `<span class="bg-pink-100 text-pink-700 text-xs font-bold px-3 py-1 rounded-full animate-pulse">🎁 توفير ${formatPrice(saving)}</span>` : '';
     const scaleClass = isScaled ? 'transform md:scale-105 z-10 border-2 border-purple-300' : 'opacity-90 hover:opacity-100';
     
+    const qBankGiftHTML = pkg.includesQBank ? 
+        `<li class="flex items-center p-2 rounded-lg bg-gradient-to-r from-pink-50 to-white border border-pink-100"><div class="w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center ml-3 shadow-md animate-pulse"><i class="fas fa-gift text-sm"></i></div><span class="font-bold text-pink-600">Free QBank Gift Included!</span></li>` 
+        : '';
+
     return `
         <div class="glass-card p-8 flex flex-col h-full ${scaleClass}">
             ${pkg.highlight ? `<div class="absolute top-0 right-0 bg-gradient-to-l from-purple-600 to-pink-500 text-white text-xs font-bold px-4 py-1 rounded-bl-2xl shadow-md">🔥 ${pkg.highlight}</div>` : ''}
             
             <div class="mb-4">
                 <h3 class="text-2xl font-black text-gray-800">${pkg.duration === 1 ? 'Start' : (pkg.duration === 3 ? 'Pro' : 'Elite')} Plan</h3>
-                <p class="text-sm font-bold text-purple-600 uppercase tracking-wider">${pkg.title}</p>
+                <p class="text-sm font-bold text-purple-600 uppercase tracking-wider">${pkg.title} - مراجعة مكثفة</p>
             </div>
 
             <div class="mb-6">
@@ -27,20 +147,28 @@ function createFullPackageCardHTML(pkg) {
             </div>
 
             <ul class="space-y-4 mb-8 flex-grow text-gray-600 text-sm font-medium">
-                <li class="flex items-center"><div class="w-6 h-6 rounded-full bg-green-100 text-green-500 flex items-center justify-center ml-3"><i class="fas fa-check text-xs"></i></div>وصول كامل للمنهج</li>
+                ${qBankGiftHTML}
+                <li class="flex items-center gap-2"><i class="fas fa-headset text-purple-600"></i>دعم فني وعلمي 24/7</li>
+                <li class="flex items-center gap-2"><i class="fas fa-search text-purple-600"></i>محرك بحث شامل (Global Search)</li>
+                <li class="flex items-center"><div class="w-6 h-6 rounded-full bg-green-100 text-green-500 flex items-center justify-center ml-3"><i class="fas fa-video text-xs"></i></div>شرح مكثف للمنهج (Revision)</li>
                 <li class="flex items-center"><div class="w-6 h-6 rounded-full bg-green-100 text-green-500 flex items-center justify-center ml-3"><i class="fas fa-check text-xs"></i></div>+200 محاضرة HD</li>
                 <li class="flex items-center"><div class="w-6 h-6 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center ml-3"><i class="fas fa-star text-xs"></i></div>${pkg.recommendation}</li>
             </ul>
 
-            <a href="https://t.me/DrBishoyAcademy" target="_blank" class="btn-candy w-full py-4 font-bold text-lg shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 group">
-                <span>اشترك الآن</span>
-                <i class="fas fa-arrow-right group-hover:-translate-x-1 transition-transform"></i>
-            </a>
+            <div class="flex gap-2">
+                <button onclick="sendTelegramMessage('${pkg.title} (${pkg.duration === 1 ? 'Start' : (pkg.duration === 3 ? 'Pro' : 'Elite')})', '${formatPrice(pkg.price)} ج.م', 'شرح ومراجعة مكثفة')" class="btn-candy flex-grow py-4 font-bold text-lg shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 group">
+                    <span>اشترك الآن</span>
+                    <i class="fas fa-arrow-right group-hover:-translate-x-1 transition-transform"></i>
+                </button>
+                <button onclick="document.getElementById('plasticology-tv').scrollIntoView({behavior: 'smooth'})" class="w-12 rounded-full border border-gray-200 hover:bg-red-50 hover:text-red-600 text-gray-400 flex items-center justify-center transition-colors" title="Watch Samples">
+                    <i class="fab fa-youtube text-xl"></i>
+                </button>
+            </div>
         </div>`;
 }
 
 function createQBankCardHTML(pkg) {
-    const isScaled = pkg.duration === 6; // Highlight 6 months for QBank
+    const isScaled = pkg.duration === 6; 
     const scaleClass = isScaled ? 'border-2 border-teal-300' : '';
     
     return `
@@ -52,63 +180,41 @@ function createQBankCardHTML(pkg) {
             <h3 class="text-xl font-bold text-gray-800 mb-1">QBank ${pkg.title}</h3>
             <p class="text-3xl font-black text-gray-900 mb-2">${formatPrice(pkg.price)}<span class="text-sm font-medium text-gray-500"> ج.م</span></p>
             
-            <ul class="space-y-2 mb-6 flex-grow text-gray-500 text-sm">
-                <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i>+11000 MCQ</li>
-                <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i>وضع الامتحانات</li>
+            <div class="mb-4 bg-purple-50 p-3 rounded-lg border border-purple-100">
+                <p class="text-xs font-bold text-purple-700 mb-1">🎁 هدية مجانية:</p>
+                <div class="flex items-center gap-2 text-sm text-gray-700 font-bold">
+                    <i class="fas fa-broadcast-tower text-pink-500 animate-pulse"></i> Plasticology Radio
+                </div>
+                <p class="text-[10px] text-gray-500 mt-1">مراجعة صوتية مركزة (مختلفة عن الشرح التفصيلي)</p>
+            </div>
+
+            <ul class="space-y-2 mb-6 flex-grow text-gray-600 text-xs font-medium">
+                <li class="flex items-center gap-2"><i class="fas fa-headset text-teal-600"></i>دعم فني وعلمي 24/7</li>
+                <li class="flex items-center gap-2"><i class="fas fa-search text-teal-600"></i>محرك بحث شامل (Global Search)</li>
+                <li class="border-t border-gray-100 my-2 pt-2 text-gray-400 text-[10px] font-bold">أنماط المذاكرة:</li>
+                <li class="flex items-center gap-2"><i class="fas fa-layer-group text-blue-500"></i>نظام الكروت (Anki Flashcards Style)</li>
+                <li class="flex items-center gap-2"><i class="fas fa-check-double text-blue-500"></i>Matching & MCQ Styles</li>
+                <li class="flex items-center gap-2"><i class="fas fa-eye text-blue-500"></i>القراءة المباشرة (Read Answered)</li>
+                <li class="flex items-center gap-2"><i class="fas fa-play-circle text-blue-500"></i>نظام سؤال بسؤال (Study Mode)</li>
+                <li class="border-t border-gray-100 my-2 pt-2 text-gray-400 text-[10px] font-bold">أدوات الفلترة والتقييم:</li>
+                <li class="flex items-center gap-2"><i class="fas fa-filter text-orange-500"></i>فلترة ذكية (أخطائي، المؤجلات)</li>
+                <li class="flex items-center gap-2"><i class="fas fa-history text-orange-500"></i>امتحانات سابقة (Past Exams)</li>
+                <li class="flex items-center gap-2"><i class="fas fa-fist-raised text-red-500"></i>Battle Arena Mode</li>
             </ul>
 
-            <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full py-2.5 rounded-xl bg-gray-50 hover:bg-${pkg.theme}-50 text-gray-700 hover:text-${pkg.theme}-600 font-bold transition-colors text-center border border-gray-200">
-                اختيار
-            </a>
-        </div>`;
-}
-
-function createComboCardHTML(pkg) {
-    const isScaled = pkg.isScaled || false;
-    const saving = pkg.originalPrice ? pkg.originalPrice - pkg.price : 0;
-    const scaleClass = isScaled ? 'transform md:scale-105 z-10 border-2 border-yellow-400 shadow-yellow-200' : '';
-
-    return `
-        <div class="glass-card p-8 flex flex-col h-full relative overflow-hidden ${scaleClass}">
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
-            
-            <div class="mb-4">
-                <div class="flex justify-between items-start">
-                    <h3 class="text-2xl font-black text-gray-800">Combo Bundle</h3>
-                    ${pkg.highlight ? `<span class="bg-yellow-100 text-yellow-700 text-xs font-bold px-2 py-1 rounded-lg">${pkg.highlight}</span>` : ''}
-                </div>
-                <p class="text-sm font-bold text-yellow-600 uppercase">${pkg.title}</p>
+            <div class="flex gap-2">
+                <button onclick="sendTelegramMessage('QBank ${pkg.title}', '${formatPrice(pkg.price)} ج.م', 'بنك أسئلة فقط')" class="flex-grow py-2.5 rounded-xl bg-gray-50 hover:bg-${pkg.theme}-50 text-gray-700 hover:text-${pkg.theme}-600 font-bold transition-colors text-center border border-gray-200">
+                    اشتراك
+                </button>
+                 <button onclick="document.getElementById('plasticology-tv').scrollIntoView({behavior: 'smooth'})" class="w-10 rounded-xl border border-gray-200 hover:bg-red-50 hover:text-red-600 text-gray-400 flex items-center justify-center transition-colors">
+                    <i class="fab fa-youtube"></i>
+                </button>
             </div>
-
-            <div class="mb-6">
-                <p class="text-5xl font-black text-gray-900 tracking-tight">${formatPrice(pkg.price)}<span class="text-lg text-gray-500 font-medium"> ج.م</span></p>
-                <div class="flex items-center gap-2 mt-1">
-                    <p class="text-gray-400 line-through text-sm">${formatPrice(pkg.originalPrice)}</p>
-                    <span class="text-green-600 text-xs font-bold">وفرت ${formatPrice(saving)}</span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 mb-8">
-                <div class="bg-purple-50 p-3 rounded-xl text-center">
-                    <i class="fas fa-video text-purple-500 mb-1"></i>
-                    <p class="text-xs font-bold text-purple-700">شرح كامل</p>
-                </div>
-                <div class="bg-teal-50 p-3 rounded-xl text-center">
-                    <i class="fas fa-laptop-code text-teal-500 mb-1"></i>
-                    <p class="text-xs font-bold text-teal-700">بنك أسئلة</p>
-                </div>
-            </div>
-
-            <a href="https://t.me/DrBishoyAcademy" target="_blank" class="btn-candy w-full py-4 font-bold text-lg shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
-                <span>اقتنص الفرصة</span>
-                <i class="fas fa-gem"></i>
-            </a>
         </div>`;
 }
 
 function createGroupCardHTML(group, type) {
     const basePackages = packagesData.filter(p => p.category === type);
-    // Sort packages: for full-package/combo use duration, for mcq use duration
     const sortedPackages = basePackages.sort((a,b) => a.duration - b.duration);
     
     let priceDetailsHTML = sortedPackages.map(pkg => {
@@ -118,7 +224,8 @@ function createGroupCardHTML(group, type) {
             <span class="text-gray-600 font-medium">${pkg.duration} ${pkg.duration === 1 ? 'شهر' : 'شهور'}</span>
             <div class="text-left">
                 <span class="block font-bold text-${group.theme}-600">${formatPrice(newPrice)} ج.م</span>
-                <span class="text-xs text-gray-400 line-through">${formatPrice(pkg.price)}</span>
+                <span class="text-xs text-gray-500 font-bold">(للفرد)</span>
+                <span class="text-xs text-gray-400 line-through block">${formatPrice(pkg.price)}</span>
             </div>
         </div>`
     }).join('');
@@ -141,9 +248,9 @@ function createGroupCardHTML(group, type) {
                 ${priceDetailsHTML}
             </div>
             
-            <a href="https://t.me/DrBishoyAcademy" target="_blank" class="w-full block bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-gray-800 transition-colors text-center">
+            <button onclick="sendTelegramMessage('${group.name}', 'خصم ${group.discount * 100}%', 'مجموعة (${group.description})')" class="w-full block bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-gray-800 transition-colors text-center">
                 تكوين مجموعة
-            </a>
+            </button>
         </div>`;
 }
 
@@ -151,12 +258,26 @@ function renderChapterBasedCard() {
     const container = document.getElementById('chapter-based-card-container');
     if (!container) return;
     container.innerHTML = `
-        <div class="glass-card p-8 text-center flex flex-col h-full border border-purple-100 bg-gradient-to-b from-white to-purple-50">
-            <div class="w-20 h-20 bg-white rounded-full mx-auto shadow-md flex items-center justify-center text-3xl text-purple-600 mb-6">
-                <i class="fas fa-layer-group"></i>
+        <div class="glass-card p-8 text-center flex flex-col h-full border-2 border-purple-200 bg-gradient-to-b from-white to-purple-50 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-xs font-bold px-4 py-1 rounded-bl-xl shadow-sm">
+                Recommended for Residents 👨‍⚕️
             </div>
-            <h3 class="text-2xl font-black text-gray-800 mb-2">Chapter Based</h3>
-            <p class="text-gray-500 mb-8">صمم باقتك الخاصة. اختر الفصول التي تحتاج لتقويتها وادفع فقط مقابل ما تحتاج.</p>
+            
+            <div class="w-20 h-20 bg-white rounded-full mx-auto shadow-md flex items-center justify-center text-3xl text-purple-600 mb-6">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <h3 class="text-2xl font-black text-gray-800 mb-2">Residents Bundles</h3>
+            <p class="text-purple-700 font-bold text-sm mb-4">نظام النواب والزمالة</p>
+            
+            <div class="text-right bg-white/60 p-4 rounded-xl mb-6 text-sm leading-relaxed text-gray-600 border border-purple-100">
+                <p class="font-bold mb-2">لماذا هذا النظام هو الأنسب لك؟</p>
+                <p>صُمم خصيصاً للنواب (Residents) ومتدربي الزمالة الذين يرغبون في تعلم مهارات جراحة التجميل دون ضغط الامتحانات.</p>
+                <p class="mt-2">اختر الباب الخاص بالـ <span class="font-bold text-purple-600">Rotation</span> الحالي وركز عليه تماماً. مدة <span class="font-bold text-purple-600">شهر كامل</span> لكل باب هي مدة كافية جداً علمياً وعملياً ومادياً لإتقان المهارات المطلوبة.</p>
+                <ul class="mt-4 space-y-2 text-xs font-bold text-purple-800">
+                    <li class="flex items-center gap-2"><i class="fas fa-search"></i> Global Search Included</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-headset"></i> 24/7 Scientific Support</li>
+                </ul>
+            </div>
             
             <button onclick="openChapterSelectionModal()" class="btn-candy w-full py-4 mt-auto shadow-lg hover:shadow-xl">
                 <i class="fas fa-sliders-h ml-2"></i>تخصيص الباقة
@@ -224,7 +345,6 @@ function createChapterAccordionHTML(chapterTitle, lectures) {
     `;
 }
 
-// --- MISSING FUNCTION ADDED HERE ---
 async function fetchAndRenderTestimonials() {
     const testimonialsGrid = document.getElementById('testimonials-grid');
     if (!testimonialsGrid) return;
@@ -266,24 +386,16 @@ function renderAll() {
         mcqContainer.innerHTML = mcqPackages.map(createQBankCardHTML).join('');
     }
 
-    // 3. Combo Packages
-    const comboContainer = document.getElementById('combo-cards');
-    if (comboContainer) {
-        const comboPackages = packagesData.filter(p => p.category === 'combo').sort((a, b) => a.duration - b.duration);
-        comboContainer.innerHTML = comboPackages.map(createComboCardHTML).join('');
-    }
-
-    // 4. Chapter Based
+    // 3. Chapter Based
     renderChapterBasedCard();
     
-    // 5. Groups Tab
+    // 4. Groups Tab
     const groupsTabContainer = document.getElementById('groups-tab');
     if (groupsTabContainer) {
         groupsTabContainer.innerHTML = `
         <div class="flex justify-center gap-2 mb-8">
             <button class="filter-pill active" onclick="showSubTab('group-lectures', this)">مجموعات الشرح</button>
             <button class="filter-pill" onclick="showSubTab('group-qbank', this)">مجموعات الأسئلة</button>
-            <button class="filter-pill" onclick="showSubTab('group-combo', this)">مجموعات الكومبو</button>
         </div>
         
         <div>
@@ -293,17 +405,13 @@ function renderAll() {
             <div id="group-qbank-content" class="sub-tab-content">
                 <div id="group-qbank-cards" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"></div>
             </div>
-            <div id="group-combo-content" class="sub-tab-content">
-                <div id="group-combo-cards" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"></div>
-            </div>
         </div>`;
 
         document.getElementById('group-lectures-cards').innerHTML = groupDiscounts.lectures.map(group => createGroupCardHTML(group, 'full-package')).join('');
         document.getElementById('group-qbank-cards').innerHTML = groupDiscounts.qbank.map(group => createGroupCardHTML(group, 'mcq')).join('');
-        document.getElementById('group-combo-cards').innerHTML = groupDiscounts.combo.map(group => createGroupCardHTML(group, 'combo')).join('');
     }
     
-    // 6. Others
+    // 5. Others
     fetchAndRenderTestimonials();
     const faqContainer = document.getElementById('faq-accordion');
     if(faqContainer) {
@@ -429,8 +537,11 @@ function closeChapterSelectionModal() { chapterModal.classList.add('hidden'); do
 
 function updateCustomPackagePrice() {
     if(!chaptersListContainer) initDOMElements();
-    const selectedCount = chaptersListContainer.querySelectorAll('.chapter-checkbox:checked').length;
-    const selectedDuration = document.querySelector('.duration-radio:checked').value;
+    const checkedBoxes = chaptersListContainer.querySelectorAll('.chapter-checkbox:checked');
+    const selectedCount = checkedBoxes.length;
+    // Hardcoded to 1 Month for Residents
+    const selectedDuration = 1; 
+    
     let price = 0;
     if (selectedCount > 0 && selectedCount <= 3) {
             price = customChapterPrices[selectedCount] ? customChapterPrices[selectedCount][selectedDuration] || 0 : 0;
@@ -439,10 +550,26 @@ function updateCustomPackagePrice() {
             if(fullPackage) price = fullPackage.price;
     }
     customPackagePriceEl.textContent = `${formatPrice(price)} ج.م`;
+    
+    // Update the Subscribe Button in the Modal to use the Telegram Function
     if (selectedCount > 0) {
         customPackageSubscribeBtn.classList.remove('opacity-50', 'pointer-events-none');
+        
+        // Collect Chapter Names
+        const chapterNames = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
+        
+        customPackageSubscribeBtn.removeAttribute('href'); // Remove default href
+        customPackageSubscribeBtn.onclick = () => {
+            sendTelegramMessage(
+                'Residents Bundle', 
+                `${formatPrice(price)} ج.م`, 
+                'باقة نواب (فصول مختارة)', 
+                `عدد الأبواب: ${selectedCount} - الفصول: ${chapterNames}`
+            );
+        };
     } else {
         customPackageSubscribeBtn.classList.add('opacity-50', 'pointer-events-none');
+        customPackageSubscribeBtn.onclick = null;
     }
 }
 
@@ -450,4 +577,5 @@ function updateCustomPackagePrice() {
 document.addEventListener('DOMContentLoaded', () => {
     initDOMElements();
     renderAll();
+    renderNetflixSlider(); // Added this
 });
