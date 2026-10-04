@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plasticology | Master the Art of Plastic Surgery</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen text-gray-800 font-sans pt-12"> 
+    
+    <div class="fixed top-0 left-0 w-full h-12 bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 text-white z-[60] flex items-center justify-center shadow-lg cursor-pointer" onclick="window.open('https://plasticology.surgerymastersacademy.com/', '_blank')">
+        <p class="font-bold text-sm md:text-base animate-pulse text-center px-3">
+            🎁 <span class="hidden sm:inline mx-1">عرض خاص:</span>
+            <span class="hidden sm:inline">أنشئ حساب مجاني الآن واحصل على</span>
+            <span class="bg-white text-blue-700 px-2 py-0.5 rounded-full mx-1 text-xs sm:text-sm font-black">3 أيام مجاناً</span>
+            <span class="hidden sm:inline">لكل المميزات — بدون بطاقة</span>
+            <span class="sm:hidden">— وصول شامل بدون دفع</span>
+            <i class="fas fa-arrow-left mr-1"></i>
+        </p>
+    </div>
+
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-slate-50"></div>
+        <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-200 opacity-30 blur-[100px] bg-blob blob-1"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-indigo-200 opacity-30 blur-[100px] bg-blob blob-2"></div>
+        <div class="absolute bottom-[10%] left-[20%] w-[30%] h-[30%] rounded-full bg-sky-200 opacity-25 blur-[100px] bg-blob blob-3"></div>
+    </div>
+
+    <header class="main-header-sticky top-12" dir="ltr"> 
+        <div class="container mx-auto px-4 py-4">
+            <div class="glass-nav flex items-center justify-between px-6 py-3">
+                <div class="flex items-center space-x-4">
+                    <img src="https://pub-fb0d46cb77cb4e22b5863540fe118da4.r2.dev/Plasticology%202025%20Logo%20white%20outline.png" alt="Plasticology Logo" class="w-10 h-10 object-contain">
+                    <div class="text-left">
+                        <h1 class="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-600">Plasticology</h1>
+                    </div>
+                </div>
+
+                <!-- Mobile: Store button only -->
+                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" rel="noopener noreferrer"
+                   class="btn-candy-sm md:hidden px-4 py-2 text-xs">
+                    <i class="fas fa-store mr-1"></i> View Store
+                </a>
+
+                <!-- Desktop nav -->
+                <div class="items-center space-x-1 hidden md:flex">
+                    <a href="https://www.surgerymastersacademy.com/" class="nav-button"><i class="fas fa-home mr-1"></i>Home</a>
+                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" rel="noopener noreferrer" class="nav-button text-blue-600 font-bold bg-blue-50 hover:bg-blue-100">
+                        <i class="fas fa-laptop-code mr-1"></i>Plans & Reviews
+                    </a>
+                    <a href="https://plasticologybooks.surgerymastersacademy.com/" class="nav-button"><i class="fas fa-book-open mr-1"></i>Books</a>
+                    <button class="nav-button" onclick="showPage('community', this)"><i class="fas fa-users mr-1"></i>Community</button>
+                    <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" rel="noopener noreferrer" class="btn-candy-sm ml-4">
+                        View Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="text-center py-20 relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 font-bold text-sm mb-6 animate-fade-in-up" style="border: 1px solid #bfdbfe">
+                ⭐ Egypt's #1 Plastic Surgery Platform
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
+                Master the Art of<br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Plastic Surgery</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto animate-fade-in-up delay-200">
+                Transform your knowledge into confidence. Join the community of elite surgeons creating the future of aesthetics.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
+                <a href="#pricing" onclick="showPage('bundles', document.querySelector('.sub-nav-card:nth-child(2)'))" class="btn-candy text-lg px-12 py-4">
+                    <i class="fas fa-rocket ml-2"></i>ابدأ رحلتك
+                </a>
+                 <a href="#plasticology-tv" onclick="document.getElementById('plasticology-tv').scrollIntoView({behavior: 'smooth'})" class="px-10 py-4 rounded-full font-bold text-gray-700 bg-white border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                    <i class="fab fa-youtube text-red-500 text-xl"></i> Free Samples
+                </a>
+            </div>
+
+            <!-- Social Proof Strip -->
+            <div class="flex items-center justify-center gap-4 sm:gap-6 flex-wrap mt-8 animate-fade-in-up" style="animation-delay:0.35s">
+                <div class="flex items-center gap-2">
+                    <div class="flex" style="direction:ltr">
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-blue-500 flex items-center justify-center text-white text-xs font-black" style="margin-right:-6px; z-index:4">أ</div>
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-emerald-500 flex items-center justify-center text-white text-xs font-black" style="margin-right:-6px; z-index:3">م</div>
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-violet-500 flex items-center justify-center text-white text-xs font-black" style="margin-right:-6px; z-index:2">س</div>
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-amber-500 flex items-center justify-center text-white text-xs font-black" style="z-index:1">ه</div>
+                    </div>
+                    <span class="text-sm font-bold text-gray-700 mr-1">+2,000 طبيب مشترك</span>
+                </div>
+                <div class="w-px h-5 bg-gray-200 hidden sm:block"></div>
+                <div class="flex items-center gap-1.5">
+                    <div class="flex text-amber-400 text-xs gap-0.5">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-sm font-bold text-gray-700">4.9</span>
+                    <span class="text-sm text-gray-400">(+200 تقييم)</span>
+                </div>
+                <div class="w-px h-5 bg-gray-200 hidden sm:block"></div>
+                <div class="flex items-center gap-1.5 text-sm font-bold text-green-700">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block"></span>
+                    تجربة مجانية 3 أيام — بدون بطاقة
+                </div>
+            </div>
+
+            <!-- Smart Search Assistant -->
+            <div class="relative max-w-2xl mx-auto mt-5 animate-fade-in-up" style="animation-delay:0.45s">
+                <div id="smart-search-bar"
+                     class="flex items-center gap-3 bg-white/85 backdrop-blur-md border border-blue-100 hover:border-blue-300 rounded-2xl px-5 py-3.5 cursor-pointer shadow-sm hover:shadow-md transition-all"
+                     onclick="toggleSmartSearch(event)">
+                    <div class="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-search text-blue-500 text-sm"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm flex-1 text-right">ابحث عن... الأسعار، تجربة مجانية، الكتاب، تقييمات</span>
+                    <span class="text-xs font-black text-blue-500 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full flex-shrink-0 whitespace-nowrap">اضغط هنا ✦</span>
+                </div>
+
+                <!-- Suggestions Panel -->
+                <div id="smart-suggestions-panel"
+                     class="hidden absolute top-full left-0 right-0 mt-2 bg-white/97 backdrop-blur-xl border border-slate-100 rounded-2xl p-4 z-50 shadow-2xl" style="background:rgba(255,255,255,0.98)">
+                    <p class="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-3 px-1">اختر ما تريد معرفته</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <button onclick="handleSuggestion('pricing')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-blue-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-xs flex-shrink-0"><i class="fas fa-tags"></i></span>
+                            <span class="text-sm font-bold text-gray-700">الأسعار والخطط</span>
+                        </button>
+                        <button onclick="handleSuggestion('free_trial')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-green-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-xs flex-shrink-0"><i class="fas fa-gift"></i></span>
+                            <span class="text-sm font-bold text-gray-700">تجربة مجانية</span>
+                        </button>
+                        <button onclick="handleSuggestion('reviews')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-yellow-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-yellow-100 flex items-center justify-center text-yellow-600 text-xs flex-shrink-0"><i class="fas fa-star"></i></span>
+                            <span class="text-sm font-bold text-gray-700">تقييمات الأطباء</span>
+                        </button>
+                        <button onclick="handleSuggestion('book')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-amber-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 text-xs flex-shrink-0"><i class="fas fa-book-open"></i></span>
+                            <span class="text-sm font-bold text-gray-700">كتاب Plasticology</span>
+                        </button>
+                        <button onclick="handleSuggestion('group_discount')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-teal-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600 text-xs flex-shrink-0"><i class="fas fa-users"></i></span>
+                            <span class="text-sm font-bold text-gray-700">خصم المجموعات</span>
+                        </button>
+                        <button onclick="handleSuggestion('samples')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-red-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-red-100 flex items-center justify-center text-red-600 text-xs flex-shrink-0"><i class="fas fa-play-circle"></i></span>
+                            <span class="text-sm font-bold text-gray-700">مقاطع مجانية</span>
+                        </button>
+                        <button onclick="handleSuggestion('curriculum')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-indigo-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs flex-shrink-0"><i class="fas fa-layer-group"></i></span>
+                            <span class="text-sm font-bold text-gray-700">محتوى المنهج</span>
+                        </button>
+                        <button onclick="handleSuggestion('support')" class="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-purple-50 transition-colors text-right w-full">
+                            <span class="w-7 h-7 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 text-xs flex-shrink-0"><i class="fas fa-headset"></i></span>
+                            <span class="text-sm font-bold text-gray-700">دعم فني</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="main-content" class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+            <button class="sub-nav-card active" onclick="showPage('features', this)">
+                <div class="icon-box bg-yellow-100 text-yellow-600"><i class="fas fa-star"></i></div>
+                <span class="title">المميزات</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('bundles', this)">
+                <div class="icon-box bg-purple-100 text-purple-600"><i class="fas fa-tags"></i></div>
+                <span class="title">الباقات</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('chapters', this)">
+                <div class="icon-box bg-green-100 text-green-600"><i class="fas fa-layer-group"></i></div>
+                <span class="title">المحاضرات</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('testimonials', this)">
+                <div class="icon-box bg-pink-100 text-pink-600"><i class="fas fa-heart"></i></div>
+                <span class="title">الآراء</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('faq', this)">
+                <div class="icon-box bg-orange-100 text-orange-600"><i class="fas fa-question"></i></div>
+                <span class="title">الأسئلة</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('about', this)">
+                <div class="icon-box bg-indigo-100 text-indigo-600"><i class="fas fa-user-md"></i></div>
+                <span class="title">المحاضر</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('community', this)">
+                <div class="icon-box bg-blue-100 text-blue-600"><i class="fas fa-users"></i></div>
+                <span class="title">المجتمع</span>
+            </button>
+            <button class="sub-nav-card" onclick="showPage('contact-page', this)">
+                <div class="icon-box bg-gray-100 text-gray-600"><i class="fas fa-paper-plane"></i></div>
+                <span class="title">تواصل</span>
+            </button>
+        </div>
+    </div>
+    
+    <main class="container mx-auto px-4 mb-20">
+        
+        <section id="features" class="page-section active">
+            <div class="text-center mb-16">
+                <h2 class="section-title">لماذا Plasticology؟ 🚀</h2>
+                <p class="section-subtitle">نحن لا نقدم كورس.. نحن نقدم نظاماً متكاملاً لصناعة الجراح الماهر</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+                <div class="glass-card p-6 hover:bg-blue-50 transition-colors cursor-pointer group" onclick="openFeatureModal('qbank_system')">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">QBank — 11,000+ سؤال</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">بنك أسئلة ضخم مصنف بالموضوع. اختبر نفسك في وضع الامتحان الحقيقي، تتبع أخطاءك، واستهدف نقاط ضعفك بدقة.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-pink-50 transition-colors cursor-pointer group" onclick="openFeatureModal('radio_fm')">
+                    <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Plasticology Radio</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">استغل كل دقيقة! مكتبة صوتية كاملة للمراجعة أثناء المواصلات أو الجيم. Audio Recap لكل موضوع بعيداً عن الشاشات.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-purple-50 transition-colors cursor-pointer group" onclick="openFeatureModal('flashcards')">
+                    <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Flashcard Mode</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">ذاكر بنظام Spaced Repetition. الكروت التعليمية تتتبع ما تنساه وتعيد عرضه في التوقيت المثالي لتثبيت المعلومة نهائياً.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-orange-50 transition-colors cursor-pointer group" onclick="openFeatureModal('battle_arena')">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Battle Arena</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">تحدي زملاءك في منافسات علمية مباشرة! كل إجابة صح ترفع رصيدك في لوحة المتصدرين. الفائز في العلم والسرعة معاً.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-indigo-50 transition-colors cursor-pointer group" onclick="openFeatureModal('live_sessions')">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Live Broadcast Sessions</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">انضم لجلسات مباشرة تفاعلية مع المحاضر. أجب على أسئلة حية، شاهد إحصائياتك الآنية، وراجع التسجيلات لاحقاً.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-green-50 transition-colors cursor-pointer group" onclick="openFeatureModal('masterslog')">
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">MastersLog — دفتر عمليات</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">سجل كل عملية بتفاصيلها الكاملة، حلل تطورك بالرسوم البيانية، وصدّر CV جاهز للتقديم بضغطة واحدة.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-teal-50 transition-colors cursor-pointer group" onclick="openFeatureModal('clinical_toolbox')">
+                    <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center text-teal-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Clinical Toolbox</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">10+ حاسبة طبية متخصصة: Burn، Z-Plasty، Caprini VTE، Lipo Safety، Graft، Flaps وأكثر — كلها في مكان واحد.</p>
+                </div>
+
+                <div class="glass-card p-6 hover:bg-amber-50 transition-colors cursor-pointer group" onclick="openFeatureModal('study_squad')">
+                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Study Squad</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">ذاكر مع زملائك في جلسة تعاونية مباشرة. أرسل Exam Challenges لمجموعتك وتابع أداء كل فرد في لحظتها.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="plasticology-tv" class="netflix-section -mx-4 md:-mx-8 lg:-mx-20 px-4 md:px-8 lg:px-20 mb-20">
+            <div class="netflix-container">
+                <div class="text-left mb-4">
+                    <h2 class="netflix-title"><span class="text-red-600">Plasticology</span> TV <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded">LIVE SAMPLES</span></h2>
+                    <p class="text-gray-400 text-sm">شاهد مقتطفات حصرية من جودة الشرح والأسلوب</p>
+                </div>
+                
+                <div class="slider-wrapper group">
+                    <div class="slider-arrow left" onclick="slideLeft()"><i class="fas fa-chevron-left"></i></div>
+                    
+                    <div class="video-slider" id="video-slider">
+                        </div>
+                    
+                    <div class="slider-arrow right" onclick="slideRight()"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bundles" class="page-section">
+            <div id="pricing" class="max-w-5xl mx-auto">
+
+                <!-- Section Header -->
+                <div class="text-center mb-10">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-1.5 text-sm font-bold text-green-800 mb-4">
+                        <i class="fas fa-gift"></i> ابدأ مجاناً — 3 أيام وصول شامل بدون بطاقة
+                    </span>
+                    <h2 class="section-title mt-3">خطط Plasticology</h2>
+                    <p class="section-subtitle">كل خطة تشمل الـ QBank مجاناً. كلما زاد الالتزام، زادت الهدايا.</p>
+                </div>
+
+                <!-- Stats bar -->
+                <div class="flex flex-wrap justify-center gap-8 mb-10">
+                    <div class="text-center"><p class="text-2xl font-black text-blue-600">200+</p><p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Lecture Hours</p></div>
+                    <div class="text-center"><p class="text-2xl font-black text-blue-600">11,000+</p><p class="text-xs font-bold text-gray-400 uppercase tracking-wider">MCQ Questions</p></div>
+                    <div class="text-center"><p class="text-2xl font-black text-blue-600">8</p><p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Core Modules</p></div>
+                    <div class="text-center"><p class="text-2xl font-black text-blue-600">24/7</p><p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Platform Access</p></div>
+                </div>
+
+                <!-- Hero CTA Card -->
+                <div class="relative rounded-3xl overflow-hidden mb-6 text-white" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); box-shadow: 0 25px 60px -10px rgba(37,99,235,0.4)">
+                    <div class="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 pointer-events-none" style="background:white; transform:translate(25%,-35%)"></div>
+                    <div class="relative p-8 md:p-10">
+                        <div class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="flex-1 text-center md:text-right">
+                                <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-black px-3 py-1 rounded-full mb-4">
+                                    <i class="fas fa-store"></i> الأسعار على المنصة — محدّثة دائماً
+                                </div>
+                                <h3 class="text-2xl md:text-3xl font-black mb-2">4 خطط — تبدأ من 1,000 جنيه</h3>
+                                <p class="text-blue-100 text-sm leading-relaxed mb-4">
+                                    Rotation Sprint · Full Curriculum · Complete Mastery · QBank Only<br>
+                                    كل خطة تشمل QBank مجاناً + هدايا بتزيد مع الالتزام أكتر
+                                </p>
+                                <div class="flex items-center gap-2 justify-center md:justify-end flex-wrap">
+                                    <div class="flex text-amber-300 text-sm gap-0.5">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="text-blue-200 text-sm">+200 تقييم موثق</span>
+                                    <span class="bg-green-500/30 border border-green-400/30 text-green-200 text-xs font-bold px-3 py-1 rounded-full">
+                                        <i class="fas fa-check-circle mr-1"></i>تجربة مجانية 72 ساعة
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 shrink-0 w-full md:w-auto">
+                                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank"
+                                   class="flex items-center justify-center gap-2 bg-white text-blue-700 font-black text-base px-8 py-4 rounded-2xl shadow-xl hover:-translate-y-1 transition-all">
+                                    <i class="fas fa-store"></i> شوف الخطط والأسعار
+                                </a>
+                                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank"
+                                   class="flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-bold text-sm px-8 py-3 rounded-2xl hover:bg-white/25 transition-all">
+                                    <i class="fas fa-star text-amber-300"></i> شاهد تقييمات الأطباء
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Discount + Support — side by side on desktop -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+
+                    <!-- Group Discount -->
+                    <div id="group-discount-section" class="rounded-3xl p-6 overflow-hidden relative" style="background: linear-gradient(135deg, #1e293b, #0f172a)">
+                        <div class="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none" style="background:rgba(34,197,94,0.08); transform:translate(30%,-30%); filter:blur(40px)"></div>
+                        <div class="relative" style="z-index:1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <i class="fas fa-users text-green-400"></i>
+                                <span class="text-xs font-black uppercase tracking-widest text-green-400">Group Discount</span>
+                            </div>
+                            <h3 class="text-lg font-black text-white mb-1">تدرسوا مجموعة؟</h3>
+                            <p class="text-sm mb-4" style="color:#94a3b8">كلما زاد عدد المجموعة، زاد الخصم — أسعار خاصة غير معلنة على المنصة.</p>
+                            <div class="grid grid-cols-3 gap-2 mb-5">
+                                <div class="rounded-xl p-3 text-center" style="background:rgba(255,255,255,0.08)">
+                                    <p class="text-xl font-black text-white">15%</p>
+                                    <p class="text-xs font-black" style="color:#4ade80">OFF</p>
+                                    <p class="text-xs font-bold mt-1" style="color:#cbd5e1">Partners</p>
+                                    <p class="text-xs" style="color:#64748b">3 أفراد</p>
+                                </div>
+                                <div class="rounded-xl p-3 text-center" style="background:rgba(255,255,255,0.08)">
+                                    <p class="text-xl font-black text-white">25%</p>
+                                    <p class="text-xs font-black" style="color:#4ade80">OFF</p>
+                                    <p class="text-xs font-bold mt-1" style="color:#cbd5e1">Alliance</p>
+                                    <p class="text-xs" style="color:#64748b">5 أفراد</p>
+                                </div>
+                                <div class="rounded-xl p-3 text-center" style="background:rgba(255,255,255,0.08)">
+                                    <p class="text-xl font-black text-white">35%</p>
+                                    <p class="text-xs font-black" style="color:#4ade80">OFF</p>
+                                    <p class="text-xs font-bold mt-1" style="color:#cbd5e1">Legends</p>
+                                    <p class="text-xs" style="color:#64748b">+10 أفراد</p>
+                                </div>
+                            </div>
+                            <a href="https://t.me/DrBishoyAcademy" target="_blank"
+                               class="flex items-center justify-center gap-2 font-black px-5 py-3 rounded-2xl text-sm text-white w-full" style="background:#22c55e">
+                                <i class="fab fa-telegram-plane"></i> اسأل عن سعر مجموعتك
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Support & Guidance -->
+                    <div class="glass-card p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <i class="fas fa-headset text-blue-600"></i>
+                                <span class="text-xs font-black uppercase tracking-widest text-blue-600">دعم فني وعلمي</span>
+                            </div>
+                            <h3 class="text-lg font-black text-gray-900 mb-1">محتاج مساعدة في الاختيار؟</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-5">سواء محتاج تعرف الخطة المناسبة لك، أو عندك سؤال عن المحتوى، أو مشكلة تقنية — فريقنا متاح 24/7.</p>
+                            <div class="space-y-2.5 mb-5">
+                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                    <div class="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                                        <i class="fas fa-comments text-blue-600 text-xs"></i>
+                                    </div>
+                                    <span class="font-medium">استشارة في اختيار الخطة المناسبة</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                    <div class="w-8 h-8 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+                                        <i class="fas fa-tools text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="font-medium">دعم تقني لأي مشكلة على المنصة</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                    <div class="w-8 h-8 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+                                        <i class="fas fa-question-circle text-amber-600 text-xs"></i>
+                                    </div>
+                                    <span class="font-medium">إجابة على أي سؤال عن المحتوى</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://t.me/DrBishoyAcademy" target="_blank"
+                           class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-2xl transition text-sm w-full">
+                            <i class="fab fa-telegram-plane"></i> تواصل مع الدعم الفني
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Book Store Card -->
+                <div class="glass-card p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-r-4 border-amber-400">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-black text-gray-900">الكتب المطبوعة</h3>
+                            <p class="text-gray-500 text-sm">للطلبات ومعلومات الطبعة الجديدة — الأسعار والتفاصيل على المتجر</p>
+                        </div>
+                    </div>
+                    <a href="https://plasticologybooks.surgerymastersacademy.com/" target="_blank" rel="noopener noreferrer"
+                       class="flex-shrink-0 flex items-center gap-2 border-2 border-amber-300 text-amber-800 font-bold px-6 py-3 rounded-full hover:bg-amber-50 transition-colors text-sm whitespace-nowrap">
+                        <i class="fas fa-store"></i> متجر الكتب
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="chapters" class="page-section">
+            <div class="text-center mb-12">
+                <h2 class="section-title">المكتبة العلمية 📖</h2>
+                <p class="section-subtitle">تصفح محتويات المنهج بالتفصيل</p>
+                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" class="inline-flex items-center gap-2 text-purple-600 font-bold mt-4 hover:underline">
+                    شاهد المحاضرات على المنصة <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div id="chapters-accordion-list" class="max-w-4xl mx-auto space-y-4"></div>
+        </section>
+
+        <section id="testimonials" class="page-section">
+            <div class="text-center mb-12">
+                <h2 class="section-title">قصص نجاح 🌟</h2>
+                <p class="section-subtitle">أطباء غيروا مسارهم المهني معنا</p>
+                <a href="https://plasticology.surgerymastersacademy.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-purple-600 font-bold mt-4 hover:underline">
+                    شاهد التقييمات الموثقة على المنصة <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </section>
+
+        <section id="faq" class="page-section">
+            <div class="text-center mb-12">
+                <h2 class="section-title">أسئلة شائعة 🤔</h2>
+            </div>
+            <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4"></div>
+        </section>
+
+        <section id="about" class="page-section py-20 relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[500px] bg-gradient-to-r from-purple-100 to-pink-100 -rotate-3 z-0 rounded-[100px] opacity-60"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
+                    
+                    <div class="w-full md:w-5/12 relative group">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-[40px] rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-500"></div>
+                        <div class="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-white/50 backdrop-blur-sm">
+                            <img src="https://pub-fb0d46cb77cb4e22b5863540fe118da4.r2.dev/DrBishoyImages/Plasticology%20Book.png" 
+                                 class="w-full h-auto transform transition-transform duration-700 group-hover:scale-105" 
+                                 alt="Dr. Bishoy Nagy">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow">
+                            <div class="bg-yellow-100 p-2 rounded-full text-yellow-600">
+                                <i class="fas fa-crown text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold uppercase">Experience</p>
+                                <p class="text-lg font-black text-gray-800">+10 Years</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="w-full md:w-7/12 text-center md:text-left rtl:md:text-right">
+                        <span class="inline-block py-1 px-3 rounded-lg bg-purple-100 text-purple-700 text-sm font-bold mb-4">
+                            👨‍⚕️ The Mastermind
+                        </span>
+                        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-2">
+                            د. بيشوي ناجي
+                        </h2>
+                        <p class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 font-bold mb-6">
+                            استشاري جراحة التجميل والحروق
+                        </p>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                            "الجراحة فن وعلم. في Plasticology، لا ننقل لك المعلومات فقط، بل ننقل لك <span class="text-purple-600 font-bold">الشغف والدقة</span> التي تميز الجراح الماهر. انضم إلينا لتصنع مستقبلك بيدك."
+                        </p>
+            
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="p-4 bg-white/60 rounded-2xl border border-white shadow-sm text-center hover:bg-white transition-colors">
+                                <i class="fas fa-graduation-cap text-2xl text-purple-500 mb-2"></i>
+                                <p class="font-bold text-gray-800">Doctorate</p>
+                                <p class="text-xs text-gray-500">Holder</p>
+                            </div>
+                            <div class="p-4 bg-white/60 rounded-2xl border border-white shadow-sm text-center hover:bg-white transition-colors">
+                                <i class="fas fa-certificate text-2xl text-pink-500 mb-2"></i>
+                                <p class="font-bold text-gray-800">Board</p>
+                                <p class="text-xs text-gray-500">Certified</p>
+                            </div>
+                            <div class="p-4 bg-white/60 rounded-2xl border border-white shadow-sm text-center hover:bg-white transition-colors">
+                                <i class="fas fa-users text-2xl text-blue-500 mb-2"></i>
+                                <p class="font-bold text-gray-800">+1000</p>
+                                <p class="text-xs text-gray-500">Plastic Surgeons</p>
+                            </div>
+                            <div class="p-4 bg-white/60 rounded-2xl border border-white shadow-sm text-center hover:bg-white transition-colors">
+                                <i class="fas fa-star text-2xl text-yellow-500 mb-2"></i>
+                                <p class="font-bold text-gray-800">4.9/5</p>
+                                <p class="text-xs text-gray-500">Rating</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="page-section">
+            <div class="text-center mb-12">
+                <h2 class="section-title">مجتمع الجراحين 🌍</h2>
+                <p class="section-subtitle">تواصل مع زملائك وشارك المعرفة</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="glass-card p-6 border-t-4 border-blue-600">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-4">Facebook Hub</h3>
+                        <div class="space-y-3">
+                            <a href="https://www.facebook.com/groups/912100319624846" target="_blank" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm font-semibold transition-colors">Academy Official Group</a>
+                            <a href="https://www.facebook.com/groups/3334492170114962/" target="_blank" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm font-semibold transition-colors">Study Camp Group</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-t-4 border-sky-500">
+                        <div class="w-12 h-12 bg-sky-100 text-sky-500 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fab fa-telegram-plane"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-4">Telegram Updates</h3>
+                        <div class="space-y-3">
+                            <a href="https://t.me/EgyPSA" target="_blank" class="block p-3 bg-gray-50 hover:bg-sky-50 rounded-lg text-sm font-semibold transition-colors">Official Channel</a>
+                            <a href="https://t.me/joinchat/WHEthd8_TLosaDKR" target="_blank" class="block p-3 bg-gray-50 hover:bg-sky-50 rounded-lg text-sm font-semibold transition-colors">Discussion Group</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-t-4 border-green-500">
+                        <div class="w-12 h-12 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fab fa-google-drive"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-4">Resources</h3>
+                        <div class="space-y-3">
+                            <a href="https://drive.google.com/drive/folders/1bJz7npAAxqJKUsPtnhgBYu7Km6wGYRFd?usp=sharing" target="_blank" class="block p-3 bg-gray-50 hover:bg-green-50 rounded-lg text-sm font-semibold transition-colors">Resource Drive (Books)</a>
+                            <a href="https://www.youtube.com/channel/UC-JTAKMZZ9qcC5eqc9PvDeA" target="_blank" class="block p-3 bg-gray-50 hover:bg-red-50 rounded-lg text-sm font-semibold transition-colors">YouTube Channel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+                    <h3 class="text-2xl font-bold mb-4">انضم إلى مجتمع EPSA الرسمي</h3>
+                    <p class="text-gray-300 mb-6 max-w-2xl mx-auto">لضمان جودة النقاشات العلمية، نطلب من الأعضاء إثبات التخصص (جراحة تجميل) للانضمام إلى المجموعات المغلقة.</p>
+                    <button onclick="document.getElementById('notice-modal-backdrop').classList.remove('hidden')" class="btn-candy px-8 py-3 bg-white text-purple-600 hover:bg-gray-100 shadow-none">
+                        <i class="fas fa-id-card mr-2"></i> طلب انضمام (التحقق من الهوية)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-page" class="page-section">
+            <div class="glass-card p-12 text-center max-w-3xl mx-auto">
+                <h2 class="section-title mb-4">نحن هنا لمساعدتك 👋</h2>
+                <a href="https://t.me/DrBishoyAcademy" target="_blank" class="btn-candy px-10 py-4 text-xl inline-flex items-center gap-3">
+                    <i class="fab fa-telegram-plane"></i> تواصل عبر تيليجرام
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur-md border-t border-gray-200 py-8 text-center">
+        <p class="text-gray-500 text-sm">
+            &copy; <span id="current-year"></span> Plasticology. Crafted with <i class="fas fa-heart text-red-400 mx-1"></i> for Surgeons.
+        </p>
+    </footer>
+
+    <a href="https://t.me/DrBishoyAcademy" target="_blank" class="floating-btn" title="تواصل معنا">
+        <i class="fab fa-telegram-plane"></i>
+        <div class="tooltip-text">تواصل مع د. بيشوي</div>
+    </a>
+
+    <div id="videoModal" class="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 z-[100] hidden" onclick="closeVideoModal()">
+        <div class="w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">&times;</button>
+            <iframe id="youtube-player" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="notice-modal-backdrop" class="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 hidden backdrop-blur-sm" onclick="this.classList.add('hidden')">
+        <div class="bg-white border border-gray-200 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 shadow-2xl" onclick="event.stopPropagation()">
+            <div class="text-center mb-6">
+                <div class="inline-block p-4 rounded-full bg-yellow-100 text-yellow-600 mb-4 animate-bounce">
+                    <i class="fas fa-exclamation-triangle text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold">تنويه هام / Important Notice</h2>
+            </div>
+            
+            <div class="space-y-6 text-sm">
+                 <div class="p-5 rounded-xl bg-gray-50 border border-gray-200">
+                    <p class="font-bold mb-2 text-red-500 text-base uppercase tracking-wide">Verification Required</p>
+                    <p class="leading-relaxed">Please ensure your attached Identity Proof clearly shows your <strong>Plastic Surgery Specialty</strong>. If you are not a Plastic Surgeon, you are welcome to follow our public events, but this specific form is for specialists.</p>
+                </div>
+                <div dir="rtl" lang="ar" class="text-right p-5 rounded-xl bg-gray-50 border border-gray-200">
+                    <p class="font-bold mb-2 text-base text-purple-600">تنويه هام</p>
+                    <p class="leading-relaxed">برجاء التأكد من أن إثبات الهوية المرفق يوضح تخصص <strong>جراحة التجميل</strong> بشكل واضح. إذا لم تكن جراح تجميل، يسعدنا متابعتك لفعالياتنا العامة، ولكن هذا النموذج مخصص للمتخصصين فقط.</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex flex-col-reverse sm:flex-row gap-4">
+                <button onclick="document.getElementById('notice-modal-backdrop').classList.add('hidden')" class="w-full py-3 px-6 rounded-lg font-semibold border border-gray-300 hover:bg-gray-50 transition-colors">Cancel</button>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwdgmoRnH8d4WfoqrNzmtBaBumVNgW7NSHY7Q9IAH_E2Irvw/viewform?usp=sf_link" target="_blank" class="w-full py-3 px-6 rounded-lg font-semibold bg-purple-600 text-white text-center hover:bg-purple-700 transition-opacity shadow-lg">I Understand, Continue</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="featureModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="closeFeatureModal()">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b pb-4 mb-6">
+                <h3 id="modalTitle" class="text-2xl font-black text-gray-800"></h3>
+                <button onclick="closeFeatureModal()" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 flex items-center justify-center transition-colors">&times;</button>
+            </div>
+            <div id="modalContent" class="grid md:grid-cols-2 gap-6"></div>
+        </div>
+    </div>
+
+    <div id="chapter-selection-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-[60] hidden" onclick="closeChapterSelectionModal()">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b p-6 bg-gray-50">
+                <h3 class="text-xl font-bold text-gray-800">تخصيص الباقة (Residents Bundle)</h3>
+                <button onclick="closeChapterSelectionModal()" class="w-8 h-8 rounded-full bg-white border hover:bg-red-50 text-gray-500 hover:text-red-500 flex items-center justify-center">&times;</button>
+            </div>
+            <div class="p-8 overflow-y-auto flex-grow">
+                 <h4 class="font-bold text-gray-800 mb-4">1. المدة الزمنية:</h4>
+                 <div class="mb-8 p-4 bg-purple-50 border border-purple-200 rounded-xl text-center">
+                     <p class="font-bold text-purple-700">شهر واحد لكل باب (1 Month)</p>
+                     <p class="text-xs text-gray-500 mt-1">مدة كافية جداً للدراسة العملية والعلمية أثناء الـ Rotation</p>
+                 </div>
+                 
+                 <h4 class="font-bold text-gray-800 mb-4">2. اختر الفصول:</h4>
+                 <div id="chapters-list-container" class="grid md:grid-cols-2 gap-3"></div>
+            </div>
+            <div class="p-6 border-t bg-gray-50 flex items-center justify-between">
+                <div>
+                    <span class="text-gray-500 text-sm block">الإجمالي</span>
+                    <span id="custom-package-price" class="text-3xl font-black text-purple-600">0 ج.م</span>
+                </div>
+                <button id="custom-package-subscribe-btn" class="btn-candy px-8 py-3 opacity-50 pointer-events-none transition-all">
+                    اشترك الآن
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
